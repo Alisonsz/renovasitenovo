@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../js/**/*.vue';
+
+@theme {
+    /* Brand palette (extraido do site atual) */
+    --color-brand: #29d8db;
+    --color-brand-dark: #0abab5;
+    --color-brand-soft: #dbe8e9;
+    --color-ink: #333333;
+    --color-heading: #4d4d4d;
+    --color-heading-soft: #4a4a4a;
+    --color-muted: #7a7a7a;
+    --color-muted-2: #6d7070;
+    --color-pink: #cc3366;
+    --color-whats: #25d366;
+
+    /* Fontes (Google Fonts carregadas no app.blade.php) */
+    --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Montserrat Alternates', 'Montserrat', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-montserrat: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: #ffffff;
+}

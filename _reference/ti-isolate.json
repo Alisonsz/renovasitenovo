@@ -1,0 +1,22 @@
+{
+  "net": [
+    "200 https://cdn.trustindex.io/loader.js?bb8719e73d211132d2560f053cf",
+    "200 https://cdn.trustindex.io/widgets/bb/bb8719e73d211132d2560f053cf/content.html",
+    "200 https://cdn.trustindex.io/assets/widget-presetted-css/v2/4-drop-shadow.css",
+    "200 https://cdn.trustindex.io/assets/icon/ti-verified.svg",
+    "200 https://cdn.trustindex.io/assets/fonts/poppins/latin.woff2",
+    "200 https://cdn.trustindex.io/assets/fonts/poppins/latin-600.woff2",
+    "200 https://cdn.trustindex.io/assets/platform/Google/icon.svg",
+    "200 https://cdn.trustindex.io/assets/platform/Google/star/f.svg"
+  ],
+  "dom": {
+    "ti": 12,
+    "names": [
+      "Cristiano Berilo",
+      "denner scheffer",
+      "Ivoneide Martins"
+    ],
+    "bodyLen": 28226
+  },
+  "logs": []
+}

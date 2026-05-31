@@ -1,0 +1,985 @@
+{
+  "bodyFont": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+  "bodyColor": "rgb(51, 51, 51)",
+  "bodyBg": "rgb(255, 255, 255)",
+  "topBg": [
+    [
+      "rgb(255, 255, 255)",
+      41
+    ],
+    [
+      "rgb(41, 216, 219)",
+      13
+    ],
+    [
+      "rgba(0, 0, 0, 0.5)",
+      3
+    ],
+    [
+      "rgba(10, 186, 181, 0.31)",
+      1
+    ],
+    [
+      "rgba(255, 255, 255, 0)",
+      1
+    ],
+    [
+      "rgba(10, 186, 181, 0)",
+      1
+    ],
+    [
+      "rgba(2, 1, 1, 0.15)",
+      1
+    ],
+    [
+      "rgb(254, 255, 255)",
+      1
+    ],
+    [
+      "rgb(219, 232, 233)",
+      1
+    ],
+    [
+      "rgb(37, 211, 102)",
+      1
+    ],
+    [
+      "rgb(0, 0, 0)",
+      1
+    ]
+  ],
+  "topColor": [
+    [
+      "rgb(51, 51, 51)",
+      618
+    ],
+    [
+      "rgb(10, 186, 181)",
+      159
+    ],
+    [
+      "rgb(0, 0, 0)",
+      130
+    ],
+    [
+      "rgb(122, 122, 122)",
+      109
+    ],
+    [
+      "rgb(255, 255, 255)",
+      67
+    ],
+    [
+      "rgb(77, 77, 77)",
+      27
+    ],
+    [
+      "rgb(109, 112, 112)",
+      27
+    ],
+    [
+      "rgb(204, 51, 102)",
+      22
+    ],
+    [
+      "rgb(29, 29, 29)",
+      13
+    ],
+    [
+      "rgb(74, 74, 74)",
+      7
+    ],
+    [
+      "rgb(187, 186, 186)",
+      4
+    ],
+    [
+      "rgb(105, 114, 125)",
+      4
+    ],
+    [
+      "rgb(1, 62, 60)",
+      3
+    ],
+    [
+      "rgb(51, 55, 61)",
+      2
+    ],
+    [
+      "rgb(204, 204, 204)",
+      1
+    ]
+  ],
+  "topFont": [
+    [
+      "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      866
+    ],
+    [
+      "\"Times New Roman\"",
+      130
+    ],
+    [
+      "Montserrat, sans-serif",
+      126
+    ],
+    [
+      "\"Source Sans 3\", sans-serif",
+      37
+    ],
+    [
+      "Poppins, sans-serif",
+      16
+    ],
+    [
+      "\"Font Awesome 5 Free\"",
+      10
+    ],
+    [
+      "\"Montserrat Alternates\", sans-serif",
+      3
+    ],
+    [
+      "\"Font Awesome 5 Brands\"",
+      2
+    ],
+    [
+      "-apple-system, blinkmacsystemfont, \"Segoe UI\", roboto, oxygen-sans, ubuntu, cantarell, \"Helvetica Neue\", sans-serif",
+      2
+    ],
+    [
+      "eicons",
+      1
+    ]
+  ],
+  "images": [
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/Logorenovalaser-site-desk-1024x224.png",
+      "alt": "",
+      "nat": "800x175",
+      "disp": "265x58"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2023/02/Design-sem-nome-2023-02-13T193435.147-e1676327709125.png",
+      "alt": "",
+      "nat": "1080x191",
+      "disp": "0x0"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+      "alt": "",
+      "nat": "1024x1024",
+      "disp": "150x150"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+      "alt": "",
+      "nat": "500x334",
+      "disp": "240x160"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+      "alt": "",
+      "nat": "500x334",
+      "disp": "240x160"
+    },
+    {
+      "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2021/06/Logorenovalaser-Mod-01_Prancheta-1-copia-scaled.png",
+      "alt": "",
+      "nat": "0x0",
+      "disp": "169x37"
+    },
+    {
+      "src": "https://s.w.org/images/core/emoji/16.0.1/svg/2764.svg",
+      "alt": "❤",
+      "nat": "150x150",
+      "disp": "13x13"
+    },
+    {
+      "src": "https://s.w.org/images/core/emoji/17.0.2/svg/2764.svg",
+      "alt": "❤",
+      "nat": "150x150",
+      "disp": "0x0"
+    },
+    {
+      "src": "https://s.w.org/images/core/emoji/17.0.2/svg/1f512.svg",
+      "alt": "🔒",
+      "nat": "150x150",
+      "disp": "13x13"
+    }
+  ],
+  "bgImages": [
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/09/backgrenova.jpg",
+    "https://renovalaserdepilacao.com.br/wp-content/plugins/woocommerce/assets/css/photoswipe/default-skin/default-skin.png"
+  ],
+  "headings": [
+    {
+      "tag": "H2",
+      "text": "acesse sua conta ou cadastre-se",
+      "size": "17px",
+      "weight": "500",
+      "color": "rgb(255, 255, 255)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Excelência em",
+      "size": "80px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)",
+      "font": "\"Montserrat Alternates\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "depilação a laser",
+      "size": "62px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)",
+      "font": "\"Montserrat Alternates\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Atendimento humanizado",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Resultados visíveis",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Tecnologia de ponta",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Pode ser aplicado",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Ponteira ICE",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Atendimento humanizado",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Resultados visíveis",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Tecnologia de ponta",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Pode ser aplicado",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Ponteira ICE",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Atendimento humanizado",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Resultados visíveis",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Tecnologia de ponta",
+      "size": "15px",
+      "weight": "400",
+      "color": "rgb(29, 29, 29)",
+      "font": "Poppins, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Na dúvida de qual clínica escolher?",
+      "size": "39px",
+      "weight": "800",
+      "color": "rgb(74, 74, 74)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Aposte em quem é referência​",
+      "size": "28px",
+      "weight": "600",
+      "color": "rgb(74, 74, 74)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Conheça nossos preços",
+      "size": "39px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Combos promocionais",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Pacotes de depilação",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Sessões avulsas",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Combos promocionais",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Pacotes de depilação",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Sessões avulsas",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Combos promocionais",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Pacotes de depilação",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Sessões avulsas",
+      "size": "22px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Dúvidas frequentes",
+      "size": "39px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Quantas sessões são necessárias?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser dói?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser definitiva?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Como funciona?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Quantas sessões são necessárias?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser dói?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser definitiva?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Como funciona?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Quantas sessões são necessárias?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser dói?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Depilação a laser definitiva?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Como funciona?",
+      "size": "15px",
+      "weight": "700",
+      "color": "rgb(10, 186, 181)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Não encontrou resposta para sua dúvida aqui?",
+      "size": "29px",
+      "weight": "600",
+      "color": "rgb(74, 74, 74)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Onde estamos",
+      "size": "39px",
+      "weight": "800",
+      "color": "rgb(77, 77, 77)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Tatuapé | São Paulo / SP",
+      "size": "19px",
+      "weight": "600",
+      "color": "rgb(74, 74, 74)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Horário de atendimento",
+      "size": "19px",
+      "weight": "600",
+      "color": "rgb(74, 74, 74)",
+      "font": "\"Source Sans 3\", sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Menu",
+      "size": "16px",
+      "weight": "500",
+      "color": "rgb(77, 77, 77)",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    },
+    {
+      "tag": "H2",
+      "text": "Sobre nós",
+      "size": "16px",
+      "weight": "500",
+      "color": "rgb(77, 77, 77)",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    },
+    {
+      "tag": "H2",
+      "text": "Ajuda",
+      "size": "16px",
+      "weight": "500",
+      "color": "rgb(77, 77, 77)",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    },
+    {
+      "tag": "H2",
+      "text": "Siga a gente",
+      "size": "16px",
+      "weight": "700",
+      "color": "rgb(77, 77, 77)",
+      "font": "Montserrat, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé",
+      "size": "13px",
+      "weight": "500",
+      "color": "rgb(122, 122, 122)",
+      "font": "Montserrat, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "© 2025 RenovaLaser | Todos os direitos reservados. Feito com no Tatuapé",
+      "size": "13px",
+      "weight": "400",
+      "color": "rgb(122, 122, 122)",
+      "font": "Montserrat, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Este é um site seguro. Todos os dados são criptografados com SSL.",
+      "size": "13px",
+      "weight": "500",
+      "color": "rgb(122, 122, 122)",
+      "font": "Montserrat, sans-serif"
+    }
+  ],
+  "buttons": [
+    {
+      "text": "Quem somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Quem somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(51, 55, 61)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(51, 55, 61)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa Tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Quem Somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Depilação Feminina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Depilação Masculina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Minhas compras",
+      "href": "https://renovalaserdepilacao.com.br/minha-conta/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa Tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Quem Somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Depilação Feminina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Depilação Masculina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "Minhas compras",
+      "href": "https://renovalaserdepilacao.com.br/minha-conta/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px"
+    },
+    {
+      "text": "AGENDAR AVALIAÇÃO",
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "3px"
+    },
+    {
+      "text": "Ver combos",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver pacotes",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver ofertas",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver combos",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver pacotes",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver ofertas",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver combos",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver pacotes",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Ver ofertas",
+      "href": "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 8px 8px"
+    },
+    {
+      "text": "Falar com uma especialista",
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "3px"
+    },
+    {
+      "text": "Depilação feminina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Depilação masculina",
+      "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Minhas compras",
+      "href": "https://renovalaserdepilacao.com.br/area-do-cliente/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Quem somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Blog",
+      "href": "https://renovalaserdepilacao.com.br/blog/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Quem somos",
+      "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Nossa tecnologia",
+      "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Blog",
+      "href": "https://renovalaserdepilacao.com.br/blog/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Central de atendimento",
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.Gostaria%20de%20ajuda%20com%3A%20%5Bagendamento%20%7C%20d%C3%BAvidas%20%7C%20suporte%5DPode%20me%20orientar%3F",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Central de vendas",
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Instagram",
+      "href": "https://www.instagram.com/renovalaserdepilacao",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(105, 114, 125)",
+      "radius": "50%"
+    },
+    {
+      "text": "Tiktok",
+      "href": "https://www.tiktok.com/@renovalaserdepilacao",
+      "bg": "rgb(41, 216, 219)",
+      "color": "rgb(105, 114, 125)",
+      "radius": "50%"
+    },
+    {
+      "text": "Política de Privacidade e Cookies",
+      "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Política de Reembolso",
+      "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Política de Cancelamento",
+      "href": "https://renovalaserdepilacao.com.br/cancelamento/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Política de Privacidade e Cookies",
+      "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    },
+    {
+      "text": "Política de Reembolso",
+      "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(204, 51, 102)",
+      "radius": "0px"
+    }
+  ],
+  "fullText": "Quem somos\nNossa tecnologia\nacesse sua conta\nou cadastre-se\nExcelência em\ndepilação a laser\nAGENDAR AVALIAÇÃO\nAtendimento humanizado\n\nEquipe profissional e carismática\n\nResultados visíveis\n\nJá na primeira sessão\n\nTecnologia de ponta\n\nResultados mais rápidos\n\nPode ser aplicado\n\nem todos os tons de pele\n\nPonteira ICE\n\nMais conforto na sua sessão\n\nAtendimento humanizado\n\nEquipe profissional e carismática\n\nResultados visíveis\n\nJá na primeira sessão\n\nTecnologia de ponta\n\nResultados mais rápidos\n\nPode ser aplicado\n\nem todos os tons de pele\n\nPonteira ICE\n\nMais conforto na sua sessão\n\nAtendimento humanizado\n\nEquipe profissional e carismática\n\nResultados visíveis\n\nJá na primeira sessão\n\nTecnologia de ponta\n\nResultados mais rápidos\n\nNa dúvida de qual clínica escolher?\nAposte em quem é referência​\n\nA Renova Laser é uma clínica de depilação a laser com marca própria ou seja, não somos franquia. E isso faz toda a diferença. Aqui, cada detalhe é pensado por quem vive o negócio todos os dias.\n\nUtilizamos a tecnologia Triple Wave (Diodo, Nd-YAG e Alexandrite), reconhecida como a mais moderna do mercado, com ponteira ice resfriada a – 16ºc que garante mais conforto no tratamento.\n\nNosso atendimento é um dos mais bem avaliados do setor porque colocamos o cliente no centro da experiência. Equipe treinada, carismática e comprometida com resultados reais desde a primeira sessão. \n\nSe você está no Tatuapé ou região e busca segurança, eficiência e acolhimento a Renova Laser é a escolha certa.\n\nConheça nossos preços\n\nTem pacote, tem avulsa, tem pra você!\n\nVem ver nossos preços\n\nCombos promocionais\n\nMais áreas, mais desconto! Aproveite os combos pensados pra sua rotina e seu bolso.\n\nVer combos\nPacotes de depilação\n\nIdeal pra quem quer iniciar o tratamento e já garantir um preço menor por sessão.\n\nVer pacotes\nSessões avulsas\n\nPerfeitas para quem quer experimentar ou fazer retoques, sem compromisso com pacotes.\n\nVer ofertas\nCombos promocionais\n\nMais áreas, mais desconto! Aproveite os combos pensados pra sua rotina e seu bolso.\n\nVer combos\nPacotes de depilação\n\nIdeal pra quem quer iniciar o tratamento e já garantir um preço menor por sessão.\n\nVer pacotes\nSessões avulsas\n\nPerfeitas para quem quer experimentar ou fazer retoques, sem compromisso com pacotes.\n\nVer ofertas\nCombos promocionais\n\nMais áreas, mais desconto! Aproveite os combos pensados pra sua rotina e seu bolso.\n\nVer combos\nPacotes de depilação\n\nIdeal pra quem quer iniciar o tratamento e já garantir um preço menor por sessão.\n\nVer pacotes\nSessões avulsas\n\nPerfeitas para quem quer experimentar ou fazer retoques, sem compromisso com pacotes.\n\nVer ofertas\nDúvidas frequentes\nQuantas sessões são necessárias?\n\nEm média, são recomendadas de 6 a 10 sessões para resultados eficazes, podendo variar de acordo com a área tratada, cor e espessura dos pelos, além de fatores hormonais.\n\nDepilação a laser dói?\n\nNossa tecnologia conta com uma ponteira resfriada a -16ºC, o desconforto durante a depilação a laser é mínimo. A sensação é suave e bem tolerável, tornando o tratamento muito mais tranquilo do que métodos tradicionais.\n\nDepilação a laser definitiva?\nÉ uma solução de longa duração! A maioria dos pelos não volta a crescer, e os que retornam são mais finos. Basta manter algumas sessões de manutenção para manter o resultado.\nComo funciona?\n\nA ponteira atua na camada superficial da pele, aquecendo apenas o folículo piloso para impedir o crescimento do pelo. Durante o processo, a pele é resfriada, o que garante mais conforto e segurança ao tratamento.\n\nQuantas sessões são necessárias?\n\nEm média, são recomendadas de 6 a 10 sessões para resultados eficazes, podendo variar de acordo com a área tratada, cor e espessura dos pelos, além de fatores hormonais.\n\nDepilação a laser dói?\n\nNossa tecnologia conta com uma ponteira resfriada a -16ºC, o desconforto durante a depilação a laser é mínimo. A sensação é suave e bem tolerável, tornando o tratamento muito mais tranquilo do que métodos tradicionais.\n\nDepilação a laser definitiva?\nÉ uma solução de longa duração! A maioria dos pelos não volta a crescer, e os que retornam são mais finos. Basta manter algumas sessões de manutenção para manter o resultado.\nComo funciona?\n\nA ponteira atua na camada superficial da pele, aquecendo apenas o folículo piloso para impedir o crescimento do pelo. Durante o processo, a pele é resfriada, o que garante mais conforto e segurança ao tratamento.\n\nQuantas sessões são necessárias?\n\nEm média, são recomendadas de 6 a 10 sessões para resultados eficazes, podendo variar de acordo com a área tratada, cor e espessura dos pelos, além de fatores hormonais.\n\nDepilação a laser dói?\n\nNossa tecnologia conta com uma ponteira resfriada a -16ºC, o desconforto durante a depilação a laser é mínimo. A sensação é suave e bem tolerável, tornando o tratamento muito mais tranquilo do que métodos tradicionais.\n\nDepilação a laser definitiva?\nÉ uma solução de longa duração! A maioria dos pelos não volta a crescer, e os que retornam são mais finos. Basta manter algumas sessões de manutenção para manter o resultado.\nComo funciona?\n\nA ponteira atua na camada superficial da pele, aquecendo apenas o folículo piloso para impedir o crescimento do pelo. Durante o processo, a pele é resfriada, o que garante mais conforto e segurança ao tratamento.\n\nNão encontrou resposta para\nsua dúvida aqui?\n\nTire aqui todas as suas dúvidas \n\nFalar com uma especialista\nOnde estamos\nTatuapé | São Paulo / SP\n\nRua Cantagalo 223 – sala 04\n\nHorário de atendimento\n\nSeg a sex das 09h às 20h \n\nSábado das 08h às 17h\n\nMenu\nDepilação feminina\nDepilação masculina\nMinhas compras\nSobre nós\nQuem somos\nNossa tecnologia\nBlog\nAjuda\nCentral de atendimento\nCentral de vendas\nSiga a gente\nInstagram\n \nTiktok\nPolítica de Privacidade e Cookies\nPolítica de Reembolso\nPolítica de Cancelamento\n© 2025 Renova Laser | Todos os direitos reservados. Feito com  no Tatuapé\n Este é um site seguro. Todos os dados são criptografados com SSL."
+}

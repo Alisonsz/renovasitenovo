@@ -1,0 +1,10 @@
+{
+  "eText": "E",
+  "eFont": "Montserrat, sans-serif",
+  "eWeight": "400",
+  "btnM": "15px/15px/24px/24px",
+  "iconColor": "rgb(255, 255, 255)",
+  "iconW": 28,
+  "cardsInside": 4,
+  "cardsPartial": 0
+}

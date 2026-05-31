@@ -1,0 +1,20 @@
+{
+  "net": [
+    "200 https://cdn.trustindex.io/loader.js?bb8719e73d211132d2560f053cf",
+    "200 https://cdn.trustindex.io/widgets/bb/bb8719e73d211132d2560f053cf/content.html"
+  ],
+  "dom": {
+    "anyTiNodes": 0,
+    "tiIframes": [],
+    "hostInnerLens": [
+      281,
+      187,
+      0,
+      11,
+      0
+    ]
+  },
+  "logs": [
+    "[debug] Search endpoint requested!"
+  ]
+}

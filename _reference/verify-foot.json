@@ -1,0 +1,16 @@
+{
+  "footerBgImg": "linear-gradient(rgb(255, 255, 255) 0%, rgb(219, 232, 233) 10",
+  "colTitleColor": "rgb(77, 77, 77)",
+  "colTitleSize": "16px",
+  "colLinkColor": "rgb(122, 122, 122)",
+  "colLinkSize": "15px",
+  "policyColor": "rgb(204, 51, 102)",
+  "socialBg": "rgb(41, 216, 219)",
+  "socialRadius": "3.35544e+07px",
+  "socialIconColor": "rgb(105, 114, 125)",
+  "logoH": 44,
+  "copyColor": "rgb(122, 122, 122)",
+  "ondeTitleAlign": "left",
+  "ondeTitleColor": "rgb(77, 77, 77)",
+  "ondeIcons": 0
+}

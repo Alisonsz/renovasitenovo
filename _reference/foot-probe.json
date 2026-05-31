@@ -1,0 +1,34 @@
+{
+  "footerColTitle": {
+    "color": "rgb(51, 51, 51)",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+  },
+  "footerLink": {
+    "color": "rgb(255, 255, 255)",
+    "fontSize": "17px",
+    "fontFamily": "Montserrat, sans-serif"
+  },
+  "policyLink": {
+    "color": "rgb(204, 51, 102)",
+    "fontSize": "14px"
+  },
+  "copy": {
+    "color": "rgb(51, 51, 51)",
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé"
+  },
+  "socialLink": {
+    "backgroundColor": "rgb(41, 216, 219)",
+    "borderRadius": "50%",
+    "width": "30px",
+    "height": "30px"
+  },
+  "socialIconColor": "rgb(105, 114, 125)",
+  "ondeTitleAlign": "left",
+  "ondeTitleColor": "rgb(77, 77, 77)",
+  "ondeTitleSize": "39px"
+}

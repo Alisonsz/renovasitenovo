@@ -1,0 +1,34 @@
+{
+  "desktop": {
+    "onde": {
+      "y": 3509,
+      "h": 540,
+      "text": "Onde estamos Tatuapé | São Paulo / SP Rua Cantagalo 223 – sala 04 Horário de atendimento Seg a sex das 09h às 20h Sábado das 08h às 17h",
+      "hasIframe": true
+    },
+    "footer": {
+      "y": 4049,
+      "h": 326,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImg": "linear-gradient(rgb(255, 255, 255) 0%, rgb(219, 232, 233) 100%)",
+      "text": "Menu Depilação feminina Depilação masculina Minhas compras Sobre nós Quem somos Nossa tecnologia Blog Ajuda Central de atendimento Central de vendas Siga a gente Política de Privacidade e Cookies Política de Reembolso Política de Cancelamento © 2025 Renova Laser | Todos os direitos reservados. Feito"
+    },
+    "docH": 4375
+  },
+  "mobile": {
+    "onde": {
+      "y": 3641,
+      "h": 714,
+      "text": "Onde estamos Tatuapé | São Paulo / SP Rua Cantagalo 223 – sala 04 Horário de atendimento Seg a sex das 09h às 20h Sábado das 08h às 17h",
+      "hasIframe": true
+    },
+    "footer": {
+      "y": 4355,
+      "h": 910,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImg": "linear-gradient(rgb(255, 255, 255) 0%, rgb(219, 232, 233) 100%)",
+      "text": "Menu Depilação feminina Depilação masculina Minhas compras Sobre nós Quem somos Nossa tecnologia Blog Ajuda Central de atendimento Central de vendas Siga a gente Política de Privacidade e Cookies Política de Reembolso Política de Cancelamento © 2025 Renova Laser | Todos os direitos reservados. Feito"
+    },
+    "docH": 5265
+  }
+}

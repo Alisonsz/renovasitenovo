@@ -1,0 +1,19 @@
+{
+  "spans": [
+    {
+      "t": "Excelência em",
+      "fs": "80px"
+    },
+    {
+      "t": "em",
+      "fs": "40px"
+    },
+    {
+      "t": "depilação a la",
+      "fs": "62px"
+    }
+  ],
+  "cardRadius": "20px",
+  "cardShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0",
+  "cardClass": "flex w-full shrink-0 snap-center flex-col items-center gap-2 rounded-[20px] bg-w"
+}

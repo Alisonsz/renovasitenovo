@@ -1,0 +1,2164 @@
+{
+  "desktop": {
+    "local": {
+      "title": "Início | Renova Laser",
+      "bodyH": 4415,
+      "viewport": {
+        "w": 1440,
+        "h": 1000
+      },
+      "header": {
+        "text": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 106,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "logo": {
+        "text": "",
+        "x": 140,
+        "y": 24,
+        "w": 265,
+        "h": 58,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "menuButton": {
+        "text": "",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "0px",
+        "margin": "0px -4px 0px 0px",
+        "align": "center"
+      },
+      "hero": {
+        "text": "Excelência emdepilação a laser Agendar avaliação",
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 700,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "heroTitle": {
+        "text": "Excelência emdepilação a laser",
+        "x": 140,
+        "y": 239,
+        "w": 1160,
+        "h": 145,
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "lineHeight": "16.32px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "heroCta": {
+        "text": "Agendar avaliação",
+        "x": 140,
+        "y": 399,
+        "w": 191,
+        "h": 47,
+        "fontSize": "15px",
+        "fontWeight": "600",
+        "lineHeight": "22.5px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(41, 216, 219)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+        "radius": "3px",
+        "padding": "12px 24px",
+        "margin": "15px 0px",
+        "align": "start"
+      },
+      "benefitCard": {
+        "text": "Atendimento humanizadoEquipe profissional e carismática",
+        "x": 185,
+        "y": 636,
+        "w": 256,
+        "h": 150,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.5) 0px 0px 10px 0px",
+        "radius": "20px",
+        "padding": "24px 20px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "aboutTitle": null,
+      "priceTitle": null,
+      "priceCard": {
+        "text": "Combos promocionaisMais áreas, mais desconto! Aproveite os combos pensados pra sua rotina ",
+        "x": 213,
+        "y": 1634,
+        "w": 325,
+        "h": 373,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.27) 0px 0px 10px 0px",
+        "radius": "8px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "testimonialSection": null,
+      "faqTitle": null,
+      "faqCard": {
+        "text": "Como funciona?A ponteira atua na camada superficial da pele, aquecendo apenas o folículo p",
+        "x": 1008,
+        "y": 2971,
+        "w": 258,
+        "h": 261,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.18) 0px 0px 14px 0px",
+        "radius": "14px",
+        "padding": "24px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "locationTitle": {
+        "text": "Onde estamos",
+        "x": 150,
+        "y": 3693,
+        "w": 550,
+        "h": 59,
+        "fontSize": "39px",
+        "fontWeight": "800",
+        "lineHeight": "58.5px",
+        "color": "rgb(77, 77, 77)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "left"
+      },
+      "footer": {
+        "text": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem somosNossa tecnologia",
+        "x": 0,
+        "y": 4090,
+        "w": 1440,
+        "h": 325,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "sections": [
+        {
+          "text": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 106
+        },
+        {
+          "text": "Excelência emdepilação a laser Agendar avaliação",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 700
+        },
+        {
+          "text": "Na dúvida de qual clínica escolher? Aposte em quem é referência A Reno",
+          "x": 0,
+          "y": 802,
+          "w": 1440,
+          "h": 570
+        },
+        {
+          "text": "Conheça nossos preçosTem pacote, tem avulsa, tem pra você!Combos promo",
+          "x": 0,
+          "y": 1372,
+          "w": 1440,
+          "h": 770
+        },
+        {
+          "text": "",
+          "x": 0,
+          "y": 2142,
+          "w": 1440,
+          "h": 650
+        },
+        {
+          "text": "Dúvidas frequentesQuantas sessões são necessárias?Em média, são recome",
+          "x": 0,
+          "y": 2792,
+          "w": 1440,
+          "h": 758
+        },
+        {
+          "text": "Onde estamosTatuapé | São Paulo / SPRua Cantagalo 223 – sala 04Horário",
+          "x": 0,
+          "y": 3550,
+          "w": 1440,
+          "h": 540
+        },
+        {
+          "text": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem s",
+          "x": 0,
+          "y": 4090,
+          "w": 1440,
+          "h": 325
+        }
+      ],
+      "links": [
+        {
+          "text": "",
+          "href": "http://127.0.0.1:8000/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "acesse sua contaou cadastre-se",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "Agendar avaliação",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+        },
+        {
+          "text": "Falar com uma especialista",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        },
+        {
+          "text": "Depilação feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/area-do-cliente/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Central de atendimento",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser."
+        },
+        {
+          "text": "Central de vendas",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F"
+        },
+        {
+          "text": "",
+          "href": "https://www.instagram.com/renovalaserdepilacao"
+        },
+        {
+          "text": "",
+          "href": "https://www.tiktok.com/@renovalaserdepilacao"
+        },
+        {
+          "text": "Política de Privacidade e Cookies",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/"
+        },
+        {
+          "text": "Política de Reembolso",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/"
+        },
+        {
+          "text": "Política de Cancelamento",
+          "href": "https://renovalaserdepilacao.com.br/cancelamento/"
+        },
+        {
+          "text": "",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        }
+      ],
+      "imgs": [
+        {
+          "src": "http://127.0.0.1:8000/images/logo.png",
+          "alt": "Renova Laser",
+          "w": 265,
+          "h": 58,
+          "x": 140,
+          "y": 24,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-pernas.png",
+          "alt": "Combos promocionais",
+          "w": 150,
+          "h": 150,
+          "x": 300,
+          "y": 1669,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-virilha.png",
+          "alt": "Pacotes de depilação",
+          "w": 150,
+          "h": 150,
+          "x": 645,
+          "y": 1669,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-axilas.png",
+          "alt": "Sessões avulsas",
+          "w": 150,
+          "h": 150,
+          "x": 990,
+          "y": 1669,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/aspas.png",
+          "alt": "",
+          "w": 210,
+          "h": 140,
+          "x": 101,
+          "y": 2142,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/aspas.png",
+          "alt": "",
+          "w": 210,
+          "h": 140,
+          "x": 1129,
+          "y": 2612,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/logo-footer.png",
+          "alt": "Renova Laser",
+          "w": 201,
+          "h": 44,
+          "x": 170,
+          "y": 4138,
+          "loading": "auto"
+        }
+      ],
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8000/images/hero-renova-laser-depilacao.mp4",
+          "preload": "metadata",
+          "poster": "http://127.0.0.1:8000/images/hero-bg.jpg",
+          "autoplay": true,
+          "muted": true,
+          "w": 1440,
+          "h": 700
+        }
+      ],
+      "iframes": [
+        {
+          "title": "Avaliações do Google - Renova Laser",
+          "src": "",
+          "loading": "lazy",
+          "w": 1100,
+          "h": 352,
+          "y": 2308
+        },
+        {
+          "title": "Mapa - Renova Laser Tatuapé",
+          "src": "https://www.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Rua%20Cantagalo%20223%20Tatuap%C3%A9%20S%C3%A3o%20P",
+          "loading": "lazy",
+          "w": 550,
+          "h": 380,
+          "y": 3630
+        }
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    "ref": {
+      "title": "Renova Laser Depilação",
+      "bodyH": 3769,
+      "viewport": {
+        "w": 1440,
+        "h": 1000
+      },
+      "header": {
+        "text": "Nossa Tecnologia Quem Somos Depilação Feminina Depilação Masculina Minhas compras Nossa Te",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(255, 255, 255, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px 10px",
+        "margin": "0px auto",
+        "align": "start"
+      },
+      "logo": {
+        "text": "",
+        "x": 160,
+        "y": 40,
+        "w": 265,
+        "h": 58,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "menuButton": {
+        "text": "",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "fontSize": "22px",
+        "fontWeight": "400",
+        "lineHeight": "33px",
+        "color": "rgb(1, 62, 60)",
+        "bg": "rgba(10, 186, 181, 0.31)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "5.5px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "hero": null,
+      "heroTitle": null,
+      "heroCta": {
+        "text": "agendar avaliação",
+        "x": 150,
+        "y": 422,
+        "w": 229,
+        "h": 45,
+        "fontSize": "15px",
+        "fontWeight": "600",
+        "lineHeight": "15px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(41, 216, 219)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "15px 24px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "benefitCard": {
+        "text": "Atendimento humanizado Equipe profissional e carismática",
+        "x": -990,
+        "y": 675,
+        "w": 258,
+        "h": 168,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.5) 0px 0px 10px 0px",
+        "radius": "20px",
+        "padding": "17px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "aboutTitle": null,
+      "priceTitle": null,
+      "priceCard": {
+        "text": "Combos promocionais Mais áreas, mais desconto! Aproveite os combos pensados pra sua rotina",
+        "x": -990,
+        "y": 1673,
+        "w": 325,
+        "h": 375,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.27) 0px 0px 10px 0px",
+        "radius": "8px",
+        "padding": "35px 0px 0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "testimonialSection": null,
+      "faqTitle": null,
+      "faqCard": {
+        "text": "Como funciona? A ponteira atua na camada superficial da pele, aquecendo apenas o folículo ",
+        "x": -127,
+        "y": 2430,
+        "w": 258,
+        "h": 274,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.15) 0px 0px 10px 4px",
+        "radius": "20px",
+        "padding": "17px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "locationTitle": {
+        "text": "Onde estamos",
+        "x": 170,
+        "y": 3135,
+        "w": 330,
+        "h": 39,
+        "fontSize": "39px",
+        "fontWeight": "800",
+        "lineHeight": "39px",
+        "color": "rgb(77, 77, 77)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "left"
+      },
+      "footer": {
+        "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé © 2025 RenovaLase",
+        "x": 0,
+        "y": 3706,
+        "w": 1440,
+        "h": 64,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(219, 232, 233)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px 25px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "sections": [
+        {
+          "text": "Quem somos Nossa tecnologia Quem somos Nossa tecnologia acesse sua con",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 158
+        },
+        {
+          "text": "Excelência em depilação a laser agendar avaliação",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 700
+        },
+        {
+          "text": "Atendimento humanizado Equipe profissional e carismática Resultados vi",
+          "x": 0,
+          "y": 655,
+          "w": 1440,
+          "h": 208
+        },
+        {
+          "text": "Na dúvida de qual clínica escolher? Aposte em quem é referência​ A Ren",
+          "x": 0,
+          "y": 863,
+          "w": 1440,
+          "h": 484
+        },
+        {
+          "text": "Conheça nossos preços Tem pacote, tem avulsa, tem pra você!Vem ver nos",
+          "x": 0,
+          "y": 1367,
+          "w": 1440,
+          "h": 721
+        },
+        {
+          "text": "",
+          "x": 0,
+          "y": 2089,
+          "w": 1440,
+          "h": 130
+        },
+        {
+          "text": "Dúvidas frequentes Quantas sessões são necessárias? Em média, são reco",
+          "x": 0,
+          "y": 2309,
+          "w": 1440,
+          "h": 665
+        },
+        {
+          "text": "Onde estamos Tatuapé | São Paulo / SP Rua Cantagalo 223 – sala 04 Horá",
+          "x": 0,
+          "y": 3034,
+          "w": 1440,
+          "h": 400
+        },
+        {
+          "text": "Menu Depilação feminina Depilação masculina Minhas compras Sobre nós Q",
+          "x": 0,
+          "y": 3434,
+          "w": 1440,
+          "h": 219
+        },
+        {
+          "text": "Política de Privacidade e Cookies Política de Reembolso Política de Ca",
+          "x": 0,
+          "y": 3653,
+          "w": 1440,
+          "h": 53
+        },
+        {
+          "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatua",
+          "x": 0,
+          "y": 3706,
+          "w": 1440,
+          "h": 64
+        }
+      ],
+      "links": [
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Nossa Tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem Somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Depilação Feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação Masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "Nossa Tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem Somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Depilação Feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação Masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "agendar avaliação",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+        },
+        {
+          "text": "Ver combos",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver pacotes",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver ofertas",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver combos",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver pacotes",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver ofertas",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver combos",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver pacotes",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver ofertas",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Falar com uma especialista",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        },
+        {
+          "text": "Depilação feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/area-do-cliente/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Central de atendimento",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.Gostaria%20de%20ajuda%20com%3A%20%5Bagendamento%20%7C%20d%C3%BAvidas%20%7C%20suporte%5DPode%20me%20orientar%3F"
+        },
+        {
+          "text": "Central de vendas",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F"
+        },
+        {
+          "text": "Instagram",
+          "href": "https://www.instagram.com/renovalaserdepilacao"
+        },
+        {
+          "text": "Tiktok",
+          "href": "https://www.tiktok.com/@renovalaserdepilacao"
+        },
+        {
+          "text": "Política de Privacidade e Cookies",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/"
+        },
+        {
+          "text": "Política de Reembolso",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/"
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/Logorenovalaser-site-desk-1024x224.png",
+          "alt": "",
+          "w": 265,
+          "h": 58,
+          "x": 160,
+          "y": 40,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2023/02/Design-sem-nome-2023-02-13T193435.147-e1676327709125.png",
+          "alt": "",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": -902,
+          "y": 1708,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": -519,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": -136,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 247,
+          "y": 1708,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 631,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 1014,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 1397,
+          "y": 1708,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 1781,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 2164,
+          "y": 1708,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+          "alt": "",
+          "w": 240,
+          "h": 160,
+          "x": 130,
+          "y": 2089,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+          "alt": "",
+          "w": 240,
+          "h": 160,
+          "x": 1070,
+          "y": 2113,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2021/06/Logorenovalaser-Mod-01_Prancheta-1-copia-scaled.png",
+          "alt": "",
+          "w": 169,
+          "h": 37,
+          "x": 150,
+          "y": 3534,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://s.w.org/images/core/emoji/16.0.1/svg/2764.svg",
+          "alt": "❤",
+          "w": 13,
+          "h": 13,
+          "x": 562,
+          "y": 3731,
+          "loading": "auto"
+        }
+      ],
+      "videos": [
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/09/HERO-RENOVA-EDIT.mp4#t=1",
+          "preload": "metadata",
+          "poster": "",
+          "autoplay": true,
+          "muted": true,
+          "w": 1440,
+          "h": 810
+        }
+      ],
+      "iframes": [
+        {
+          "title": "Renova Laser Depilação Tatuapé",
+          "src": "https://maps.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Tatuap%C3%A9&t=m&z=17&output=embed&iwloc=near",
+          "loading": "lazy",
+          "w": 570,
+          "h": 400,
+          "y": 3034
+        }
+      ],
+      "errors": [
+        "Error: delivery_country should be a CLDR code of length 2!",
+        "Error: Invalid estimated_delivery_date. Make sure the date format is YYYY-MM-DD"
+      ],
+      "warnings": []
+    },
+    "diff": {
+      "bodyHeightDelta": 646,
+      "sections": [
+        {
+          "index": 0,
+          "localText": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+          "localY": 0,
+          "localH": 106,
+          "refText": "Quem somos Nossa tecnologia Quem somos Nossa tecnologia acesse sua con",
+          "refY": 0,
+          "refH": 158,
+          "yDelta": 0,
+          "hDelta": -52
+        },
+        {
+          "index": 1,
+          "localText": "Excelência emdepilação a laser Agendar avaliação",
+          "localY": 0,
+          "localH": 700,
+          "refText": "Excelência em depilação a laser agendar avaliação",
+          "refY": 0,
+          "refH": 700,
+          "yDelta": 0,
+          "hDelta": 0
+        },
+        {
+          "index": 2,
+          "localText": "Na dúvida de qual clínica escolher? Aposte em quem é referência A Reno",
+          "localY": 802,
+          "localH": 570,
+          "refText": "Atendimento humanizado Equipe profissional e carismática Resultados vi",
+          "refY": 655,
+          "refH": 208,
+          "yDelta": 147,
+          "hDelta": 362
+        },
+        {
+          "index": 3,
+          "localText": "Conheça nossos preçosTem pacote, tem avulsa, tem pra você!Combos promo",
+          "localY": 1372,
+          "localH": 770,
+          "refText": "Na dúvida de qual clínica escolher? Aposte em quem é referência​ A Ren",
+          "refY": 863,
+          "refH": 484,
+          "yDelta": 509,
+          "hDelta": 286
+        },
+        {
+          "index": 4,
+          "localText": "",
+          "localY": 2142,
+          "localH": 650,
+          "refText": "Conheça nossos preços Tem pacote, tem avulsa, tem pra você!Vem ver nos",
+          "refY": 1367,
+          "refH": 721,
+          "yDelta": 775,
+          "hDelta": -71
+        },
+        {
+          "index": 5,
+          "localText": "Dúvidas frequentesQuantas sessões são necessárias?Em média, são recome",
+          "localY": 2792,
+          "localH": 758,
+          "refText": "",
+          "refY": 2089,
+          "refH": 130,
+          "yDelta": 703,
+          "hDelta": 628
+        },
+        {
+          "index": 6,
+          "localText": "Onde estamosTatuapé | São Paulo / SPRua Cantagalo 223 – sala 04Horário",
+          "localY": 3550,
+          "localH": 540,
+          "refText": "Dúvidas frequentes Quantas sessões são necessárias? Em média, são reco",
+          "refY": 2309,
+          "refH": 665,
+          "yDelta": 1241,
+          "hDelta": -125
+        },
+        {
+          "index": 7,
+          "localText": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem s",
+          "localY": 4090,
+          "localH": 325,
+          "refText": "Onde estamos Tatuapé | São Paulo / SP Rua Cantagalo 223 – sala 04 Horá",
+          "refY": 3034,
+          "refH": 400,
+          "yDelta": 1056,
+          "hDelta": -75
+        }
+      ]
+    }
+  },
+  "mobile": {
+    "local": {
+      "title": "Início | Renova Laser",
+      "bodyH": 5219,
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "header": {
+        "text": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 81,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "logo": {
+        "text": "",
+        "x": 17,
+        "y": 29,
+        "w": 174,
+        "h": 31,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "8px 0px 0px",
+        "align": "start"
+      },
+      "menuButton": {
+        "text": "",
+        "x": 336,
+        "y": 14,
+        "w": 41,
+        "h": 54,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "0px",
+        "margin": "0px -4px 0px 0px",
+        "align": "center"
+      },
+      "hero": {
+        "text": "Excelência emdepilação a laser Agendar avaliação",
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "heroTitle": {
+        "text": "Excelência emdepilação a laser",
+        "x": 20,
+        "y": 344,
+        "w": 350,
+        "h": 80,
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "lineHeight": "16.32px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "heroCta": {
+        "text": "Agendar avaliação",
+        "x": 20,
+        "y": 439,
+        "w": 191,
+        "h": 47,
+        "fontSize": "15px",
+        "fontWeight": "600",
+        "lineHeight": "22.5px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(41, 216, 219)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+        "radius": "3px",
+        "padding": "12px 24px",
+        "margin": "15px 0px",
+        "align": "start"
+      },
+      "benefitCard": {
+        "text": "Atendimento humanizadoEquipe profissional e carismática",
+        "x": 51,
+        "y": 780,
+        "w": 288,
+        "h": 132,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.5) 0px 0px 10px 0px",
+        "radius": "20px",
+        "padding": "24px 20px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "aboutTitle": null,
+      "priceTitle": null,
+      "priceCard": {
+        "text": "Combos promocionaisMais áreas, mais desconto! Aproveite os combos pensados pra sua rotina ",
+        "x": 24,
+        "y": 1877,
+        "w": 342,
+        "h": 373,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.27) 0px 0px 10px 0px",
+        "radius": "8px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "testimonialSection": null,
+      "faqTitle": null,
+      "faqCard": {
+        "text": "Como funciona?A ponteira atua na camada superficial da pele, aquecendo apenas o folículo p",
+        "x": 995,
+        "y": 3109,
+        "w": 296,
+        "h": 215,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.18) 0px 0px 14px 0px",
+        "radius": "14px",
+        "padding": "24px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "locationTitle": {
+        "text": "Onde estamos",
+        "x": 20,
+        "y": 3658,
+        "w": 350,
+        "h": 45,
+        "fontSize": "30px",
+        "fontWeight": "800",
+        "lineHeight": "45px",
+        "color": "rgb(77, 77, 77)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "footer": {
+        "text": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem somosNossa tecnologia",
+        "x": 0,
+        "y": 4316,
+        "w": 390,
+        "h": 903,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "sections": [
+        {
+          "text": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 81
+        },
+        {
+          "text": "Excelência emdepilação a laser Agendar avaliação",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        {
+          "text": "Na dúvida de qual clínica escolher? Aposte em quem é referência A Reno",
+          "x": 0,
+          "y": 928,
+          "w": 390,
+          "h": 768
+        },
+        {
+          "text": "Conheça nossos preçosTem pacote, tem avulsa, tem pra você!Combos promo",
+          "x": 0,
+          "y": 1696,
+          "w": 390,
+          "h": 626
+        },
+        {
+          "text": "",
+          "x": 0,
+          "y": 2321,
+          "w": 390,
+          "h": 650
+        },
+        {
+          "text": "Dúvidas frequentesQuantas sessões são necessárias?Em média, são recome",
+          "x": 0,
+          "y": 2971,
+          "w": 390,
+          "h": 631
+        },
+        {
+          "text": "Onde estamosTatuapé | São Paulo / SPRua Cantagalo 223 – sala 04Horário",
+          "x": 0,
+          "y": 3602,
+          "w": 390,
+          "h": 714
+        },
+        {
+          "text": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem s",
+          "x": 0,
+          "y": 4316,
+          "w": 390,
+          "h": 903
+        }
+      ],
+      "links": [
+        {
+          "text": "",
+          "href": "http://127.0.0.1:8000/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "acesse sua contaou cadastre-se",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "Agendar avaliação",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+        },
+        {
+          "text": "Falar com uma especialista",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        },
+        {
+          "text": "Depilação feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/area-do-cliente/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Central de atendimento",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser."
+        },
+        {
+          "text": "Central de vendas",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F"
+        },
+        {
+          "text": "",
+          "href": "https://www.instagram.com/renovalaserdepilacao"
+        },
+        {
+          "text": "",
+          "href": "https://www.tiktok.com/@renovalaserdepilacao"
+        },
+        {
+          "text": "Política de Privacidade e Cookies",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/"
+        },
+        {
+          "text": "Política de Reembolso",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/"
+        },
+        {
+          "text": "Política de Cancelamento",
+          "href": "https://renovalaserdepilacao.com.br/cancelamento/"
+        },
+        {
+          "text": "",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        }
+      ],
+      "imgs": [
+        {
+          "src": "http://127.0.0.1:8000/images/logo.png",
+          "alt": "Renova Laser",
+          "w": 174,
+          "h": 31,
+          "x": 17,
+          "y": 29,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-pernas.png",
+          "alt": "Combos promocionais",
+          "w": 150,
+          "h": 150,
+          "x": 120,
+          "y": 1912,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-virilha.png",
+          "alt": "Pacotes de depilação",
+          "w": 150,
+          "h": 150,
+          "x": 482,
+          "y": 1912,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/area-axilas.png",
+          "alt": "Sessões avulsas",
+          "w": 150,
+          "h": 150,
+          "x": 844,
+          "y": 1912,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/aspas.png",
+          "alt": "",
+          "w": 145,
+          "h": 97,
+          "x": 27,
+          "y": 2321,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/aspas.png",
+          "alt": "",
+          "w": 145,
+          "h": 97,
+          "x": 218,
+          "y": 2834,
+          "loading": "auto"
+        },
+        {
+          "src": "http://127.0.0.1:8000/images/logo-footer.png",
+          "alt": "Renova Laser",
+          "w": 201,
+          "h": 44,
+          "x": 94,
+          "y": 4364,
+          "loading": "auto"
+        }
+      ],
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8000/images/hero-renova-laser-depilacao.mp4",
+          "preload": "metadata",
+          "poster": "http://127.0.0.1:8000/images/hero-bg.jpg",
+          "autoplay": true,
+          "muted": true,
+          "w": 390,
+          "h": 844
+        }
+      ],
+      "iframes": [
+        {
+          "title": "Avaliações do Google - Renova Laser",
+          "src": "",
+          "loading": "lazy",
+          "w": 350,
+          "h": 401,
+          "y": 2463
+        },
+        {
+          "title": "Mapa - Renova Laser Tatuapé",
+          "src": "https://www.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Rua%20Cantagalo%20223%20Tatuap%C3%A9%20S%C3%A3o%20P",
+          "loading": "lazy",
+          "w": 350,
+          "h": 320,
+          "y": 3940
+        }
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    "ref": {
+      "title": "Renova Laser Depilação",
+      "bodyH": 4705,
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "header": {
+        "text": "Nossa Tecnologia Quem Somos Depilação Feminina Depilação Masculina Minhas compras Nossa Te",
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 81,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(255, 255, 255, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px 10px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "logo": {
+        "text": "",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "menuButton": {
+        "text": "",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "fontSize": "22px",
+        "fontWeight": "400",
+        "lineHeight": "33px",
+        "color": "rgb(1, 62, 60)",
+        "bg": "rgba(10, 186, 181, 0.31)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "5.5px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "hero": null,
+      "heroTitle": null,
+      "heroCta": {
+        "text": "agendar avaliação",
+        "x": 88,
+        "y": 469,
+        "w": 215,
+        "h": 50,
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "lineHeight": "19.6px",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(41, 216, 219)",
+        "shadow": "none",
+        "radius": "3px",
+        "padding": "15px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "benefitCard": {
+        "text": "Atendimento humanizado Equipe profissional e carismática",
+        "x": 435,
+        "y": 770,
+        "w": 300,
+        "h": 169,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.5) 0px 0px 10px 0px",
+        "radius": "8px",
+        "padding": "25px 5px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "aboutTitle": null,
+      "priceTitle": null,
+      "priceCard": {
+        "text": "Combos promocionais Mais áreas, mais desconto! Aproveite os combos pensados pra sua rotina",
+        "x": 60,
+        "y": 2214,
+        "w": 270,
+        "h": 414,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.27) 0px 0px 10px 0px",
+        "radius": "12px",
+        "padding": "35px 0px 0px",
+        "margin": "35px 0px 0px",
+        "align": "start"
+      },
+      "testimonialSection": null,
+      "faqTitle": null,
+      "faqCard": {
+        "text": "Como funciona? A ponteira atua na camada superficial da pele, aquecendo apenas o folículo ",
+        "x": -345,
+        "y": 2989,
+        "w": 300,
+        "h": 249,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "shadow": "rgba(0, 0, 0, 0.15) 0px 0px 10px 4px",
+        "radius": "8px",
+        "padding": "25px 5px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "locationTitle": {
+        "text": "Onde estamos",
+        "x": 55,
+        "y": 3971,
+        "w": 280,
+        "h": 29,
+        "fontSize": "29px",
+        "fontWeight": "800",
+        "lineHeight": "29px",
+        "color": "rgb(77, 77, 77)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px",
+        "margin": "0px",
+        "align": "center"
+      },
+      "footer": {
+        "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé © 2025 RenovaLase",
+        "x": 0,
+        "y": 4613,
+        "w": 390,
+        "h": 92,
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(219, 232, 233)",
+        "shadow": "none",
+        "radius": "0px",
+        "padding": "0px 25px",
+        "margin": "0px",
+        "align": "start"
+      },
+      "sections": [
+        {
+          "text": "Nossa Tecnologia Quem Somos Depilação Feminina Depilação Masculina Min",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 81
+        },
+        {
+          "text": "Excelência em depilação a laser agendar avaliação",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        {
+          "text": "Pode ser aplicado em todos os tons de pele Ponteira ICE Mais conforto ",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 189
+        },
+        {
+          "text": "Na dúvida de qual clínica escolher? Aposte em quem é referência​ A Ren",
+          "x": 0,
+          "y": 949,
+          "w": 390,
+          "h": 713
+        },
+        {
+          "text": "Você livre dos pelos Conforto, cuidado e resultados. Mais tempo pra vo",
+          "x": 0,
+          "y": 1661,
+          "w": 390,
+          "h": 364
+        },
+        {
+          "text": "Conheça nossos preços Tem pacote, tem avulsa, tem pra você!Vem ver nos",
+          "x": 0,
+          "y": 2026,
+          "w": 390,
+          "h": 588
+        },
+        {
+          "text": "",
+          "x": 0,
+          "y": 2614,
+          "w": 390,
+          "h": 260
+        },
+        {
+          "text": "Dúvidas frequentes Como funciona? A ponteira atua na camada superficia",
+          "x": 0,
+          "y": 2874,
+          "w": 390,
+          "h": 642
+        },
+        {
+          "text": "Onde estamos Tatuapé | São Paulo / SP Rua Cantagalo 223 – sala 04 Horá",
+          "x": 0,
+          "y": 3576,
+          "w": 390,
+          "h": 664
+        },
+        {
+          "text": "Menu Depilação feminina Depilação masculina Minhas compras Sobre nós Q",
+          "x": 0,
+          "y": 4240,
+          "w": 390,
+          "h": 326
+        },
+        {
+          "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatua",
+          "x": 0,
+          "y": 4613,
+          "w": 390,
+          "h": 92
+        }
+      ],
+      "links": [
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Nossa Tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem Somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Depilação Feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação Masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "Nossa Tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Quem Somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Depilação Feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação Masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/minha-conta/"
+        },
+        {
+          "text": "agendar avaliação",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+        },
+        {
+          "text": "Ver ofertas",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver combos",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver pacotes",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver ofertas",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6Ijc5NDkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Ver combos",
+          "href": "https://renovalaserdepilacao.com.br/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjY5MzgiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D"
+        },
+        {
+          "text": "Falar com uma especialista",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F"
+        },
+        {
+          "text": "Depilação feminina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/"
+        },
+        {
+          "text": "Depilação masculina",
+          "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/"
+        },
+        {
+          "text": "Minhas compras",
+          "href": "https://renovalaserdepilacao.com.br/area-do-cliente/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Quem somos",
+          "href": "https://renovalaserdepilacao.com.br/quem-somos/"
+        },
+        {
+          "text": "Nossa tecnologia",
+          "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/"
+        },
+        {
+          "text": "Blog",
+          "href": "https://renovalaserdepilacao.com.br/blog/"
+        },
+        {
+          "text": "Central de atendimento",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.Gostaria%20de%20ajuda%20com%3A%20%5Bagendamento%20%7C%20d%C3%BAvidas%20%7C%20suporte%5DPode%20me%20orientar%3F"
+        },
+        {
+          "text": "Central de vendas",
+          "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F"
+        },
+        {
+          "text": "Instagram",
+          "href": "https://www.instagram.com/renovalaserdepilacao"
+        },
+        {
+          "text": "Tiktok",
+          "href": "https://www.tiktok.com/@renovalaserdepilacao"
+        },
+        {
+          "text": "Política de Privacidade e Cookies",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/"
+        },
+        {
+          "text": "Política de Reembolso",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/"
+        },
+        {
+          "text": "Política de Cancelamento",
+          "href": "https://renovalaserdepilacao.com.br/cancelamento/"
+        },
+        {
+          "text": "Política de Privacidade e Cookies",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/"
+        },
+        {
+          "text": "Política de Reembolso",
+          "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/"
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/Logorenovalaser-site-desk-1024x224.png",
+          "alt": "",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2023/02/Design-sem-nome-2023-02-13T193435.147-e1676327709125-600x106.png",
+          "alt": "",
+          "w": 174,
+          "h": 31,
+          "x": 17,
+          "y": 29,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1-600x600.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": -280,
+          "y": 2249,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas-600x600.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 120,
+          "y": 2249,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/virilha-feminina-1-600x600.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 520,
+          "y": 2249,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/axilas-femininas-1-600x600.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 920,
+          "y": 2249,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/07/pernas-inteiras-femininas-600x600.png",
+          "alt": "",
+          "w": 150,
+          "h": 150,
+          "x": 1320,
+          "y": 2249,
+          "loading": "auto"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+          "alt": "",
+          "w": 289,
+          "h": 193,
+          "x": -6,
+          "y": 2613,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/06/aspas-avaliacoes.png",
+          "alt": "",
+          "w": 63,
+          "h": 42,
+          "x": 327,
+          "y": 2620,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2021/06/Logorenovalaser-Mod-01_Prancheta-1-copia-scaled.png",
+          "alt": "",
+          "w": 211,
+          "h": 46,
+          "x": 90,
+          "y": 4312,
+          "loading": "lazy"
+        },
+        {
+          "src": "https://s.w.org/images/core/emoji/16.0.1/svg/2764.svg",
+          "alt": "❤",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "loading": "auto"
+        }
+      ],
+      "videos": [
+        {
+          "src": "https://renovalaserdepilacao.com.br/wp-content/uploads/2025/09/HERO-RENOVA-EDIT.mp4#t=1",
+          "preload": "metadata",
+          "poster": "",
+          "autoplay": true,
+          "muted": true,
+          "w": 390,
+          "h": 844
+        }
+      ],
+      "iframes": [
+        {
+          "title": "Renova Laser Depilação Tatuapé",
+          "src": "https://maps.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Tatuap%C3%A9&t=m&z=17&output=embed&iwloc=near",
+          "loading": "lazy",
+          "w": 340,
+          "h": 300,
+          "y": 3601
+        }
+      ],
+      "errors": [
+        "Error: delivery_country should be a CLDR code of length 2!",
+        "Error: Invalid estimated_delivery_date. Make sure the date format is YYYY-MM-DD"
+      ],
+      "warnings": []
+    },
+    "diff": {
+      "bodyHeightDelta": 514,
+      "sections": [
+        {
+          "index": 0,
+          "localText": "Quem somosNossa tecnologiaacesse sua contaou cadastre-se",
+          "localY": 0,
+          "localH": 81,
+          "refText": "Nossa Tecnologia Quem Somos Depilação Feminina Depilação Masculina Min",
+          "refY": 0,
+          "refH": 81,
+          "yDelta": 0,
+          "hDelta": 0
+        },
+        {
+          "index": 1,
+          "localText": "Excelência emdepilação a laser Agendar avaliação",
+          "localY": 0,
+          "localH": 844,
+          "refText": "Excelência em depilação a laser agendar avaliação",
+          "refY": 0,
+          "refH": 844,
+          "yDelta": 0,
+          "hDelta": 0
+        },
+        {
+          "index": 2,
+          "localText": "Na dúvida de qual clínica escolher? Aposte em quem é referência A Reno",
+          "localY": 928,
+          "localH": 768,
+          "refText": "Pode ser aplicado em todos os tons de pele Ponteira ICE Mais conforto ",
+          "refY": 760,
+          "refH": 189,
+          "yDelta": 168,
+          "hDelta": 579
+        },
+        {
+          "index": 3,
+          "localText": "Conheça nossos preçosTem pacote, tem avulsa, tem pra você!Combos promo",
+          "localY": 1696,
+          "localH": 626,
+          "refText": "Na dúvida de qual clínica escolher? Aposte em quem é referência​ A Ren",
+          "refY": 949,
+          "refH": 713,
+          "yDelta": 747,
+          "hDelta": -87
+        },
+        {
+          "index": 4,
+          "localText": "",
+          "localY": 2321,
+          "localH": 650,
+          "refText": "Você livre dos pelos Conforto, cuidado e resultados. Mais tempo pra vo",
+          "refY": 1661,
+          "refH": 364,
+          "yDelta": 660,
+          "hDelta": 286
+        },
+        {
+          "index": 5,
+          "localText": "Dúvidas frequentesQuantas sessões são necessárias?Em média, são recome",
+          "localY": 2971,
+          "localH": 631,
+          "refText": "Conheça nossos preços Tem pacote, tem avulsa, tem pra você!Vem ver nos",
+          "refY": 2026,
+          "refH": 588,
+          "yDelta": 945,
+          "hDelta": 43
+        },
+        {
+          "index": 6,
+          "localText": "Onde estamosTatuapé | São Paulo / SPRua Cantagalo 223 – sala 04Horário",
+          "localY": 3602,
+          "localH": 714,
+          "refText": "",
+          "refY": 2614,
+          "refH": 260,
+          "yDelta": 988,
+          "hDelta": 454
+        },
+        {
+          "index": 7,
+          "localText": "MenuDepilação femininaDepilação masculinaMinhas comprasSobre nósQuem s",
+          "localY": 4316,
+          "localH": 903,
+          "refText": "Dúvidas frequentes Como funciona? A ponteira atua na camada superficia",
+          "refY": 2874,
+          "refH": 642,
+          "yDelta": 1442,
+          "hDelta": 261
+        }
+      ]
+    }
+  }
+}

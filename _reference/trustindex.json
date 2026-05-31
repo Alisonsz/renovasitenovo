@@ -1,0 +1,37 @@
+{
+  "info": {
+    "scripts": [
+      "https://cdn.trustindex.io/loader.js?ver=1"
+    ],
+    "containerHtml": "<script async=\"\" data-wp-strategy=\"async\" id=\"trustindex-loader-js-js\" src=\"https://cdn.trustindex.io/loader.js?ver=1\" data-ti-widget-inited=\"true\"></script>",
+    "tiClasses": [],
+    "hasGoogleReviews": true
+  },
+  "netUrls": [
+    "https://renovalaserdepilacao.com.br/wp-content/plugins/elementor/assets/css/widget-google_maps.min.css?ver=3.33.4",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/roboto.css?ver=1749496118",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/robotoslab.css?ver=1749496131",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/poppins.css?ver=1749496142",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/sourcesans3.css?ver=1750091119",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/montserrat.css?ver=1750091304",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/css/montserratalternates.css?ver=1750092720",
+    "https://renovalaserdepilacao.com.br/wp-content/plugins/widget-google-reviews/assets/js/public-main.js?ver=6.9.4.4",
+    "https://www.googletagmanager.com/gtag/js?id=GT-55BQZ42",
+    "https://www.googletagmanager.com/gtag/js?id=AW-11103890726",
+    "https://cdn.trustindex.io/loader.js?ver=1",
+    "https://renovalaserdepilacao.com.br/wp-content/plugins/google-listings-and-ads/js/build/gtag-events.js?ver=5a4e71ac555fd7fba253",
+    "https://apis.google.com/js/platform.js?onload=renderOptIn",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-PJLZJNT",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/sourcesans3-nwpstky2oadr1k-iwhwudf-r3w8azq.woff2",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/montserratalternates-mftiwacfw6zh4dthxcyms1lppc8i_b0juu0xnipfb7xg.woff2",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/poppins-pxibyp8kv8jhgfvrlej6z1xlfq.woff2",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/poppins-pxieyp8kv8jhgfvrjjfecg.woff2",
+    "https://renovalaserdepilacao.com.br/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtuqjig1_i6t8kchkm459wxrys7m.woff2",
+    "https://maps.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Tatuap%C3%A9&t=m&z=17&output=embed&iwloc=near",
+    "https://www.google.com/maps/embed?origin=mfe&pb=!1m4!2m1!1zUmVub3ZhIExhc2VyIERlcGlsYcOnw6NvIFRhdHVhcMOp!5e0!6i17",
+    "https://apis.google.com/_/scs/abc-static/_/js/k=gapi.lb.pt_BR.SOgH_mbfFcg.O/m=surveyoptin/rt=j/sv=1/d=1/ed=1/rs=AHpOoo-0mDHTW-YvjzHembhrHVvkndybpQ/cb=gapi.loaded_0?le=scs,fedcm_migration_mod",
+    "https://www.googletagmanager.com/gtag/js?id=AW-11103890726&cx=c&gtm=4e65r2",
+    "https://www.googletagmanager.com/gtag/js?id=GT-55BQZ42&cx=c&gtm=4e65r2"
+  ]
+}

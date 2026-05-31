@@ -1,0 +1,23 @@
+{
+  "imgs": [
+    {
+      "src": "aspas-avaliacoes.png",
+      "x": 130,
+      "y": 2089,
+      "w": 240,
+      "h": 160,
+      "transform": "none",
+      "rotated": false
+    },
+    {
+      "src": "aspas-avaliacoes.png",
+      "x": 1070,
+      "y": 2113,
+      "w": 240,
+      "h": 160,
+      "transform": "none",
+      "rotated": false
+    }
+  ],
+  "bgQuotes": []
+}

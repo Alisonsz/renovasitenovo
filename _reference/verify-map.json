@@ -1,0 +1,16 @@
+{
+  "iframe": {
+    "found": true,
+    "src": "https://www.google.com/maps?q=Renova%20Laser%20Depila%C3%A7%C3%A3o%20Rua%20Cantagalo%20223%20Tatuap%C3%A9%20S%C3%A3o%20Paulo&output=embed",
+    "w": 550,
+    "h": 380
+  },
+  "mapRequests": 46,
+  "sample": [
+    "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700;800&display=swap",
+    "https://fonts.gstatic.com/s/sourcesans3/v19/nwpStKy2OAdR1K-IwhWudF-R3w8aZQ.woff2",
+    "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2",
+    "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFB7xG.woff2",
+    "https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2"
+  ]
+}

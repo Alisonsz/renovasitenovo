@@ -1,0 +1,34 @@
+{
+  "desktop": {
+    "onde": {
+      "y": 3135,
+      "h": 64,
+      "text": "Onde estamos",
+      "hasIframe": false
+    },
+    "footer": {
+      "y": -160001,
+      "h": 1,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImg": "none",
+      "text": ""
+    },
+    "docH": 3769
+  },
+  "mobile": {
+    "onde": {
+      "y": 3971,
+      "h": 59,
+      "text": "Onde estamos",
+      "hasIframe": false
+    },
+    "footer": {
+      "y": -160001,
+      "h": 1,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImg": "none",
+      "text": ""
+    },
+    "docH": 4728
+  }
+}
