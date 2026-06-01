@@ -8,7 +8,7 @@ export const WHATSAPP = {
     especialista:
         'https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Tenho%20algumas%20d%C3%BAvidas%20sobre%20os%20tratamentos%20da%20RenovaLaser%20e%20gostaria%20de%20falar%20com%20uma%20especialista%2C%20pode%20me%20ajudar%3F',
     atendimento:
-        'https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.',
+        'https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.Gostaria%20de%20ajuda%20com%3A%20%5Bagendamento%20%7C%20d%C3%BAvidas%20%7C%20suporte%5DPode%20me%20orientar%3F',
     vendas:
         'https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F',
 };

@@ -9,6 +9,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
+        then: function (): void {
+            \Illuminate\Support\Facades\Route::middleware('web')->group(base_path('routes/admin.php'));
+            \Illuminate\Support\Facades\Route::middleware('web')->group(base_path('routes/webhooks.php'));
+        },
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {

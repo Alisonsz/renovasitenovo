@@ -180,9 +180,9 @@ onBeforeUnmount(() => {
                         :style="{ width: slideWidth }"
                     >
                         <div
-                            class="flex h-[169px] w-full flex-col items-center justify-center gap-2 rounded-[8px] border-0 bg-white px-[5px] py-[25px] text-center shadow-[0_0_10px_rgba(0,0,0,0.5)] outline-none ring-0 lg:h-full lg:rounded-[20px] lg:px-[17px] lg:py-[17px]"
+                            class="group flex h-[169px] w-full flex-col items-center justify-center gap-2 rounded-[8px] border-0 bg-white px-[5px] py-[25px] text-center shadow-[0_0_10px_rgba(0,0,0,0.34)] outline-none ring-0 transition duration-300 ease-out hover:-translate-y-[3px] hover:shadow-[0_12px_28px_rgba(0,0,0,0.22)] lg:h-full lg:rounded-[20px] lg:px-[17px] lg:py-[17px]"
                         >
-                            <i :class="f.icon" class="text-[30px] text-brand-dark"></i>
+                            <i :class="f.icon" class="text-[30px] text-brand-dark transition duration-300 group-hover:scale-110"></i>
                             <p class="font-poppins text-[15px] leading-tight text-[#1d1d1d]">{{ f.title }}</p>
                             <p class="font-montserrat text-[15px] leading-tight text-muted">{{ f.text }}</p>
                         </div>

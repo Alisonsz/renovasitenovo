@@ -1,0 +1,180 @@
+{
+  "footerText": "Menu\nDepilação feminina\nDepilação masculina\nMinhas compras\nSobre nós\nQuem somos\nNossa tecnologia\nBlog\nAjuda\nCentral de atendimento\nCentral de vendas\nSiga a gente\nPolítica de Privacidade e Cookies\nPolítica de Reembolso\nPolítica de Cancelamento\n\n© 2025 Renova Laser | Todos os direitos reservados. Feito com  no Tatuapé\n\n Este é um site seguro. Todos os dados são criptografados com SSL.",
+  "headings": [
+    {
+      "className": "text-[13px] font-semibold text-heading lg:text-[16px]",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Menu",
+      "w": 79,
+      "x": 20,
+      "y": 364
+    },
+    {
+      "className": "text-[13px] font-semibold text-heading lg:text-[16px]",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Sobre nós",
+      "w": 79,
+      "x": 111,
+      "y": 364
+    },
+    {
+      "className": "text-[13px] font-semibold text-heading lg:text-[16px]",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Ajuda",
+      "w": 79,
+      "x": 202,
+      "y": 364
+    },
+    {
+      "className": "font-montserrat text-[13px] font-bold text-heading lg:text-[16px]",
+      "h": 39,
+      "href": null,
+      "tag": "h4",
+      "text": "Siga a gente",
+      "w": 79,
+      "x": 292,
+      "y": 364
+    }
+  ],
+  "links": [
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "http://127.0.0.1:8000/depilacao-feminina",
+      "tag": "a",
+      "text": "Depilação feminina",
+      "w": 50,
+      "x": 34,
+      "y": 392
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "http://127.0.0.1:8000/depilacao-masculina",
+      "tag": "a",
+      "text": "Depilação masculina",
+      "w": 52,
+      "x": 34,
+      "y": 442
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "https://renovalaserdepilacao.com.br/area-do-cliente/",
+      "tag": "a",
+      "text": "Minhas compras",
+      "w": 43,
+      "x": 38,
+      "y": 492
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 17,
+      "href": "http://127.0.0.1:8000/quem-somos",
+      "tag": "a",
+      "text": "Quem somos",
+      "w": 66,
+      "x": 117,
+      "y": 392
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "http://127.0.0.1:8000/nossa-tecnologia",
+      "tag": "a",
+      "text": "Nossa tecnologia",
+      "w": 53,
+      "x": 124,
+      "y": 418
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/blog/",
+      "tag": "a",
+      "text": "Blog",
+      "w": 23,
+      "x": 139,
+      "y": 468
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.",
+      "tag": "a",
+      "text": "Central de atendimento",
+      "w": 65,
+      "x": 208,
+      "y": 392
+    },
+    {
+      "className": "text-[12px] leading-tight text-muted transition hover:text-brand-dark lg:whitespace-nowrap lg:text-[15px] lg:leading-normal",
+      "h": 41,
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F",
+      "tag": "a",
+      "text": "Central de vendas",
+      "w": 51,
+      "x": 215,
+      "y": 442
+    },
+    {
+      "className": "grid h-[26px] w-[26px] place-items-center rounded-full bg-brand text-white transition hover:brightness-105",
+      "h": 26,
+      "href": "https://www.instagram.com/renovalaserdepilacao",
+      "tag": "a",
+      "text": "",
+      "w": 26,
+      "x": 302,
+      "y": 415
+    },
+    {
+      "className": "grid h-[26px] w-[26px] place-items-center rounded-full bg-brand text-white transition hover:brightness-105",
+      "h": 26,
+      "href": "https://www.tiktok.com/@renovalaserdepilacao",
+      "tag": "a",
+      "text": "",
+      "w": 26,
+      "x": 336,
+      "y": 415
+    },
+    {
+      "className": "text-center text-[11px] text-[#8a9394] transition hover:text-brand-dark lg:text-[13px]",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+      "tag": "a",
+      "text": "Política de Privacidade e Cookies",
+      "w": 151,
+      "x": 61,
+      "y": 555
+    },
+    {
+      "className": "text-center text-[11px] text-[#8a9394] transition hover:text-brand-dark lg:text-[13px]",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+      "tag": "a",
+      "text": "Política de Reembolso",
+      "w": 102,
+      "x": 228,
+      "y": 555
+    },
+    {
+      "className": "text-center text-[11px] text-[#8a9394] transition hover:text-brand-dark lg:text-[13px]",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/cancelamento/",
+      "tag": "a",
+      "text": "Política de Cancelamento",
+      "w": 117,
+      "x": 137,
+      "y": 576
+    }
+  ],
+  "rootClass": "bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] text-ink",
+  "rootTag": "FOOTER",
+  "url": "http://127.0.0.1:8000/"
+}

@@ -30,13 +30,13 @@ function formatCents(cents) {
 </script>
 
 <template>
-    <article class="flex min-h-[502px] w-full max-w-[270px] flex-col overflow-hidden rounded-[8px] bg-white text-center shadow-[0_0_10px_rgba(0,0,0,0.27)]">
+    <article class="group flex min-h-[502px] w-full max-w-[270px] flex-col overflow-hidden rounded-[8px] bg-white text-center shadow-[0_0_10px_rgba(0,0,0,0.24)] transition duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_12px_28px_rgba(0,0,0,0.18)]">
         <a :href="`/produto/${product.slug}`" class="mx-[15px] mt-[15px] block h-[240px] overflow-hidden rounded-[4px] bg-[#f3fbfb]">
             <img
                 v-if="product.image_url"
                 :src="product.image_url"
                 :alt="product.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.035]"
                 loading="lazy"
                 decoding="async"
             >
@@ -73,7 +73,7 @@ function formatCents(cents) {
 
         <a
             :href="`/produto/${product.slug}`"
-            class="mt-auto flex h-[47px] items-center justify-center bg-brand px-4 font-poppins text-[15px] font-semibold text-white transition hover:brightness-105"
+            class="mt-auto flex h-[47px] items-center justify-center bg-brand px-4 font-poppins text-[15px] font-semibold text-white transition duration-200 hover:brightness-105 active:translate-y-px"
         >
             {{ buttonLabel }}
         </a>

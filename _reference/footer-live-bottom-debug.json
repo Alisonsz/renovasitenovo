@@ -1,0 +1,338 @@
+{
+  "metricsA": {
+    "bodyH": 4560,
+    "docH": 4560,
+    "footerCount": 0,
+    "footers": [],
+    "href": "https://renovalaserdepilacao.com.br/",
+    "innerHeight": 698,
+    "scrollY": 0
+  },
+  "metricsB": {
+    "bodyH": 4582,
+    "docH": 4582,
+    "innerHeight": 698,
+    "scrollY": 3862,
+    "visible": [
+      {
+        "display": "block",
+        "h": 21,
+        "href": null,
+        "tag": "h2",
+        "text": "Tatuapé | São Paulo / SP",
+        "vis": "visible",
+        "w": 321,
+        "x": 35,
+        "y": 28
+      },
+      {
+        "display": "block",
+        "h": 24,
+        "href": null,
+        "tag": "p",
+        "text": "Rua Cantagalo 223 – sala 04",
+        "vis": "visible",
+        "w": 311,
+        "x": 40,
+        "y": 59
+      },
+      {
+        "display": "block",
+        "h": 21,
+        "href": null,
+        "tag": "h2",
+        "text": "Horário de atendimento",
+        "vis": "visible",
+        "w": 321,
+        "x": 35,
+        "y": 101
+      },
+      {
+        "display": "block",
+        "h": 23,
+        "href": null,
+        "tag": "p",
+        "text": "Seg a sex das 09h às 20h",
+        "vis": "visible",
+        "w": 311,
+        "x": 40,
+        "y": 132
+      },
+      {
+        "display": "block",
+        "h": 23,
+        "href": null,
+        "tag": "p",
+        "text": "Sábado das 08h às 17h",
+        "vis": "visible",
+        "w": 311,
+        "x": 40,
+        "y": 154
+      },
+      {
+        "display": "block",
+        "h": 16,
+        "href": null,
+        "tag": "h2",
+        "text": "Menu",
+        "vis": "visible",
+        "w": 175,
+        "x": 66,
+        "y": 400
+      },
+      {
+        "display": "block",
+        "h": 16,
+        "href": null,
+        "tag": "h2",
+        "text": "Sobre nós",
+        "vis": "visible",
+        "w": 150,
+        "x": 241,
+        "y": 400
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/depilacao-feminina/",
+        "tag": "a",
+        "text": "Depilação feminina",
+        "vis": "visible",
+        "w": 175,
+        "x": 66,
+        "y": 421
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Depilação feminina",
+        "vis": "visible",
+        "w": 102,
+        "x": 66,
+        "y": 421
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/quem-somos/",
+        "tag": "a",
+        "text": "Quem somos",
+        "vis": "visible",
+        "w": 150,
+        "x": 241,
+        "y": 421
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Quem somos",
+        "vis": "visible",
+        "w": 70,
+        "x": 241,
+        "y": 421
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/depilacao-masculina/",
+        "tag": "a",
+        "text": "Depilação masculina",
+        "vis": "visible",
+        "w": 175,
+        "x": 66,
+        "y": 439
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Depilação masculina",
+        "vis": "visible",
+        "w": 108,
+        "x": 66,
+        "y": 439
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/nossa-tecnologia/",
+        "tag": "a",
+        "text": "Nossa tecnologia",
+        "vis": "visible",
+        "w": 150,
+        "x": 241,
+        "y": 439
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Nossa tecnologia",
+        "vis": "visible",
+        "w": 91,
+        "x": 241,
+        "y": 439
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/area-do-cliente/",
+        "tag": "a",
+        "text": "Minhas compras",
+        "vis": "visible",
+        "w": 175,
+        "x": 66,
+        "y": 457
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Minhas compras",
+        "vis": "visible",
+        "w": 87,
+        "x": 66,
+        "y": 457
+      },
+      {
+        "display": "flex",
+        "h": 18,
+        "href": "https://renovalaserdepilacao.com.br/blog/",
+        "tag": "a",
+        "text": "Blog",
+        "vis": "visible",
+        "w": 150,
+        "x": 241,
+        "y": 457
+      },
+      {
+        "display": "block",
+        "h": 18,
+        "href": null,
+        "tag": "span",
+        "text": "Blog",
+        "vis": "visible",
+        "w": 24,
+        "x": 241,
+        "y": 457
+      },
+      {
+        "display": "block",
+        "h": 13,
+        "href": null,
+        "tag": "h2",
+        "text": "Siga a gente",
+        "vis": "visible",
+        "w": 85,
+        "x": 153,
+        "y": 495
+      },
+      {
+        "display": "inline-block",
+        "h": 30,
+        "href": null,
+        "tag": "span",
+        "text": "Instagram",
+        "vis": "visible",
+        "w": 30,
+        "x": 163,
+        "y": 518
+      },
+      {
+        "display": "inline-flex",
+        "h": 30,
+        "href": "https://www.instagram.com/renovalaserdepilacao",
+        "tag": "a",
+        "text": "Instagram",
+        "vis": "visible",
+        "w": 30,
+        "x": 163,
+        "y": 518
+      },
+      {
+        "display": "inline-block",
+        "h": 30,
+        "href": null,
+        "tag": "span",
+        "text": "Tiktok",
+        "vis": "visible",
+        "w": 30,
+        "x": 198,
+        "y": 518
+      },
+      {
+        "display": "inline-flex",
+        "h": 30,
+        "href": "https://www.tiktok.com/@renovalaserdepilacao",
+        "tag": "a",
+        "text": "Tiktok",
+        "vis": "visible",
+        "w": 30,
+        "x": 198,
+        "y": 518
+      },
+      {
+        "display": "flex",
+        "h": 15,
+        "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+        "tag": "a",
+        "text": "Política de Privacidade e Cookies",
+        "vis": "visible",
+        "w": 164,
+        "x": 49,
+        "y": 596
+      },
+      {
+        "display": "block",
+        "h": 15,
+        "href": null,
+        "tag": "span",
+        "text": "Política de Privacidade e Cookies",
+        "vis": "visible",
+        "w": 164,
+        "x": 49,
+        "y": 596
+      },
+      {
+        "display": "flex",
+        "h": 15,
+        "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+        "tag": "a",
+        "text": "Política de Reembolso",
+        "vis": "visible",
+        "w": 112,
+        "x": 230,
+        "y": 596
+      },
+      {
+        "display": "block",
+        "h": 15,
+        "href": null,
+        "tag": "span",
+        "text": "Política de Reembolso",
+        "vis": "visible",
+        "w": 112,
+        "x": 230,
+        "y": 596
+      },
+      {
+        "display": "block",
+        "h": 23,
+        "href": null,
+        "tag": "h2",
+        "text": "© 2025 RenovaLaser | Todos os direitos reservados. Feito com no Tatuapé",
+        "vis": "visible",
+        "w": 341,
+        "x": 25,
+        "y": 652
+      }
+    ]
+  }
+}

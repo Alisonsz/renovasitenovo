@@ -1,0 +1,139 @@
+{
+  "innerHeight": 844,
+  "innerWidth": 390,
+  "text": "Menu\nDepilação feminina\nDepilação masculina\nMinhas compras\nSobre nós\nQuem somos\nNossa tecnologia\nBlog\nSiga a gente\nPolítica de Privacidade e Cookies\nPolítica de Reembolso\n\n© 2025 Renova Laser | Todos os direitos reservados. Feito com  no Tatuapé",
+  "visible": [
+    {
+      "display": "block",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Menu",
+      "vis": "visible",
+      "w": 162,
+      "x": 20,
+      "y": 566
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Sobre nós",
+      "vis": "visible",
+      "w": 162,
+      "x": 194,
+      "y": 566
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "http://127.0.0.1:8000/depilacao-feminina",
+      "tag": "a",
+      "text": "Depilação feminina",
+      "vis": "visible",
+      "w": 97,
+      "x": 52,
+      "y": 594
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "http://127.0.0.1:8000/quem-somos",
+      "tag": "a",
+      "text": "Quem somos",
+      "vis": "visible",
+      "w": 66,
+      "x": 241,
+      "y": 594
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "http://127.0.0.1:8000/depilacao-masculina",
+      "tag": "a",
+      "text": "Depilação masculina",
+      "vis": "visible",
+      "w": 104,
+      "x": 49,
+      "y": 620
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "http://127.0.0.1:8000/nossa-tecnologia",
+      "tag": "a",
+      "text": "Nossa tecnologia",
+      "vis": "visible",
+      "w": 86,
+      "x": 231,
+      "y": 620
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/area-do-cliente/",
+      "tag": "a",
+      "text": "Minhas compras",
+      "vis": "visible",
+      "w": 82,
+      "x": 60,
+      "y": 646
+    },
+    {
+      "display": "inline",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/blog/",
+      "tag": "a",
+      "text": "Blog",
+      "vis": "visible",
+      "w": 23,
+      "x": 263,
+      "y": 646
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": null,
+      "tag": "h4",
+      "text": "Siga a gente",
+      "vis": "visible",
+      "w": 335,
+      "x": 20,
+      "y": 681
+    },
+    {
+      "display": "block",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+      "tag": "a",
+      "text": "Política de Privacidade e Cookies",
+      "vis": "visible",
+      "w": 151,
+      "x": 53,
+      "y": 759
+    },
+    {
+      "display": "block",
+      "h": 17,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+      "tag": "a",
+      "text": "Política de Reembolso",
+      "vis": "visible",
+      "w": 102,
+      "x": 220,
+      "y": 759
+    },
+    {
+      "display": "block",
+      "h": 33,
+      "href": null,
+      "tag": "p",
+      "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé",
+      "vis": "visible",
+      "w": 335,
+      "x": 20,
+      "y": 791
+    }
+  ]
+}

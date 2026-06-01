@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'pagbank' => [
+        'env' => env('PAGBANK_ENV', 'production'),
+        'token' => env('PAGBANK_TOKEN'),
+        'notification_url' => env('PAGBANK_NOTIFICATION_URL'),
+        'redirect_base_url' => env('PAGBANK_REDIRECT_BASE_URL', env('APP_URL')),
+        'pix_discount_percent' => (int) env('PAGBANK_PIX_DISCOUNT_PERCENT', 5),
+        'max_installments' => (int) env('PAGBANK_MAX_INSTALLMENTS', 12),
+        'min_installment_cents' => (int) env('PAGBANK_MIN_INSTALLMENT_CENTS', 7800),
+        'soft_descriptor' => env('PAGBANK_SOFT_DESCRIPTOR', 'RenovaLaserDepil'),
+    ],
+
 ];

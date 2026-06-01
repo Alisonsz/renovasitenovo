@@ -1,0 +1,262 @@
+{
+  "bodyH": 4432,
+  "innerHeight": 768,
+  "innerWidth": 1365,
+  "scrollY": 3664,
+  "url": "http://127.0.0.1:8000/",
+  "visible": [
+    {
+      "display": "block",
+      "h": 59,
+      "href": null,
+      "tag": "h2",
+      "text": "Onde estamos",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 45
+    },
+    {
+      "display": "block",
+      "h": 29,
+      "href": null,
+      "tag": "h3",
+      "text": "Tatuapé | São Paulo / SP",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 136
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "p",
+      "text": "Rua Cantagalo 223 – sala 04",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 168
+    },
+    {
+      "display": "block",
+      "h": 29,
+      "href": null,
+      "tag": "h3",
+      "text": "Horário de atendimento",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 216
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "p",
+      "text": "Seg a sex das 09h às 20h",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 249
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "p",
+      "text": "Sábado das 08h às 17h",
+      "vis": "visible",
+      "w": 550,
+      "x": 105,
+      "y": 277
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "h4",
+      "text": "Menu",
+      "vis": "visible",
+      "w": 148,
+      "x": 435,
+      "y": 491
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "h4",
+      "text": "Sobre nós",
+      "vis": "visible",
+      "w": 148,
+      "x": 643,
+      "y": 491
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "h4",
+      "text": "Ajuda",
+      "vis": "visible",
+      "w": 180,
+      "x": 851,
+      "y": 491
+    },
+    {
+      "display": "block",
+      "h": 24,
+      "href": null,
+      "tag": "h4",
+      "text": "Siga a gente",
+      "vis": "visible",
+      "w": 104,
+      "x": 1121,
+      "y": 491
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "http://127.0.0.1:8000/depilacao-feminina",
+      "tag": "a",
+      "text": "Depilação feminina",
+      "vis": "visible",
+      "w": 121,
+      "x": 435,
+      "y": 529
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "http://127.0.0.1:8000/quem-somos",
+      "tag": "a",
+      "text": "Quem somos",
+      "vis": "visible",
+      "w": 82,
+      "x": 643,
+      "y": 529
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20%F0%9F%98%8A%20Estou%20entrando%20em%20contato%20com%20a%20Central%20de%20Atendimento%20da%20RenovaLaser.",
+      "tag": "a",
+      "text": "Central de atendimento",
+      "vis": "visible",
+      "w": 148,
+      "x": 851,
+      "y": 529
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "http://127.0.0.1:8000/depilacao-masculina",
+      "tag": "a",
+      "text": "Depilação masculina",
+      "vis": "visible",
+      "w": 130,
+      "x": 435,
+      "y": 562
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "http://127.0.0.1:8000/nossa-tecnologia",
+      "tag": "a",
+      "text": "Nossa tecnologia",
+      "vis": "visible",
+      "w": 107,
+      "x": 643,
+      "y": 562
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "https://wa.me/5511988794514?text=Ol%C3%A1!%20Estou%20interessada%20em%20fazer%20depila%C3%A7%C3%A3o%20a%20laser%2C%20mas%20quero%20ajuda%20pra%20escolher%20o%20combo%20ideal%20pra%20mim%2C%20pode%20me%20orientar%3F",
+      "tag": "a",
+      "text": "Central de vendas",
+      "vis": "visible",
+      "w": 112,
+      "x": 851,
+      "y": 562
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "https://renovalaserdepilacao.com.br/area-do-cliente/",
+      "tag": "a",
+      "text": "Minhas compras",
+      "vis": "visible",
+      "w": 102,
+      "x": 435,
+      "y": 594
+    },
+    {
+      "display": "inline",
+      "h": 21,
+      "href": "https://renovalaserdepilacao.com.br/blog/",
+      "tag": "a",
+      "text": "Blog",
+      "vis": "visible",
+      "w": 28,
+      "x": 643,
+      "y": 594
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-privacidade-2/",
+      "tag": "a",
+      "text": "Política de Privacidade e Cookies",
+      "vis": "visible",
+      "w": 178,
+      "x": 433,
+      "y": 657
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": "https://renovalaserdepilacao.com.br/politica-de-reembolso/",
+      "tag": "a",
+      "text": "Política de Reembolso",
+      "vis": "visible",
+      "w": 120,
+      "x": 635,
+      "y": 657
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": "https://renovalaserdepilacao.com.br/cancelamento/",
+      "tag": "a",
+      "text": "Política de Cancelamento",
+      "vis": "visible",
+      "w": 138,
+      "x": 779,
+      "y": 657
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": null,
+      "tag": "p",
+      "text": "© 2025 Renova Laser | Todos os direitos reservados. Feito com no Tatuapé",
+      "vis": "visible",
+      "w": 499,
+      "x": 125,
+      "y": 700
+    },
+    {
+      "display": "block",
+      "h": 20,
+      "href": null,
+      "tag": "p",
+      "text": "Este é um site seguro. Todos os dados são criptografados com SSL.",
+      "vis": "visible",
+      "w": 450,
+      "x": 775,
+      "y": 700
+    }
+  ]
+}

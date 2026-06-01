@@ -36,7 +36,7 @@ import { WHATSAPP } from '../data/site.js';
                     :href="WHATSAPP.agendar"
                     target="_blank"
                     rel="noopener"
-                    class="my-[15px] inline-block w-[215px] rounded-[3px] bg-brand px-[15px] py-[15px] text-center font-poppins text-[14px] font-semibold uppercase leading-[19.6px] tracking-wide text-white shadow-none transition hover:brightness-105 lg:w-auto lg:px-[24px] lg:text-[15px]"
+                    class="my-[15px] inline-block w-[215px] rounded-[3px] bg-brand px-[15px] py-[15px] text-center font-poppins text-[14px] font-semibold uppercase leading-[19.6px] tracking-wide text-white shadow-none transition duration-200 hover:-translate-y-[2px] hover:brightness-105 hover:shadow-[0_10px_22px_rgba(41,216,219,0.28)] active:translate-y-0 lg:w-auto lg:px-[24px] lg:text-[15px]"
                 >
                     Agendar avaliação
                 </a>
