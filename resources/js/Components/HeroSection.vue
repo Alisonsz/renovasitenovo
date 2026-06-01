@@ -4,7 +4,6 @@ import { WHATSAPP } from '../data/site.js';
 
 <template>
     <section class="relative isolate flex min-h-screen flex-col justify-center overflow-hidden lg:min-h-[700px]">
-        <!-- Video background -->
         <video
             class="absolute inset-0 -z-20 h-full w-full object-cover"
             src="/images/hero-renova-laser-depilacao.mp4"
@@ -16,7 +15,6 @@ import { WHATSAPP } from '../data/site.js';
             preload="metadata"
         ></video>
 
-        <!-- Overlay branco, mesclagem "cor", 48% -->
         <div
             class="absolute inset-0 -z-10 bg-white"
             style="mix-blend-mode: color; opacity: 0.48;"
@@ -25,7 +23,7 @@ import { WHATSAPP } from '../data/site.js';
         <div class="mx-auto flex w-full max-w-[1200px] translate-y-8 flex-col justify-center px-5 py-32 text-center lg:translate-y-0 lg:py-44 lg:text-left">
             <h1 class="font-display font-semibold leading-[1.02] text-white">
                 <span class="block text-[44px] lg:text-[80px]">
-                    <span class="font-montserrat font-normal">E</span>xcelência
+                    <span class="font-montserrat font-semibold">E</span>xcelência
                     <span class="text-[0.5em] font-semibold">em</span>
                 </span>
                 <span class="block text-[34px] lg:text-[62px]">depilação a laser</span>

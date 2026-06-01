@@ -43,19 +43,19 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="relative flex min-h-[260px] items-center overflow-hidden bg-white px-5 py-0 lg:min-h-[650px] lg:pb-14 lg:pt-[90px]">
+    <section class="relative flex min-h-[300px] items-center overflow-hidden bg-white px-5 py-4 lg:min-h-[650px] lg:pb-14 lg:pt-[90px]">
         <!-- Aspas decorativas iguais ao site antigo: menores e em par aberto/fechado. -->
         <img
             src="/images/aspas.png"
             alt=""
             aria-hidden="true"
-            class="pointer-events-none absolute left-[7%] top-0 w-[118px] select-none opacity-20 sm:w-[145px] lg:w-[210px]"
+            class="pointer-events-none absolute left-[5%] top-3 w-[90px] rotate-180 select-none opacity-20 sm:w-[120px] lg:left-[7%] lg:top-0 lg:w-[210px]"
         />
         <img
             src="/images/aspas.png"
             alt=""
             aria-hidden="true"
-            class="pointer-events-none absolute bottom-6 right-[7%] w-[118px] rotate-180 select-none opacity-20 sm:w-[145px] lg:bottom-10 lg:w-[210px]"
+            class="pointer-events-none absolute bottom-4 right-[5%] w-[90px] select-none opacity-20 sm:w-[120px] lg:bottom-10 lg:right-[7%] lg:w-[210px]"
         />
 
         <!-- Avaliacoes do Google via TrustIndex (mesmo widget do site original) -->

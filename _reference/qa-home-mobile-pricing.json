@@ -1,0 +1,314 @@
+{
+  "url": "http://127.0.0.1:8000/",
+  "scrollY": 1700,
+  "innerWidth": 390,
+  "innerHeight": 844,
+  "cut": [
+    {
+      "tag": "li",
+      "text": "Resultados visíveis Já na primeira sessão",
+      "x": 355,
+      "y": -924,
+      "w": 320,
+      "h": 169,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Resultados visíveis",
+      "x": 445,
+      "y": -843,
+      "w": 140,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Já na primeira sessão",
+      "x": 435,
+      "y": -816,
+      "w": 160,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Tecnologia de ponta Resultados mais rápidos",
+      "x": 675,
+      "y": -924,
+      "w": 320,
+      "h": 169,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Tecnologia de ponta",
+      "x": 757,
+      "y": -843,
+      "w": 155,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Resultados mais rápidos",
+      "x": 744,
+      "y": -816,
+      "w": 182,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Pode ser aplicado em todos os tons de pele",
+      "x": 995,
+      "y": -924,
+      "w": 320,
+      "h": 169,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Pode ser aplicado",
+      "x": 1087,
+      "y": -843,
+      "w": 135,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "em todos os tons de pele",
+      "x": 1061,
+      "y": -816,
+      "w": 188,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Ponteira ICE Mais conforto na sua sessão",
+      "x": 1315,
+      "y": -924,
+      "w": 320,
+      "h": 169,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Ponteira ICE",
+      "x": 1430,
+      "y": -843,
+      "w": 89,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Mais conforto na sua sessão",
+      "x": 1371,
+      "y": -816,
+      "w": 208,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Atendimento humanizado Equipe profissional e carismática",
+      "x": 1635,
+      "y": -924,
+      "w": 320,
+      "h": 169,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Atendimento humanizado",
+      "x": 1697,
+      "y": -843,
+      "w": 197,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Equipe profissional e carismática",
+      "x": 1672,
+      "y": -816,
+      "w": 247,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Pacotes de depilação Ideal pra quem quer iniciar o tratamento e já garantir um p",
+      "x": 346,
+      "y": 644,
+      "w": 270,
+      "h": 386,
+      "cls": "group flex w-[270px] shrink-0 snap-center flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_6px_18px_rgba(0,0,0"
+    },
+    {
+      "tag": "img",
+      "text": "Pacotes de depilação",
+      "x": 406,
+      "y": 679,
+      "w": 150,
+      "h": 150,
+      "cls": "h-[150px] w-[150px] rounded-full object-cover transition duration-300 ease-out group-hover:scale-[1.035]"
+    },
+    {
+      "tag": "h3",
+      "text": "Pacotes de depilação",
+      "x": 359,
+      "y": 845,
+      "w": 243,
+      "h": 28,
+      "cls": "mt-4 px-5 text-center text-[22px] font-extrabold leading-tight text-heading"
+    },
+    {
+      "tag": "p",
+      "text": "Ideal pra quem quer iniciar o tratamento e já garantir um preço menor por sessão",
+      "x": 346,
+      "y": 885,
+      "w": 270,
+      "h": 88,
+      "cls": "mt-3 min-h-[88px] px-5 pb-3 text-center text-[15px] leading-relaxed text-muted lg:px-[30px]"
+    },
+    {
+      "tag": "button",
+      "text": "Ver pacotes",
+      "x": 346,
+      "y": 973,
+      "w": 270,
+      "h": 57,
+      "cls": "mt-auto h-[57px] w-full rounded-b-[12px] bg-brand font-poppins text-[15px] font-semibold leading-[15px] text-white trans"
+    },
+    {
+      "tag": "li",
+      "text": "Sessões avulsas Perfeitas para quem quer experimentar ou fazer retoques, sem com",
+      "x": 636,
+      "y": 644,
+      "w": 270,
+      "h": 386,
+      "cls": "group flex w-[270px] shrink-0 snap-center flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_6px_18px_rgba(0,0,0"
+    },
+    {
+      "tag": "img",
+      "text": "Sessões avulsas",
+      "x": 696,
+      "y": 679,
+      "w": 150,
+      "h": 150,
+      "cls": "h-[150px] w-[150px] rounded-full object-cover transition duration-300 ease-out group-hover:scale-[1.035]"
+    },
+    {
+      "tag": "h3",
+      "text": "Sessões avulsas",
+      "x": 673,
+      "y": 845,
+      "w": 195,
+      "h": 28,
+      "cls": "mt-4 px-5 text-center text-[22px] font-extrabold leading-tight text-heading"
+    },
+    {
+      "tag": "p",
+      "text": "Perfeitas para quem quer experimentar ou fazer retoques, sem compromisso com pac",
+      "x": 636,
+      "y": 885,
+      "w": 270,
+      "h": 88,
+      "cls": "mt-3 min-h-[88px] px-5 pb-3 text-center text-[15px] leading-relaxed text-muted lg:px-[30px]"
+    },
+    {
+      "tag": "button",
+      "text": "Ver ofertas",
+      "x": 636,
+      "y": 973,
+      "w": 270,
+      "h": 57,
+      "cls": "mt-auto h-[57px] w-full rounded-b-[12px] bg-brand font-poppins text-[15px] font-semibold leading-[15px] text-white trans"
+    },
+    {
+      "tag": "li",
+      "text": "Depilação a laser dói? Nossa tecnologia conta com uma ponteira resfriada a -16ºC",
+      "x": 365,
+      "y": 1556,
+      "w": 300,
+      "h": 270,
+      "cls": "flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rg"
+    },
+    {
+      "tag": "h3",
+      "text": "Depilação a laser dói?",
+      "x": 370,
+      "y": 1581,
+      "w": 290,
+      "h": 23,
+      "cls": "text-[18px] font-bold leading-tight text-brand-dark"
+    },
+    {
+      "tag": "p",
+      "text": "Nossa tecnologia conta com uma ponteira resfriada a -16ºC, o desconforto durante",
+      "x": 370,
+      "y": 1618,
+      "w": 290,
+      "h": 182,
+      "cls": "mt-[15px] px-3 text-[16px] leading-relaxed text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Depilação a laser definitiva? É uma solução de longa duração! A maioria dos pelo",
+      "x": 685,
+      "y": 1556,
+      "w": 300,
+      "h": 270,
+      "cls": "flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rg"
+    },
+    {
+      "tag": "h3",
+      "text": "Depilação a laser definitiva?",
+      "x": 690,
+      "y": 1581,
+      "w": 290,
+      "h": 23,
+      "cls": "text-[18px] font-bold leading-tight text-brand-dark"
+    },
+    {
+      "tag": "p",
+      "text": "É uma solução de longa duração! A maioria dos pelos não volta a crescer, e os qu",
+      "x": 690,
+      "y": 1618,
+      "w": 290,
+      "h": 130,
+      "cls": "mt-[15px] px-3 text-[16px] leading-relaxed text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Como funciona? A ponteira atua na camada superficial da pele, aquecendo apenas o",
+      "x": 1005,
+      "y": 1556,
+      "w": 300,
+      "h": 270,
+      "cls": "flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rg"
+    },
+    {
+      "tag": "h3",
+      "text": "Como funciona?",
+      "x": 1010,
+      "y": 1581,
+      "w": 290,
+      "h": 23,
+      "cls": "text-[18px] font-bold leading-tight text-brand-dark"
+    },
+    {
+      "tag": "p",
+      "text": "A ponteira atua na camada superficial da pele, aquecendo apenas o folículo pilos",
+      "x": 1010,
+      "y": 1618,
+      "w": 290,
+      "h": 156,
+      "cls": "mt-[15px] px-3 text-[16px] leading-relaxed text-muted"
+    }
+  ]
+}

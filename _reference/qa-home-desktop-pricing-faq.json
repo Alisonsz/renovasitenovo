@@ -1,0 +1,143 @@
+{
+  "url": "http://127.0.0.1:8000/",
+  "scrollY": 1450,
+  "innerWidth": 1365,
+  "innerHeight": 768,
+  "cut": [
+    {
+      "tag": "li",
+      "text": "Ponteira ICE Mais conforto na sua sessão",
+      "x": 1234,
+      "y": -818,
+      "w": 276,
+      "h": 136,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Ponteira ICE",
+      "x": 1327,
+      "y": -754,
+      "w": 89,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Mais conforto na sua sessão",
+      "x": 1267,
+      "y": -727,
+      "w": 208,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Atendimento humanizado Equipe profissional e carismática",
+      "x": 1509,
+      "y": -818,
+      "w": 276,
+      "h": 136,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Atendimento humanizado",
+      "x": 1549,
+      "y": -763,
+      "w": 197,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Equipe profissional e carismática",
+      "x": 1536,
+      "y": -736,
+      "w": 222,
+      "h": 38,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Resultados visíveis Já na primeira sessão",
+      "x": 1785,
+      "y": -818,
+      "w": 276,
+      "h": 136,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Resultados visíveis",
+      "x": 1852,
+      "y": -754,
+      "w": 140,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Já na primeira sessão",
+      "x": 1842,
+      "y": -727,
+      "w": 160,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Tecnologia de ponta Resultados mais rápidos",
+      "x": 2060,
+      "y": -818,
+      "w": 276,
+      "h": 136,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Tecnologia de ponta",
+      "x": 2120,
+      "y": -754,
+      "w": 155,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "Resultados mais rápidos",
+      "x": 2107,
+      "y": -727,
+      "w": 182,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    },
+    {
+      "tag": "li",
+      "text": "Pode ser aplicado em todos os tons de pele",
+      "x": 2336,
+      "y": -818,
+      "w": 276,
+      "h": 136,
+      "cls": "flex shrink-0 border-0 px-4 outline-none ring-0 lg:px-[10px]"
+    },
+    {
+      "tag": "p",
+      "text": "Pode ser aplicado",
+      "x": 2406,
+      "y": -754,
+      "w": 135,
+      "h": 19,
+      "cls": "font-poppins text-[15px] leading-tight text-[#1d1d1d]"
+    },
+    {
+      "tag": "p",
+      "text": "em todos os tons de pele",
+      "x": 2379,
+      "y": -727,
+      "w": 188,
+      "h": 19,
+      "cls": "font-montserrat text-[15px] leading-tight text-muted"
+    }
+  ]
+}

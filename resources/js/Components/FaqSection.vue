@@ -14,19 +14,19 @@ function scroll(dir) {
         <div class="mx-auto max-w-[1100px]">
             <h2 class="text-center text-[28px] font-extrabold text-heading lg:text-[39px]">Dúvidas frequentes</h2>
 
-            <div class="relative mt-10 flex items-center gap-2">
+            <div class="relative mt-6 flex items-center gap-2 overflow-visible lg:mt-10">
                 <button class="shrink-0 text-brand-dark lg:hidden" aria-label="Anterior" @click="scroll(-1)">
                     <i class="fa-solid fa-chevron-left text-[24px]"></i>
                 </button>
 
                 <ul
                     ref="track"
-                    class="flex flex-1 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-0 pb-4 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible"
+                    class="flex flex-1 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-3 py-5 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
                 >
                     <li
                         v-for="item in FAQ"
                         :key="item.q"
-                        class="flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_0_10px_rgba(0,0,0,0.24)] lg:w-full"
+                        class="flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rgba(0,0,0,0.20)] lg:w-full"
                     >
                         <h3 class="text-[18px] font-bold leading-tight text-brand-dark">{{ item.q }}</h3>
                         <p class="mt-[15px] px-3 text-[16px] leading-relaxed text-muted">{{ item.a }}</p>

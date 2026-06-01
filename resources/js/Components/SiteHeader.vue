@@ -21,14 +21,14 @@ const mobileNav = [
         :class="isStore ? 'relative bg-brand shadow-[0_2px_8px_rgba(0,0,0,0.12)]' : 'absolute'"
     >
         <div
-            class="mx-auto flex h-[81px] max-w-[1200px] items-center justify-between px-[17px] py-0 lg:px-5"
+            class="mx-auto flex h-[68px] max-w-[1200px] items-center justify-between px-[17px] py-0 lg:px-5"
             :class="isStore ? 'lg:h-[72px] lg:py-0' : 'lg:h-auto lg:py-6'"
         >
             <a href="/" class="shrink-0">
                 <img
                     src="/images/logo.png"
                     alt="Renova Laser"
-                    class="mt-2 h-[31px] w-[174px] object-fill lg:mt-0 lg:w-auto"
+                    class="mt-1 h-auto w-[174px] object-contain lg:mt-0 lg:w-auto"
                     :class="isStore ? 'lg:h-[43px]' : 'lg:h-[58px]'"
                 />
             </a>
@@ -74,12 +74,12 @@ const mobileNav = [
 
             <!-- Mobile hamburger -->
             <button
-                class="-mr-1 grid h-[54px] w-[41px] place-items-center rounded-[3px] bg-transparent text-white lg:hidden"
+                class="-mr-1 grid h-[46px] w-[38px] place-items-center rounded-[3px] bg-transparent text-white lg:hidden"
                 :aria-label="open ? 'Fechar menu' : 'Abrir menu'"
                 :aria-expanded="open"
                 @click="open = !open"
             >
-                <i :class="open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-[27px]"></i>
+                <i :class="open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-[25px]"></i>
             </button>
         </div>
 
@@ -87,7 +87,7 @@ const mobileNav = [
         <transition name="dropdown">
             <nav
                 v-if="open"
-                class="absolute left-0 top-[88px] w-full bg-[rgba(2,1,1,0.15)] py-1 text-center lg:hidden"
+                class="absolute left-0 top-[68px] w-full bg-[rgba(2,1,1,0.15)] py-1 text-center lg:hidden"
                 aria-label="Menu mobile"
             >
                 <a
