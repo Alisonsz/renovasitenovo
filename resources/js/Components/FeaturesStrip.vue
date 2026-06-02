@@ -150,7 +150,7 @@ onBeforeUnmount(() => {
     >
         <div class="flex items-center gap-1 sm:gap-2">
             <div
-                class="flex-1 cursor-grab overflow-hidden py-4 outline-none ring-0 active:cursor-grabbing"
+                class="-mx-2 flex-1 cursor-grab overflow-hidden py-4 outline-none ring-0 active:cursor-grabbing lg:mx-0"
                 @mousedown="onDragStart"
                 @mousemove="onDragMove"
                 @mouseup="onDragEnd"
@@ -158,7 +158,7 @@ onBeforeUnmount(() => {
             >
                 <ul
                     ref="track"
-                    class="flex select-none items-stretch outline-none ring-0"
+                    class="mx-2 flex select-none items-stretch outline-none ring-0 lg:mx-0"
                     :style="trackStyle"
                     @transitionend="onTransitionEnd"
                 >
