@@ -12,8 +12,8 @@ import { ABOUT_PARAGRAPHS } from '../data/site.js';
                 Aposte em quem é referência
             </h3>
 
-            <!-- linha verde: 10% de 1140px = 114px, espacamento 35px topo/baixo -->
-            <div class="mx-auto my-[35px] h-[3px] w-[114px] bg-brand-dark"></div>
+            <!-- linha verde: espacamento 35px topo/baixo -->
+            <div class="mx-auto my-[35px] h-[2px] w-[96px] bg-brand-dark"></div>
 
             <div class="space-y-5 text-[16px] leading-relaxed text-ink">
                 <p v-for="(p, i) in ABOUT_PARAGRAPHS" :key="i">{{ p }}</p>
