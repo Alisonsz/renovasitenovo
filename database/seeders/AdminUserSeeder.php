@@ -19,6 +19,7 @@ class AdminUserSeeder extends Seeder
                 'name' => env('ADMIN_NAME', 'Renova Admin'),
                 'password' => Hash::make($password),
                 'email_verified_at' => now(),
+                'is_admin' => true,
             ]
         );
     }

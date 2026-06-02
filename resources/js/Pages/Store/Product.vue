@@ -51,9 +51,9 @@ function addToCart() {
     </Head>
 
     <SiteLayout header-variant="store">
-        <section class="bg-[#f7f7f7] px-5 pb-0 pt-[17px]">
+        <section class="bg-[linear-gradient(180deg,#f8fbfb_0%,#eef7f7_100%)] px-5 pb-7 pt-[22px]">
             <div class="mx-auto max-w-[1140px]">
-                <nav class="mb-[15px] flex flex-wrap items-center gap-x-[5px] gap-y-1 font-montserrat text-[15px] font-medium text-brand">
+                <nav class="mb-[16px] flex flex-wrap items-center gap-x-[6px] gap-y-1 font-montserrat text-[14px] font-semibold text-brand">
                     <template v-for="(crumb, index) in breadcrumbs" :key="crumb.slug">
                         <a v-if="crumb.href" :href="crumb.href" class="hover:underline">{{ crumb.name }}</a>
                         <span v-else class="text-brand">{{ crumb.name }}</span>
@@ -61,17 +61,17 @@ function addToCart() {
                     </template>
                 </nav>
 
-                <div class="grid rounded-[4px] bg-white p-[10px] shadow-[0_0_10px_rgba(0,0,0,0.08)] transition duration-300 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)] lg:grid-cols-[330px_1fr] lg:gap-[30px]">
-                    <div class="group relative overflow-hidden rounded-[4px] bg-[#d9fbf7]">
+                <div class="grid overflow-hidden rounded-[8px] bg-white p-3 shadow-[0_10px_30px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.03] transition duration-300 hover:shadow-[0_16px_34px_rgba(0,0,0,0.12)] lg:grid-cols-[360px_1fr] lg:gap-[34px] lg:p-4">
+                    <div class="group relative overflow-hidden rounded-[6px] bg-[#d9fbf7]">
                         <img
                             v-if="product.image_url"
                             :src="product.image_url"
                             :alt="product.image_alt"
-                            class="h-[300px] w-full object-cover transition duration-500 ease-out group-hover:scale-[1.025] lg:h-[300px]"
+                            class="h-[310px] w-full object-cover transition duration-500 ease-out group-hover:scale-[1.025] lg:h-[360px]"
                             loading="eager"
                             decoding="async"
                         >
-                        <div v-else class="grid h-[300px] place-items-center">
+                        <div v-else class="grid h-[310px] place-items-center lg:h-[360px]">
                             <i class="fa-solid fa-spa text-[68px] text-brand"></i>
                         </div>
                         <div class="absolute bottom-[7px] left-1/2 flex -translate-x-1/2 gap-[10px]">
@@ -82,21 +82,21 @@ function addToCart() {
                         </div>
                     </div>
 
-                    <div class="px-1 py-[10px] lg:px-0">
-                        <h1 class="font-poppins text-[22px] font-semibold leading-tight text-[#363636]">
+                    <div class="px-1 py-4 lg:flex lg:flex-col lg:px-0 lg:py-5">
+                        <h1 class="font-poppins text-[25px] font-extrabold leading-tight text-[#363636] lg:text-[31px]">
                             {{ product.name }}
                         </h1>
 
-                        <p v-if="product.short_description" class="mt-[18px] max-w-[770px] font-montserrat text-[16px] leading-[1.45] text-[#3b3b3b]">
+                        <p v-if="product.short_description" class="mt-[16px] max-w-[720px] font-montserrat text-[16px] leading-[1.65] text-[#555]">
                             {{ product.short_description }}
                         </p>
 
-                        <div class="mt-[55px] font-poppins text-[#333]">
+                        <div class="mt-8 rounded-[8px] bg-[#f7fbfb] p-5 font-poppins text-[#333] ring-1 ring-[#e3eeee] lg:mt-auto">
                             <p v-if="hasDiscount" class="text-[16px] leading-none text-[#8d8d8d] line-through">
                                 {{ formatCents(regularPrice, true).replace(',00', '') }}
                             </p>
                             <div v-if="currentPrice > 0" class="mt-[8px] flex flex-wrap items-baseline gap-[10px]">
-                                <strong class="text-[28px] font-medium leading-none">
+                                <strong class="text-[34px] font-semibold leading-none">
                                     {{ formatCents(currentPrice, false).replace(',00', '') }}
                                 </strong>
                                 <span v-if="discountPercent" class="text-[16px] font-medium text-[#00b139]">
@@ -111,18 +111,18 @@ function addToCart() {
                             </p>
                         </div>
 
-                        <form class="mt-[38px] flex flex-wrap items-center gap-[12px]" @submit.prevent="addToCart">
+                        <form class="mt-5 flex flex-wrap items-center gap-[12px]" @submit.prevent="addToCart">
                             <input
                                 v-model.number="quantity"
                                 type="number"
                                 name="quantity"
                                 min="1"
-                                class="h-[52px] w-[72px] rounded-[2px] border border-[#ddd] px-3 text-center font-poppins text-[16px] text-[#333] outline-none focus:border-brand"
+                                class="h-[52px] w-[76px] rounded-[4px] border border-[#dce5e5] bg-white px-3 text-center font-poppins text-[16px] text-[#333] outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
                                 aria-label="Quantidade"
                             >
                             <button
                                 type="submit"
-                                class="h-[52px] rounded-[3px] bg-brand px-[24px] font-poppins text-[18px] font-semibold text-white transition duration-200 hover:-translate-y-[2px] hover:brightness-105 hover:shadow-[0_10px_22px_rgba(41,216,219,0.25)] active:translate-y-0"
+                                class="h-[52px] flex-1 rounded-[4px] bg-brand px-[24px] font-poppins text-[17px] font-semibold text-white transition duration-200 hover:-translate-y-[2px] hover:brightness-105 hover:shadow-[0_10px_22px_rgba(41,216,219,0.25)] active:translate-y-0 sm:flex-none"
                             >
                                 Adicionar ao carrinho
                             </button>
@@ -132,29 +132,29 @@ function addToCart() {
             </div>
         </section>
 
-        <section class="bg-[#e8f7f7] px-5 py-[24px] lg:py-[24px]">
-            <div class="mx-auto max-w-[1140px] rounded-[4px] bg-white px-[30px] pb-[30px] pt-[10px]">
-                <div class="mx-auto grid max-w-[590px] grid-cols-2 font-poppins text-[16px] uppercase text-[#555]">
+        <section class="bg-[#e8f7f7] px-5 py-8 lg:py-10">
+            <div class="mx-auto max-w-[1140px] rounded-[8px] bg-white px-5 pb-8 pt-5 shadow-[0_8px_26px_rgba(0,0,0,0.08)] lg:px-[30px]">
+                <div class="mx-auto grid max-w-[640px] grid-cols-2 overflow-hidden rounded-[6px] bg-[#f0f0f0] font-poppins text-[13px] uppercase text-[#555] sm:text-[15px]">
                     <button
                         type="button"
-                        class="h-[46px] px-4 transition"
-                        :class="activeTab === 'details' ? 'bg-[#c7c7c7] text-white' : 'bg-[#efefef]'"
+                        class="min-h-[48px] px-3 transition"
+                        :class="activeTab === 'details' ? 'bg-brand text-white' : 'bg-[#f0f0f0] hover:bg-[#e9e9e9]'"
                         @click="activeTab = 'details'"
                     >
-                        Detalhesdo procedimento
+                        Detalhes do procedimento
                     </button>
                     <button
                         type="button"
-                        class="h-[46px] px-4 transition"
-                        :class="activeTab === 'specs' ? 'bg-[#c7c7c7] text-white' : 'bg-[#efefef]'"
+                        class="min-h-[48px] px-3 transition"
+                        :class="activeTab === 'specs' ? 'bg-brand text-white' : 'bg-[#f0f0f0] hover:bg-[#e9e9e9]'"
                         @click="activeTab = 'specs'"
                     >
                         Especificações técnicas
                     </button>
                 </div>
 
-                <div v-if="activeTab === 'details'" class="mt-[20px] grid gap-[26px] lg:grid-cols-2 lg:gap-x-[50px]">
-                    <div class="flex items-center gap-[20px]">
+                <div v-if="activeTab === 'details'" class="mt-7 grid gap-6 lg:grid-cols-2 lg:gap-x-[50px]">
+                    <div class="flex items-center gap-[20px] rounded-[8px] bg-[#fbfbfb] p-4">
                         <span class="grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full bg-[#fee8d2] text-[#e57255] transition duration-300 hover:scale-105">
                             <i class="fa-solid fa-hand-dots text-[36px]"></i>
                         </span>
@@ -162,7 +162,7 @@ function addToCart() {
                             Para garantir a eficácia do tratamento, a área deve ser depilada com lâmina um dia antes, sem deixar pelos aparentes.
                         </p>
                     </div>
-                    <div class="flex items-center gap-[20px]">
+                    <div class="flex items-center gap-[20px] rounded-[8px] bg-[#fbfbfb] p-4">
                         <span class="grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full bg-brand text-white transition duration-300 hover:scale-105">
                             <i class="fa-solid fa-calendar-days text-[36px]"></i>
                         </span>
@@ -170,7 +170,7 @@ function addToCart() {
                             O intervalo entre as sessões é de 30 dias, mas pode se alongar conforme a evolução do tratamento.
                         </p>
                     </div>
-                    <div class="flex items-center gap-[20px]">
+                    <div class="flex items-center gap-[20px] rounded-[8px] bg-[#fbfbfb] p-4">
                         <span class="grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full bg-[#7554a3] text-white transition duration-300 hover:scale-105">
                             <i class="fa-solid fa-wand-magic-sparkles text-[32px]"></i>
                         </span>
@@ -178,7 +178,7 @@ function addToCart() {
                             Você pode se depilar entre as sessões com métodos que não arranquem o pelo pela raiz. Sugerimos apenas o uso de lâmina.
                         </p>
                     </div>
-                    <div class="flex items-center gap-[20px]">
+                    <div class="flex items-center gap-[20px] rounded-[8px] bg-[#fbfbfb] p-4">
                         <span class="grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full bg-[#cbf5f3] text-brand transition duration-300 hover:scale-105">
                             <i class="fa-solid fa-user-shield text-[34px]"></i>
                         </span>

@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:8000/blog",
+  "title": "Blog - Renova Laser Depilação | Renova Laser",
+  "descriptions": [
+    "Conteúdos da Renova Laser sobre depilação a laser, cuidados com a pele, tecnologia e resultados."
+  ],
+  "canonical": "http://127.0.0.1:8000/blog",
+  "ogTitle": "Blog - Renova Laser Depilação",
+  "ogImage": null,
+  "h1": "Conteúdos Renova Laser",
+  "jsonLdCount": 0,
+  "brokenImages": []
+}

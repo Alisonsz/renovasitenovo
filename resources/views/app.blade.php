@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Renova Laser Depilação — Excelência em depilação a laser no Tatuapé, São Paulo.">
 
     <title inertia>{{ config('app.name', 'Renova Laser Depilação') }}</title>
 

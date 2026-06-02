@@ -8,6 +8,7 @@ const nav = [
     { label: 'Dashboard', href: '/admin', icon: 'fa-chart-line' },
     { label: 'Produtos', href: '/admin/products', icon: 'fa-box' },
     { label: 'Categorias', href: '/admin/categories', icon: 'fa-layer-group' },
+    { label: 'Blog', href: '/admin/blog-posts', icon: 'fa-newspaper' },
     { label: 'Pedidos', href: '/admin/orders', icon: 'fa-receipt' },
     { label: 'Cupons', href: '/admin/coupons', icon: 'fa-ticket' },
 ];

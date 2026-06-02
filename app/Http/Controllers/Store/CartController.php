@@ -35,14 +35,36 @@ class CartController extends Controller
 
     public function update(UpdateCartItemRequest $request, CartItem $cartItem, CartService $cartService): RedirectResponse
     {
+        $cartService->assertOwnership($request, $cartItem);
         $cartService->update($cartItem, $request->integer('quantity'));
 
         return redirect('/carrinho');
     }
 
-    public function destroy(CartItem $cartItem, CartService $cartService): RedirectResponse
+    public function destroy(Request $request, CartItem $cartItem, CartService $cartService): RedirectResponse
     {
+        $cartService->assertOwnership($request, $cartItem);
         $cartService->remove($cartItem);
+
+        return redirect('/carrinho');
+    }
+
+    public function applyCoupon(Request $request, CartService $cartService): RedirectResponse
+    {
+        $data = $request->validate([
+            'coupon' => ['required', 'string', 'max:80'],
+        ]);
+
+        $cart = $cartService->current($request);
+        $cartService->applyCoupon($cart, $data['coupon']);
+
+        return redirect('/carrinho');
+    }
+
+    public function removeCoupon(Request $request, CartService $cartService): RedirectResponse
+    {
+        $cart = $cartService->current($request);
+        $cartService->removeCoupon($cart);
 
         return redirect('/carrinho');
     }

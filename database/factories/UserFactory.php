@@ -30,7 +30,19 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            // In this app, User = back-office account; store buyers are Customers.
+            'is_admin' => true,
         ];
+    }
+
+    /**
+     * A non-admin user (e.g. a future customer account on the web guard).
+     */
+    public function nonAdmin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_admin' => false,
+        ]);
     }
 
     /**
