@@ -43,29 +43,29 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="relative flex min-h-[300px] items-center overflow-hidden bg-white px-5 py-4 lg:min-h-[650px] lg:pb-14 lg:pt-[90px]">
-        <!-- Aspas decorativas iguais ao site antigo: menores e em par aberto/fechado. -->
+    <section class="relative flex min-h-[520px] items-start overflow-hidden bg-white px-5 pt-[190px] pb-16 lg:min-h-[760px] lg:pt-[260px] lg:pb-20">
+        <!-- Aspas decorativas em par aberto/fechado. -->
         <img
             src="/images/aspas.png"
             alt=""
             aria-hidden="true"
-            class="pointer-events-none absolute left-[5%] top-3 w-[90px] rotate-180 select-none opacity-20 sm:w-[120px] lg:left-[7%] lg:top-0 lg:w-[210px]"
-        />
-        <img
-            src="/images/aspas.png"
-            alt=""
-            aria-hidden="true"
-            class="pointer-events-none absolute bottom-4 right-[5%] w-[90px] select-none opacity-20 sm:w-[120px] lg:bottom-10 lg:right-[7%] lg:w-[210px]"
+            class="pointer-events-none absolute left-[-12px] top-0 w-[330px] rotate-180 select-none opacity-20 sm:w-[430px] lg:left-[4%] lg:w-[560px]"
         />
 
         <!-- Avaliacoes do Google via TrustIndex (mesmo widget do site original) -->
         <div class="relative z-10 mx-auto w-full max-w-[1100px]">
+            <img
+                src="/images/aspas.png"
+                alt=""
+                aria-hidden="true"
+                class="pointer-events-none absolute bottom-0 right-[-34px] z-20 w-[88px] select-none opacity-[0.14] sm:w-[116px] lg:right-[-70px] lg:w-[170px]"
+            />
             <iframe
                 v-if="TRUSTINDEX_WIDGET_ID"
                 ref="frame"
                 :srcdoc="srcdoc"
                 :style="{ height: `min(${height}px, var(--reviews-height))` }"
-                class="w-full border-0"
+                class="relative z-10 w-full border-0"
                 scrolling="no"
                 loading="lazy"
                 title="Avaliações do Google - Renova Laser"
@@ -76,12 +76,12 @@ onBeforeUnmount(() => {
 
 <style scoped>
 section {
-    --reviews-height: 210px;
+    --reviews-height: 430px;
 }
 
 @media (min-width: 1024px) {
     section {
-        --reviews-height: 430px;
+        --reviews-height: 520px;
     }
 }
 </style>

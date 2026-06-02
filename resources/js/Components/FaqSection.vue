@@ -1,12 +1,74 @@
 <script setup>
-import { ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { FAQ, WHATSAPP } from '../data/site.js';
 
 const track = ref(null);
-function scroll(dir) {
-    if (!track.value) return;
-    track.value.scrollBy({ left: dir * track.value.clientWidth, behavior: 'smooth' });
+
+let autoScrollTimer = null;
+let resumeTimer = null;
+let currentSlide = 0;
+
+function stopAutoScroll() {
+    clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
 }
+
+function startAutoScroll() {
+    stopAutoScroll();
+    autoScrollTimer = setInterval(() => {
+        const el = track.value;
+        if (!el || el.scrollWidth <= el.clientWidth) return;
+
+        const cards = Array.from(el.children);
+        currentSlide = currentSlide >= cards.length - 1 ? 0 : currentSlide + 1;
+        scrollToSlide(currentSlide);
+    }, 4200);
+}
+
+function getSlideLeft(card) {
+    const el = track.value;
+    if (!el) return 0;
+
+    const paddingLeft = parseFloat(window.getComputedStyle(el).paddingLeft) || 0;
+    return Math.min(card.offsetLeft - el.offsetLeft - paddingLeft, el.scrollWidth - el.clientWidth);
+}
+
+function scrollToSlide(index) {
+    const el = track.value;
+    const cards = el ? Array.from(el.children) : [];
+    if (!el || !cards.length) return;
+
+    currentSlide = index % cards.length;
+    el.scrollTo({
+        left: Math.max(0, getSlideLeft(cards[currentSlide])),
+        behavior: 'smooth',
+    });
+}
+
+function syncCurrentSlide() {
+    const el = track.value;
+    const cards = el ? Array.from(el.children) : [];
+    if (!el || !cards.length) return;
+
+    currentSlide = cards.reduce((closestIndex, card, index) => {
+        const closestDistance = Math.abs(el.scrollLeft - getSlideLeft(cards[closestIndex]));
+        const distance = Math.abs(el.scrollLeft - getSlideLeft(card));
+        return distance < closestDistance ? index : closestIndex;
+    }, 0);
+}
+
+function pauseAutoScroll() {
+    syncCurrentSlide();
+    stopAutoScroll();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoScroll, 7000);
+}
+
+onMounted(startAutoScroll);
+onBeforeUnmount(() => {
+    stopAutoScroll();
+    clearTimeout(resumeTimer);
+});
 </script>
 
 <template>
@@ -14,14 +76,14 @@ function scroll(dir) {
         <div class="mx-auto max-w-[1100px]">
             <h2 class="text-center text-[28px] font-extrabold text-heading lg:text-[39px]">Dúvidas frequentes</h2>
 
-            <div class="relative mt-6 flex items-center gap-2 overflow-visible lg:mt-10">
-                <button class="shrink-0 text-brand-dark lg:hidden" aria-label="Anterior" @click="scroll(-1)">
-                    <i class="fa-solid fa-chevron-left text-[24px]"></i>
-                </button>
-
+            <div class="relative mt-6 overflow-visible lg:mt-10">
                 <ul
                     ref="track"
-                    class="flex flex-1 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-3 py-5 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
+                    class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-3 py-5 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
+                    @pointerdown="pauseAutoScroll"
+                    @scroll.passive="syncCurrentSlide"
+                    @touchstart.passive="pauseAutoScroll"
+                    @wheel.passive="pauseAutoScroll"
                 >
                     <li
                         v-for="item in FAQ"
@@ -32,10 +94,6 @@ function scroll(dir) {
                         <p class="mt-[15px] px-3 text-[16px] leading-relaxed text-muted">{{ item.a }}</p>
                     </li>
                 </ul>
-
-                <button class="shrink-0 text-brand-dark lg:hidden" aria-label="Próximo" @click="scroll(1)">
-                    <i class="fa-solid fa-chevron-right text-[24px]"></i>
-                </button>
             </div>
 
             <div class="mt-12 text-center">
@@ -47,7 +105,7 @@ function scroll(dir) {
                     :href="WHATSAPP.especialista"
                     target="_blank"
                     rel="noopener"
-                    class="mt-5 inline-block rounded-[3px] bg-brand px-8 py-3 font-poppins text-[15px] font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
+                    class="mt-5 inline-block rounded-[3px] bg-brand px-6 py-2.5 font-poppins text-[14px] font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
                 >
                     Falar com uma especialista
                 </a>

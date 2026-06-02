@@ -143,22 +143,12 @@ onBeforeUnmount(() => {
 <template>
     <div
         class="relative z-20 mx-auto -mt-[84px] max-w-[1180px] px-2"
-        @mouseenter="stop"
-        @mouseleave="start"
         @touchstart.passive="onDragStart"
         @touchmove.passive="onDragMove"
         @touchend="onDragEnd"
         @touchcancel="onDragEnd"
     >
         <div class="flex items-center gap-1 sm:gap-2">
-            <button
-                class="shrink-0 border-0 bg-transparent px-1 text-brand-dark outline-none ring-0 transition hover:opacity-70 focus:outline-none focus:ring-0 lg:invisible"
-                aria-label="Anterior"
-                @click="prev(); restart()"
-            >
-                <i class="fa-solid fa-chevron-left text-[24px]"></i>
-            </button>
-
             <div
                 class="flex-1 cursor-grab overflow-hidden py-4 outline-none ring-0 active:cursor-grabbing"
                 @mousedown="onDragStart"
@@ -180,23 +170,15 @@ onBeforeUnmount(() => {
                         :style="{ width: slideWidth }"
                     >
                         <div
-                            class="group flex h-[169px] w-full flex-col items-center justify-center gap-2 rounded-[8px] border-0 bg-white px-[5px] py-[25px] text-center shadow-[0_0_10px_rgba(0,0,0,0.34)] outline-none ring-0 transition duration-300 ease-out hover:-translate-y-[3px] hover:shadow-[0_12px_28px_rgba(0,0,0,0.22)] lg:h-full lg:rounded-[20px] lg:px-[17px] lg:py-[17px]"
+                            class="flex h-[169px] w-full flex-col items-center justify-center gap-2 rounded-[8px] border-0 bg-white px-[5px] py-[25px] text-center shadow-[0_0_10px_rgba(0,0,0,0.34)] outline-none ring-0 lg:h-full lg:rounded-[20px] lg:px-[17px] lg:py-[17px]"
                         >
-                            <i :class="f.icon" class="text-[30px] text-brand-dark transition duration-300 group-hover:scale-110"></i>
+                            <i :class="f.icon" class="text-[30px] text-brand-dark"></i>
                             <p class="font-poppins text-[15px] leading-tight text-[#1d1d1d]">{{ f.title }}</p>
                             <p class="font-montserrat text-[15px] leading-tight text-muted">{{ f.text }}</p>
                         </div>
                     </li>
                 </ul>
             </div>
-
-            <button
-                class="shrink-0 border-0 bg-transparent px-1 text-brand-dark outline-none ring-0 transition hover:opacity-70 focus:outline-none focus:ring-0 lg:invisible"
-                aria-label="Próximo"
-                @click="next(); restart()"
-            >
-                <i class="fa-solid fa-chevron-right text-[24px]"></i>
-            </button>
         </div>
     </div>
 </template>

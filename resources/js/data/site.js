@@ -96,10 +96,11 @@ export const FAQ = [
 ];
 
 export const ABOUT_PARAGRAPHS = [
-    'A Renova Laser é uma clínica de depilação a laser com marca própria ou seja, não somos franquia. E isso faz toda a diferença. Aqui, cada detalhe é pensado por quem vive o negócio todos os dias.',
-    'Utilizamos a tecnologia Triple Wave (Diodo, Nd-YAG e Alexandrite), reconhecida como a mais moderna do mercado, com ponteira ice resfriada a – 16ºc que garante mais conforto no tratamento.',
-    'Nosso atendimento é um dos mais bem avaliados do setor porque colocamos o cliente no centro da experiência. Equipe treinada, carismática e comprometida com resultados reais desde a primeira sessão.',
-    'Se você está no Tatuapé ou região e busca segurança, eficiência e acolhimento a Renova Laser é a escolha certa.',
+    'A Renova Laser é uma clínica de depilação a laser com marca própria, ou seja, não somos franquia. E isso faz toda a diferença. Aqui, cada detalhe é pensado por quem vive o negócio todos os dias.',
+    'Trabalhamos com tecnologias modernas e reconhecidas no mercado, como a Triple Wave que combina os comprimentos de onda Diodo, Nd-YAG e Alexandrite e também com o Soprano Ice Platinum, referência mundial em depilação a laser.',
+    'Nossos equipamentos contam com ponteira Ice resfriada, proporcionando mais conforto, segurança e eficiência durante o tratamento.',
+    'Nosso atendimento é um dos mais bem avaliados do setor porque colocamos o cliente no centro da experiência. Contamos com uma equipe treinada, carismática e comprometida em oferecer resultados reais desde as primeiras sessões.',
+    'Se você está no Tatuapé ou região e busca segurança, eficiência e acolhimento, a Renova Laser é a escolha certa.',
 ];
 
 export const LOCATION = {

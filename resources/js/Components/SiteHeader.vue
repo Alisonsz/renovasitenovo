@@ -74,12 +74,17 @@ const mobileNav = [
 
             <!-- Mobile hamburger -->
             <button
-                class="-mr-1 grid h-[46px] w-[38px] place-items-center rounded-[3px] bg-transparent text-white lg:hidden"
+                class="-mr-1 flex h-[46px] w-[38px] items-center justify-center rounded-[3px] bg-transparent text-white lg:hidden"
                 :aria-label="open ? 'Fechar menu' : 'Abrir menu'"
                 :aria-expanded="open"
                 @click="open = !open"
             >
-                <i :class="open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-[25px]"></i>
+                <i v-if="open" class="fa-solid fa-xmark text-[25px]"></i>
+                <span v-else class="flex flex-col gap-[5px]" aria-hidden="true">
+                    <span class="block h-[2px] w-[27px] rounded-full bg-current"></span>
+                    <span class="block h-[2px] w-[27px] rounded-full bg-current"></span>
+                    <span class="block h-[2px] w-[27px] rounded-full bg-current"></span>
+                </span>
             </button>
         </div>
 

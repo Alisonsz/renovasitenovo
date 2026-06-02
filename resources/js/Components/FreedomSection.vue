@@ -16,7 +16,7 @@ const thirdStyle = thirdMotion.style;
 
 <template>
     <section class="block bg-white lg:hidden">
-        <div class="mx-auto flex h-[430px] max-w-[390px] flex-col justify-center overflow-hidden px-5 text-center text-[25px] leading-[38px] text-brand-dark">
+        <div class="mx-auto flex h-[430px] max-w-[390px] flex-col justify-center overflow-hidden px-5 text-center text-[18px] leading-[28px] text-brand-dark">
             <p
                 ref="firstLine"
                 class="inline-block font-extrabold transition-transform duration-150 ease-out"
@@ -29,7 +29,7 @@ const thirdStyle = thirdMotion.style;
                 class="mt-[48px] inline-block font-normal transition-transform duration-150 ease-out"
                 :style="secondStyle"
             >
-                Conforto, cuidado e resultados.
+                Conforto, cuidado e resultados
             </p>
             <p
                 ref="thirdLine"

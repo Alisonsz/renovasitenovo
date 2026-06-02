@@ -42,17 +42,17 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 py-14 lg:py-[120px]">
+    <section class="relative mb-[-140px] overflow-visible bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 pt-14 pb-[92px] lg:mb-[-166px] lg:pt-[120px] lg:pb-[130px]">
         <div class="mx-auto max-w-[1140px]">
             <div class="text-center">
                 <h2 class="text-[28px] font-extrabold text-heading lg:text-[39px]">Conheça nossos preços</h2>
-                <p class="mt-2 text-[18px] font-semibold text-brand-dark">Tem pacote, tem avulsa, tem pra você!</p>
+                <p class="mt-2 text-[18px] font-normal text-muted">Tem pacote, tem avulsa, tem pra você!</p>
             </div>
 
             <div class="relative mt-6 overflow-visible lg:mt-12">
                 <ul
                     ref="track"
-                    class="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-14 py-7 [scrollbar-width:none] lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:py-4"
+                    class="relative z-20 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-14 py-7 [scrollbar-width:none] lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:py-4"
                     @pointerdown="pauseAutoScroll"
                     @touchstart.passive="pauseAutoScroll"
                     @wheel.passive="pauseAutoScroll"
