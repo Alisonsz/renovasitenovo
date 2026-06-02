@@ -23,8 +23,14 @@ class CheckoutController extends Controller
                 'email' => $cart->email,
                 'name' => $cart->customer_name,
             ],
-            'pixDiscountPercent' => (int) config('services.pagbank.pix_discount_percent', 0),
-            'maxInstallments' => (int) config('services.pagbank.max_installments', 12),
+            'pagbank' => [
+                'public_key' => config('services.pagbank.public_key'),
+                'env' => config('services.pagbank.env'),
+                'pix_discount_percent' => (int) config('services.pagbank.pix_discount_percent', 0),
+                'max_installments' => (int) config('services.pagbank.max_installments', 12),
+                'interest_free_installments' => (int) config('services.pagbank.interest_free_installments', 12),
+                'min_installment_cents' => (int) config('services.pagbank.min_installment_cents', 0),
+            ],
         ]);
     }
 

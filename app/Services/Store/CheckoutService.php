@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Services\Payments\PagBankCheckoutService;
+use App\Services\Payments\PagBankOrderService;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -14,9 +16,9 @@ class CheckoutService
 {
     public function __construct(
         private readonly PagBankCheckoutService $pagBankCheckout,
+        private readonly PagBankOrderService $pagBankOrder,
         private readonly CartService $cartService,
-    ) {
-    }
+    ) {}
 
     public function createOrder(Cart $cart, array $data): Order
     {
@@ -101,7 +103,42 @@ class CheckoutService
             return $order->load(['items', 'customer']);
         });
 
-        return $this->pagBankCheckout->createForOrder($order);
+        return $this->processPayment($order, $data);
+    }
+
+    /**
+     * Route the freshly created order to the right PagBank flow based on the
+     * chosen payment method. Transparent (Orders API) for pix/credit_card;
+     * hosted checkout (redirect) as a fallback option.
+     */
+    private function processPayment(Order $order, array $data): Order
+    {
+        $method = $data['payment_method'];
+
+        // Without a configured token we can't call PagBank — return the order
+        // as-is so the return page can show a pending state (dev-friendly).
+        if (! $this->pagBankOrder->configured()) {
+            return $order;
+        }
+
+        try {
+            return match ($method) {
+                'pix' => $this->pagBankOrder->payWithPix($order),
+                'credit_card' => $this->pagBankOrder->payWithCard($order, [
+                    'encrypted' => data_get($data, 'card.encrypted'),
+                    'holder' => data_get($data, 'card.holder'),
+                    'installments' => (int) data_get($data, 'card.installments', 1),
+                ]),
+                default => $this->pagBankCheckout->createForOrder($order),
+            };
+        } catch (RequestException $e) {
+            // Surface a friendly error; the order stays pending and can be retried.
+            report($e);
+
+            throw ValidationException::withMessages([
+                'payment' => 'Não foi possível processar o pagamento. Verifique os dados e tente novamente.',
+            ]);
+        }
     }
 
     private function pixDiscountFor(Cart $cart, string $paymentMethod): int

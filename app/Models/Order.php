@@ -2,12 +2,32 @@
 
 namespace App\Models;
 
+use App\Mail\OrderConfirmationMail;
+use App\Services\Clinic\TreatmentProvisioner;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Mail;
 
 class Order extends Model
 {
+    protected static function booted(): void
+    {
+        // Run side effects exactly once, when payment becomes "paid".
+        static::updated(function (Order $order) {
+            if ($order->wasChanged('payment_status') && $order->payment_status === 'paid') {
+                $order->loadMissing('customer');
+
+                if ($order->customer?->email) {
+                    Mail::to($order->customer->email)->queue(new OrderConfirmationMail($order->id));
+                }
+
+                // Auto-provision clinic treatments for any session-package items.
+                app(TreatmentProvisioner::class)->provisionFromOrder($order);
+            }
+        });
+    }
+
     protected $fillable = [
         'number',
         'user_id',

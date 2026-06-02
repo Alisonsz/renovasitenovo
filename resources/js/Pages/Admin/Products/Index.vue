@@ -1,6 +1,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import AdminLayout from '../../../Layouts/AdminLayout.vue';
+import Pagination from '../../../Components/Admin/Pagination.vue';
 
 defineProps({
     products: { type: Object, required: true },
@@ -72,8 +73,11 @@ function formatCents(cents) {
                             <a :href="`/admin/products/${product.id}/edit`" class="font-poppins text-[13px] font-semibold text-brand hover:underline">Editar</a>
                         </td>
                     </tr>
+                    <tr v-if="!products.data.length"><td colspan="6" class="px-5 py-10 text-center text-[#888]">Nenhum produto encontrado.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <Pagination :meta="products" />
     </AdminLayout>
 </template>

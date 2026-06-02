@@ -23,7 +23,7 @@ function formatCents(cents) {
                 <h1 class="font-poppins text-[30px] font-extrabold text-[#363636]">Dashboard</h1>
                 <p class="mt-1 font-montserrat text-[15px] text-[#777]">Resumo operacional da loja Renova Laser.</p>
             </div>
-            <a href="/depilacao-feminina" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">
+            <a href="/" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">
                 Ver loja
             </a>
         </div>
@@ -37,7 +37,7 @@ function formatCents(cents) {
             <article class="rounded-[6px] bg-white p-6 shadow-[0_0_10px_rgba(0,0,0,0.08)]">
                 <p class="font-montserrat text-[13px] font-semibold uppercase text-[#777]">Categorias</p>
                 <strong class="mt-3 block font-poppins text-[34px] text-[#363636]">{{ metrics.categories }}</strong>
-                <span class="font-montserrat text-[13px] text-[#777]">WooCommerce importado</span>
+                <span class="font-montserrat text-[13px] text-[#777]">categorias ativas</span>
             </article>
             <article class="rounded-[6px] bg-white p-6 shadow-[0_0_10px_rgba(0,0,0,0.08)]">
                 <p class="font-montserrat text-[13px] font-semibold uppercase text-[#777]">Pedidos</p>

@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\Store\CategoryController;
-use App\Http\Controllers\Store\CartController;
-use App\Http\Controllers\Store\CartRecoveryController;
-use App\Http\Controllers\Store\ProductController;
-use App\Http\Controllers\Store\CheckoutController;
-use App\Http\Controllers\Store\CustomerOrdersController;
-use App\Http\Controllers\Store\PaymentReturnController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Merchant\GoogleMerchantFeedController;
 use App\Http\Controllers\Seo\LegacyUrlController;
 use App\Http\Controllers\Seo\RobotsController;
 use App\Http\Controllers\Seo\SitemapController;
+use App\Http\Controllers\Store\CartController;
+use App\Http\Controllers\Store\CartRecoveryController;
+use App\Http\Controllers\Store\CategoryController;
+use App\Http\Controllers\Store\CheckoutController;
+use App\Http\Controllers\Store\CustomerOrdersController;
+use App\Http\Controllers\Store\PaymentReturnController;
+use App\Http\Controllers\Store\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -67,6 +67,8 @@ Route::get('/minhas-compras', [CustomerOrdersController::class, 'index'])
     ->name('store.customer-orders');
 Route::get('/pedido/{order:number}/retorno', [PaymentReturnController::class, 'show'])
     ->name('store.payment-return');
+Route::get('/pedido/{order:number}/status', [PaymentReturnController::class, 'status'])
+    ->name('store.payment-status');
 Route::get('/merchant/google.xml', [GoogleMerchantFeedController::class, 'show'])
     ->name('merchant.google');
 Route::get('/{legacyPath}', [LegacyUrlController::class, 'show'])

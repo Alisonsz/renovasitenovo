@@ -3,15 +3,14 @@ import { Head, router, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import SiteLayout from '../../Layouts/SiteLayout.vue';
 import CartSummary from '../../Components/Store/CartSummary.vue';
+import { encryptCard, installmentOptions } from '../../Composables/usePagBank.js';
 
 const props = defineProps({
     cart: { type: Object, required: true },
     contact: { type: Object, default: () => ({ email: null, name: null }) },
-    pixDiscountPercent: { type: Number, default: 0 },
-    maxInstallments: { type: Number, default: 12 },
+    pagbank: { type: Object, default: () => ({}) },
 });
 
-// Step 1 already done if we previously captured the email.
 const step = ref(props.contact?.email ? 2 : 1);
 
 const emailForm = useForm({
@@ -25,7 +24,13 @@ const form = useForm({
     phone: '',
     document: '',
     payment_method: 'pix',
+    card: { encrypted: '', holder: '', installments: 1 },
 });
+
+// Local-only card fields (never sent raw; encrypted client-side first).
+const card = ref({ number: '', holder: '', expMonth: '', expYear: '', cvv: '' });
+const cardError = ref('');
+const processing = ref(false);
 
 const steps = [
     { n: 1, label: 'Identificação' },
@@ -33,14 +38,19 @@ const steps = [
     { n: 3, label: 'Pagamento' },
 ];
 
-const pixTotal = computed(() => {
-    if (!props.pixDiscountPercent) return props.cart.total_cents;
-    return Math.floor(props.cart.total_cents * (1 - props.pixDiscountPercent / 100));
-});
-
+const pixPercent = computed(() => props.pagbank?.pix_discount_percent ?? 0);
+const pixTotal = computed(() =>
+    pixPercent.value ? Math.floor(props.cart.total_cents * (1 - pixPercent.value / 100)) : props.cart.total_cents
+);
+const installments = computed(() =>
+    installmentOptions(
+        props.cart.total_cents,
+        props.pagbank?.max_installments ?? 12,
+        props.pagbank?.min_installment_cents ?? 0
+    )
+);
 const brl = (cents) => 'R$ ' + ((cents ?? 0) / 100).toFixed(2).replace('.', ',');
 
-// Step 1 → captures email on the server (email-first) so the cart is recoverable.
 function submitEmail() {
     emailForm.post('/checkout/identificacao', {
         preserveScroll: true,
@@ -53,13 +63,41 @@ function submitEmail() {
 }
 
 function goToPayment() {
-    // light client-side guard before showing payment step
     if (!form.name || !form.phone || !form.document) return;
     step.value = 3;
 }
 
-function submit() {
-    router.post('/checkout', form);
+async function submit() {
+    cardError.value = '';
+
+    if (form.payment_method === 'credit_card') {
+        if (!props.pagbank?.public_key) {
+            cardError.value = 'Pagamento com cartão indisponível no momento. Tente o Pix.';
+            return;
+        }
+        processing.value = true;
+        const { encrypted, errors } = await encryptCard(props.pagbank.public_key, {
+            holder: card.value.holder,
+            number: card.value.number,
+            expMonth: card.value.expMonth,
+            expYear: card.value.expYear,
+            securityCode: card.value.cvv,
+        }).catch((e) => ({ encrypted: null, errors: [{ message: e.message }] }));
+        processing.value = false;
+
+        if (!encrypted) {
+            cardError.value = errors?.[0]?.message || 'Não foi possível validar o cartão.';
+            return;
+        }
+        form.card.encrypted = encrypted;
+        form.card.holder = card.value.holder;
+    }
+
+    router.post('/checkout', form, {
+        onError: (errs) => {
+            cardError.value = errs.payment || errs.card?.encrypted || '';
+        },
+    });
 }
 </script>
 
@@ -72,18 +110,13 @@ function submit() {
                 <h1 class="font-poppins text-[33px] font-extrabold text-[#363636]">Finalizar compra</h1>
                 <div class="mt-[18px] h-[2px] w-[91px] bg-brand"></div>
 
-                <!-- Stepper -->
                 <ol class="mt-7 flex items-center gap-2 sm:gap-4">
                     <li v-for="(s, i) in steps" :key="s.n" class="flex items-center gap-2 sm:gap-4">
                         <div class="flex items-center gap-2">
-                            <span
-                                class="grid h-8 w-8 place-items-center rounded-full font-poppins text-[14px] font-bold transition"
-                                :class="step >= s.n ? 'bg-brand text-white' : 'bg-white text-[#9aa] ring-1 ring-[#dce5e5]'"
-                            >{{ s.n }}</span>
-                            <span
-                                class="hidden font-montserrat text-[13px] font-semibold sm:inline"
-                                :class="step >= s.n ? 'text-[#333]' : 'text-[#9aa]'"
-                            >{{ s.label }}</span>
+                            <span class="grid h-8 w-8 place-items-center rounded-full font-poppins text-[14px] font-bold transition"
+                                :class="step >= s.n ? 'bg-brand text-white' : 'bg-white text-[#9aa] ring-1 ring-[#dce5e5]'">{{ s.n }}</span>
+                            <span class="hidden font-montserrat text-[13px] font-semibold sm:inline"
+                                :class="step >= s.n ? 'text-[#333]' : 'text-[#9aa]'">{{ s.label }}</span>
                         </div>
                         <span v-if="i < steps.length - 1" class="h-px w-6 bg-[#dce5e5] sm:w-10"></span>
                     </li>
@@ -98,9 +131,7 @@ function submit() {
                         <!-- STEP 1 — e-mail first -->
                         <div v-show="step === 1">
                             <h2 class="font-poppins text-[22px] font-extrabold text-[#363636]">Vamos começar</h2>
-                            <p class="mt-1 font-montserrat text-[14px] text-muted">
-                                Informe seu e-mail para iniciar. Guardamos seu carrinho para você não perder nada.
-                            </p>
+                            <p class="mt-1 font-montserrat text-[14px] text-muted">Informe seu e-mail para iniciar. Guardamos seu carrinho para você não perder nada.</p>
                             <form class="mt-6 space-y-5" @submit.prevent="submitEmail">
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     E-mail
@@ -127,70 +158,101 @@ function submit() {
                             <div class="mt-6 grid gap-5 sm:grid-cols-2">
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     Nome completo
-                                    <input v-model="form.name" type="text"
-                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 font-normal outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    <input v-model="form.name" type="text" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
                                     <span v-if="form.errors.name" class="mt-1 block text-[12px] text-red-600">{{ form.errors.name }}</span>
                                 </label>
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     Telefone
-                                    <input v-model="form.phone" type="tel"
-                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 font-normal outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    <input v-model="form.phone" type="tel" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
                                     <span v-if="form.errors.phone" class="mt-1 block text-[12px] text-red-600">{{ form.errors.phone }}</span>
                                 </label>
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     CPF
-                                    <input v-model="form.document" type="text"
-                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 font-normal outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    <input v-model="form.document" type="text" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
                                     <span v-if="form.errors.document" class="mt-1 block text-[12px] text-red-600">{{ form.errors.document }}</span>
                                 </label>
                             </div>
                             <div class="mt-7 flex gap-3">
-                                <button type="button" @click="step = 1"
-                                    class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">
-                                    Voltar
-                                </button>
+                                <button type="button" @click="step = 1" class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">Voltar</button>
                                 <button type="button" @click="goToPayment" :disabled="!form.name || !form.phone || !form.document"
-                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:opacity-60 sm:flex-none">
-                                    Ir para pagamento
-                                </button>
+                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:opacity-60 sm:flex-none">Ir para pagamento</button>
                             </div>
                         </div>
 
-                        <!-- STEP 3 — payment method (fully wired in Phase 3) -->
+                        <!-- STEP 3 — transparent payment -->
                         <div v-show="step === 3">
                             <h2 class="font-poppins text-[22px] font-extrabold text-[#363636]">Pagamento</h2>
-                            <div class="mt-5 space-y-3">
-                                <label class="flex cursor-pointer items-center gap-3 rounded-[8px] border px-4 py-4 font-montserrat text-[15px] text-[#333] transition"
+
+                            <div class="mt-5 grid grid-cols-2 gap-3">
+                                <button type="button" @click="form.payment_method = 'pix'"
+                                    class="rounded-[8px] border px-4 py-3 text-left font-montserrat transition"
                                     :class="form.payment_method === 'pix' ? 'border-brand bg-[#eefafa]' : 'border-[#dce5e5] hover:bg-[#f8fbfb]'">
-                                    <input v-model="form.payment_method" type="radio" value="pix" class="accent-brand">
-                                    <span class="flex-1">
-                                        <strong class="block font-poppins text-[#333]">Pix</strong>
-                                        Aprovação imediata
-                                        <span v-if="pixDiscountPercent" class="font-semibold text-brand-dark"> — {{ pixDiscountPercent }}% de desconto ({{ brl(pixTotal) }})</span>
-                                    </span>
-                                </label>
-                                <label class="flex cursor-pointer items-center gap-3 rounded-[8px] border px-4 py-4 font-montserrat text-[15px] text-[#333] transition"
+                                    <i class="fa-brands fa-pix text-[20px] text-brand-dark"></i>
+                                    <strong class="mt-1 block font-poppins text-[15px] text-[#333]">Pix</strong>
+                                    <span v-if="pixPercent" class="text-[12px] font-semibold text-brand-dark">{{ pixPercent }}% off</span>
+                                </button>
+                                <button type="button" @click="form.payment_method = 'credit_card'"
+                                    class="rounded-[8px] border px-4 py-3 text-left font-montserrat transition"
                                     :class="form.payment_method === 'credit_card' ? 'border-brand bg-[#eefafa]' : 'border-[#dce5e5] hover:bg-[#f8fbfb]'">
-                                    <input v-model="form.payment_method" type="radio" value="credit_card" class="accent-brand">
-                                    <span class="flex-1">
-                                        <strong class="block font-poppins text-[#333]">Cartão de crédito</strong>
-                                        Em até {{ maxInstallments }}x
-                                    </span>
-                                </label>
+                                    <i class="fa-solid fa-credit-card text-[20px] text-brand-dark"></i>
+                                    <strong class="mt-1 block font-poppins text-[15px] text-[#333]">Cartão</strong>
+                                    <span class="text-[12px] text-muted">até {{ pagbank.max_installments }}x</span>
+                                </button>
                             </div>
 
-                            <p class="mt-4 rounded-[4px] bg-[#f8fbfb] px-4 py-3 font-montserrat text-[13px] text-muted">
-                                🔒 Os campos do cartão e o QR Code do Pix serão habilitados na próxima etapa (integração transparente PagBank).
-                            </p>
+                            <!-- PIX panel -->
+                            <div v-show="form.payment_method === 'pix'" class="mt-5 rounded-[8px] bg-[#f8fbfb] p-5 font-montserrat text-[14px] text-[#555]">
+                                <p>Ao confirmar, geramos um <strong>QR Code Pix</strong> para pagamento imediato. Você recebe a confirmação automaticamente.</p>
+                                <p class="mt-2 text-[15px]">Total no Pix: <strong class="text-brand-dark">{{ brl(pixTotal) }}</strong></p>
+                            </div>
+
+                            <!-- Card panel -->
+                            <div v-show="form.payment_method === 'credit_card'" class="mt-5 grid gap-4">
+                                <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
+                                    Número do cartão
+                                    <input v-model="card.number" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000"
+                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                </label>
+                                <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
+                                    Nome impresso no cartão
+                                    <input v-model="card.holder" autocomplete="cc-name" placeholder="Como está no cartão"
+                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                </label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <label class="block font-montserrat text-[13px] font-semibold text-[#555]">
+                                        Mês
+                                        <input v-model="card.expMonth" inputmode="numeric" placeholder="MM" maxlength="2"
+                                            class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    </label>
+                                    <label class="block font-montserrat text-[13px] font-semibold text-[#555]">
+                                        Ano
+                                        <input v-model="card.expYear" inputmode="numeric" placeholder="AAAA" maxlength="4"
+                                            class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    </label>
+                                    <label class="block font-montserrat text-[13px] font-semibold text-[#555]">
+                                        CVV
+                                        <input v-model="card.cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4"
+                                            class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    </label>
+                                </div>
+                                <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
+                                    Parcelas
+                                    <select v-model.number="form.card.installments"
+                                        class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-white px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                        <option v-for="opt in installments" :key="opt.n" :value="opt.n">{{ opt.label }}</option>
+                                    </select>
+                                </label>
+                                <p class="font-montserrat text-[12px] text-muted">🔒 Seus dados são criptografados no seu navegador antes do envio.</p>
+                            </div>
+
+                            <p v-if="cardError" class="mt-4 rounded-[4px] bg-red-50 px-4 py-3 font-montserrat text-[14px] text-red-700">{{ cardError }}</p>
 
                             <div class="mt-7 flex gap-3">
-                                <button type="button" @click="step = 2"
-                                    class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">
-                                    Voltar
-                                </button>
-                                <button type="button" @click="submit" :disabled="form.processing || !cart.items.length"
+                                <button type="button" @click="step = 2" class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">Voltar</button>
+                                <button type="button" @click="submit" :disabled="form.processing || processing || !cart.items.length"
                                     class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:opacity-60">
-                                    Finalizar pedido
+                                    <span v-if="processing || form.processing">Processando…</span>
+                                    <span v-else>{{ form.payment_method === 'pix' ? 'Gerar Pix' : 'Pagar agora' }}</span>
                                 </button>
                             </div>
                         </div>

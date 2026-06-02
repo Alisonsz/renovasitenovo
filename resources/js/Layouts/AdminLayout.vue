@@ -6,12 +6,26 @@ const page = usePage();
 const user = computed(() => page.props.auth?.user);
 const nav = [
     { label: 'Dashboard', href: '/admin', icon: 'fa-chart-line' },
+    { section: 'Clínica' },
+    { label: 'Agenda', href: '/admin/appointments', icon: 'fa-calendar-days' },
+    { label: 'Clientes', href: '/admin/customers', icon: 'fa-users' },
+    { label: 'Profissionais', href: '/admin/professionals', icon: 'fa-user-nurse' },
+    { section: 'Loja' },
+    { label: 'Pedidos', href: '/admin/orders', icon: 'fa-receipt' },
     { label: 'Produtos', href: '/admin/products', icon: 'fa-box' },
     { label: 'Categorias', href: '/admin/categories', icon: 'fa-layer-group' },
-    { label: 'Blog', href: '/admin/blog-posts', icon: 'fa-newspaper' },
-    { label: 'Pedidos', href: '/admin/orders', icon: 'fa-receipt' },
     { label: 'Cupons', href: '/admin/coupons', icon: 'fa-ticket' },
+    { section: 'Conteúdo & gestão' },
+    { label: 'Blog', href: '/admin/blog-posts', icon: 'fa-newspaper' },
+    { label: 'Relatórios', href: '/admin/reports', icon: 'fa-chart-pie' },
+    { label: 'Configurações', href: '/admin/settings', icon: 'fa-gear' },
 ];
+
+// active state: exact for dashboard, prefix for sections
+function isActive(href) {
+    if (href === '/admin') return page.url === '/admin';
+    return page.url.startsWith(href);
+}
 
 function logout() {
     router.post('/logout');
@@ -24,17 +38,19 @@ function logout() {
             <a href="/admin" class="block">
                 <img src="/images/logo.png" alt="Renova Laser" class="h-[42px] w-auto">
             </a>
-            <nav class="mt-10 space-y-2">
-                <Link
-                    v-for="item in nav"
-                    :key="item.href"
-                    :href="item.href"
-                    class="flex h-[42px] items-center gap-3 rounded-[5px] px-3 font-poppins text-[14px] font-semibold text-[#555] transition hover:bg-[#e8f8f8] hover:text-brand"
-                    :class="{ 'bg-[#e8f8f8] text-brand': page.url === item.href }"
-                >
-                    <i :class="`fa-solid ${item.icon}`" class="w-5 text-center"></i>
-                    {{ item.label }}
-                </Link>
+            <nav class="mt-8 space-y-1">
+                <template v-for="(item, i) in nav" :key="i">
+                    <p v-if="item.section" class="px-3 pb-1 pt-4 font-poppins text-[11px] font-bold uppercase tracking-wide text-[#9aa]">{{ item.section }}</p>
+                    <Link
+                        v-else
+                        :href="item.href"
+                        class="flex h-[40px] items-center gap-3 rounded-[5px] px-3 font-poppins text-[14px] font-semibold text-[#555] transition hover:bg-[#e8f8f8] hover:text-brand"
+                        :class="{ 'bg-[#e8f8f8] text-brand': isActive(item.href) }"
+                    >
+                        <i :class="`fa-solid ${item.icon}`" class="w-5 text-center"></i>
+                        {{ item.label }}
+                    </Link>
+                </template>
             </nav>
         </aside>
 
@@ -57,6 +73,12 @@ function logout() {
             </header>
 
             <main class="px-5 py-8 lg:px-8">
+                <div v-if="page.props.flash?.success" class="mb-6 rounded-[5px] border border-green-200 bg-green-50 px-4 py-3 font-montserrat text-[14px] text-green-800">
+                    {{ page.props.flash.success }}
+                </div>
+                <div v-if="page.props.flash?.error" class="mb-6 rounded-[5px] border border-red-200 bg-red-50 px-4 py-3 font-montserrat text-[14px] text-red-800">
+                    {{ page.props.flash.error }}
+                </div>
                 <slot />
             </main>
         </div>

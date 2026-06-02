@@ -25,8 +25,13 @@ class Product extends Model
         'price_cents',
         'currency',
         'stock_status',
+        'stock_quantity',
+        'manage_stock',
         'is_active',
         'is_custom_quote',
+        'is_treatment',
+        'sessions_count',
+        'session_duration_min',
         'merchant_visibility',
         'merchant_status',
         'merchant_google_id',
@@ -48,6 +53,11 @@ class Product extends Model
             'price_cents' => 'integer',
             'is_active' => 'boolean',
             'is_custom_quote' => 'boolean',
+            'is_treatment' => 'boolean',
+            'stock_quantity' => 'integer',
+            'manage_stock' => 'boolean',
+            'sessions_count' => 'integer',
+            'session_duration_min' => 'integer',
             'merchant_is_bundle' => 'boolean',
             'metadata' => 'array',
         ];
@@ -71,5 +81,10 @@ class Product extends Model
     public function cartItems(): HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function treatments(): HasMany
+    {
+        return $this->hasMany(Treatment::class);
     }
 }

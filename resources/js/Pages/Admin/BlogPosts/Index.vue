@@ -1,6 +1,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import AdminLayout from '../../../Layouts/AdminLayout.vue';
+import Pagination from '../../../Components/Admin/Pagination.vue';
 
 defineProps({
     posts: { type: Object, required: true },
@@ -46,8 +47,11 @@ defineProps({
                             <a :href="`/admin/blog-posts/${post.id}/edit`" class="font-poppins text-[13px] font-semibold text-brand hover:underline">Editar</a>
                         </td>
                     </tr>
+                    <tr v-if="!posts.data.length"><td colspan="5" class="px-5 py-10 text-center text-[#888]">Nenhum post encontrado.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <Pagination :meta="posts" />
     </AdminLayout>
 </template>
