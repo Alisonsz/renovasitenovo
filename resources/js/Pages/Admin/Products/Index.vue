@@ -23,9 +23,9 @@ function formatCents(cents) {
                 <h1 class="font-poppins text-[30px] font-extrabold text-[#363636]">Produtos</h1>
                 <p class="mt-1 font-montserrat text-[15px] text-[#777]">Catálogo importado do WooCommerce.</p>
             </div>
-            <button class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white opacity-70" type="button">
+            <a href="/admin/products/create" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">
                 Novo produto
-            </button>
+            </a>
         </div>
 
         <div class="mt-8 overflow-hidden rounded-[6px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.08)]">
@@ -37,6 +37,7 @@ function formatCents(cents) {
                         <th class="px-5 py-4 text-left">Preço</th>
                         <th class="px-5 py-4 text-left">Status</th>
                         <th class="px-5 py-4 text-left">Merchant</th>
+                        <th class="px-5 py-4 text-right">Ações</th>
                     </tr>
                 </thead>
                 <tbody class="font-montserrat text-[14px] text-[#555]">
@@ -67,6 +68,9 @@ function formatCents(cents) {
                             </span>
                         </td>
                         <td class="px-5 py-4">{{ product.merchant_visibility }}</td>
+                        <td class="px-5 py-4 text-right">
+                            <a :href="`/admin/products/${product.id}/edit`" class="font-poppins text-[13px] font-semibold text-brand hover:underline">Editar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

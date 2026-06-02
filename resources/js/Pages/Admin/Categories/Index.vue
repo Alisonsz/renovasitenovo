@@ -16,9 +16,9 @@ defineProps({
                 <h1 class="font-poppins text-[30px] font-extrabold text-[#363636]">Categorias</h1>
                 <p class="mt-1 font-montserrat text-[15px] text-[#777]">Estrutura de categorias da loja.</p>
             </div>
-            <button class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white opacity-70" type="button">
+            <a href="/admin/categories/create" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">
                 Nova categoria
-            </button>
+            </a>
         </div>
 
         <div class="mt-8 overflow-hidden rounded-[6px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.08)]">
@@ -30,6 +30,7 @@ defineProps({
                         <th class="px-5 py-4 text-left">Pai</th>
                         <th class="px-5 py-4 text-left">Produtos</th>
                         <th class="px-5 py-4 text-left">Google</th>
+                        <th class="px-5 py-4 text-right">Ações</th>
                     </tr>
                 </thead>
                 <tbody class="font-montserrat text-[14px] text-[#555]">
@@ -42,6 +43,9 @@ defineProps({
                             <span class="rounded-full bg-[#e8f8f8] px-3 py-1 text-[12px] text-brand">
                                 {{ category.google_gender || 'unisex' }}
                             </span>
+                        </td>
+                        <td class="px-5 py-4 text-right">
+                            <a :href="`/admin/categories/${category.id}/edit`" class="font-poppins text-[13px] font-semibold text-brand hover:underline">Editar</a>
                         </td>
                     </tr>
                 </tbody>

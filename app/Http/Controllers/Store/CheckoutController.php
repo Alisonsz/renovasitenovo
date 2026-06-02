@@ -19,13 +19,46 @@ class CheckoutController extends Controller
 
         return Inertia::render('Store/Checkout', [
             'cart' => $cartService->payload($cart),
+            'contact' => [
+                'email' => $cart->email,
+                'name' => $cart->customer_name,
+            ],
+            'pixDiscountPercent' => (int) config('services.pagbank.pix_discount_percent', 0),
+            'maxInstallments' => (int) config('services.pagbank.max_installments', 12),
         ]);
+    }
+
+    /**
+     * Email-first step: persist the buyer's email on the cart as soon as they
+     * begin checkout, so the cart can be recovered if they drop off. Returns
+     * to the checkout page (the SPA advances to the next step).
+     */
+    public function identify(Request $request, CartService $cartService): RedirectResponse
+    {
+        $data = $request->validate([
+            'email' => ['required', 'email', 'max:255'],
+            'name' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $cart = $cartService->current($request);
+
+        if ($cart->items->isEmpty()) {
+            return back()->withErrors(['cart' => 'Seu carrinho está vazio.']);
+        }
+
+        $cartService->captureContact($cart, $data['email'], $data['name'] ?? null);
+
+        return back()->with('success', 'E-mail registrado. Continue para o pagamento.');
     }
 
     public function store(CheckoutRequest $request, CartService $cartService, CheckoutService $checkoutService): RedirectResponse
     {
         $cart = $cartService->current($request);
         $order = $checkoutService->createOrder($cart, $request->validated());
+
+        // Cart is now converted; drop it from the session so the next visit
+        // starts a fresh cart (prevents re-checkout of a paid cart).
+        $cartService->forgetSession($request);
 
         if ($order->pagbank_pay_url) {
             return redirect()->away($order->pagbank_pay_url);

@@ -24,13 +24,20 @@ function removeItem(item) {
     <Head title="Carrinho" />
 
     <SiteLayout header-variant="store">
-        <section class="bg-[#f7f7f7] px-5 py-[44px]">
+        <section class="bg-[linear-gradient(180deg,#f8fbfb_0%,#f2f2f2_100%)] px-5 py-[44px] lg:py-[58px]">
             <div class="mx-auto max-w-[1140px]">
-                <h1 class="font-poppins text-[33px] font-extrabold text-[#363636]">Carrinho</h1>
-                <div class="mt-[22px] h-[2px] w-[91px] bg-brand"></div>
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <h1 class="font-poppins text-[33px] font-extrabold text-[#363636]">Carrinho</h1>
+                        <div class="mt-[18px] h-[2px] w-[91px] bg-brand"></div>
+                    </div>
+                    <a href="/depilacao-feminina" class="font-montserrat text-[14px] font-semibold text-brand-dark transition hover:text-brand">
+                        Continuar comprando
+                    </a>
+                </div>
 
                 <div v-if="cart.items.length" class="mt-[34px] grid gap-8 lg:grid-cols-[1fr_330px]">
-                    <div class="overflow-hidden rounded-[4px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.12)] transition duration-300 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)]">
+                    <div class="overflow-hidden rounded-[8px] bg-white shadow-[0_10px_28px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.03] transition duration-300 hover:shadow-[0_16px_34px_rgba(0,0,0,0.11)]">
                         <div class="hidden grid-cols-[1fr_130px_150px_130px_48px] border-b border-[#ececec] px-5 py-4 font-poppins text-[14px] font-semibold uppercase text-[#777] lg:grid">
                             <span>Produto</span>
                             <span>Preço</span>
@@ -45,7 +52,7 @@ function removeItem(item) {
                             class="grid gap-4 border-b border-[#ececec] px-5 py-5 transition duration-200 last:border-0 hover:bg-[#fbfefe] lg:grid-cols-[1fr_130px_150px_130px_48px] lg:items-center"
                         >
                             <a :href="`/produto/${item.product.slug}`" class="flex items-center gap-4">
-                                <span class="grid h-[82px] w-[82px] shrink-0 place-items-center overflow-hidden rounded-[4px] bg-[#e3fbf8]">
+                                <span class="grid h-[86px] w-[86px] shrink-0 place-items-center overflow-hidden rounded-[6px] bg-[#e3fbf8]">
                                     <img
                                         v-if="item.product.image_url"
                                         :src="item.product.image_url"
@@ -56,7 +63,7 @@ function removeItem(item) {
                                     >
                                     <i v-else class="fa-solid fa-spa text-[28px] text-brand"></i>
                                 </span>
-                                <span class="font-poppins text-[16px] font-semibold leading-tight text-[#333]">
+                                <span class="font-poppins text-[16px] font-extrabold leading-tight text-[#333]">
                                     {{ item.product.name }}
                                 </span>
                             </a>

@@ -34,13 +34,13 @@ export const NAV = {
     secondary: [
         { label: 'Depilação Feminina', href: '/depilacao-feminina' },
         { label: 'Depilação Masculina', href: '/depilacao-masculina' },
-        { label: 'Minhas compras', href: `${SITE}/minha-conta/` },
+        { label: 'Minhas compras', href: '/minhas-compras' },
     ],
     account: {
         line1: 'acesse sua conta',
         or: 'ou',
         post: 'cadastre-se',
-        href: `${SITE}/minha-conta/`,
+        href: '/minhas-compras',
     },
 };
 
@@ -116,7 +116,7 @@ export const FOOTER = {
             links: [
                 { label: 'Depilação feminina', href: '/depilacao-feminina' },
                 { label: 'Depilação masculina', href: '/depilacao-masculina' },
-                { label: 'Minhas compras', href: `${SITE}/area-do-cliente/` },
+                { label: 'Minhas compras', href: '/minhas-compras' },
             ],
         },
         {
@@ -124,7 +124,7 @@ export const FOOTER = {
             links: [
                 { label: 'Quem somos', href: '/quem-somos' },
                 { label: 'Nossa tecnologia', href: '/nossa-tecnologia' },
-                { label: 'Blog', href: `${SITE}/blog/` },
+                { label: 'Blog', href: '/blog' },
             ],
         },
         {
@@ -136,8 +136,8 @@ export const FOOTER = {
         },
     ],
     policies: [
-        { label: 'Política de Privacidade e Cookies', href: `${SITE}/politica-de-privacidade-2/` },
-        { label: 'Política de Reembolso', href: `${SITE}/politica-de-reembolso/` },
-        { label: 'Política de Cancelamento', href: `${SITE}/cancelamento/` },
+        { label: 'Política de Privacidade e Cookies', href: '/politica-de-privacidade-2' },
+        { label: 'Política de Reembolso', href: '/politica-de-reembolso' },
+        { label: 'Política de Cancelamento', href: '/cancelamento' },
     ],
 };

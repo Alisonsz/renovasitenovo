@@ -5,14 +5,17 @@ namespace App\Services\Store;
 use App\Models\Cart;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Product;
 use App\Services\Payments\PagBankCheckoutService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class CheckoutService
 {
-    public function __construct(private readonly PagBankCheckoutService $pagBankCheckout)
-    {
+    public function __construct(
+        private readonly PagBankCheckoutService $pagBankCheckout,
+        private readonly CartService $cartService,
+    ) {
     }
 
     public function createOrder(Cart $cart, array $data): Order
@@ -25,15 +28,29 @@ class CheckoutService
             ]);
         }
 
-        $order = DB::transaction(function () use ($cart, $data) {
+        // Idempotency guard: a converted cart already produced an order.
+        if ($cart->status === 'converted') {
+            throw ValidationException::withMessages([
+                'cart' => 'Este carrinho já foi finalizado.',
+            ]);
+        }
+
+        $pixDiscountCents = $this->pixDiscountFor($cart, $data['payment_method']);
+
+        $order = DB::transaction(function () use ($cart, $data, $pixDiscountCents) {
+            // Lock managed-stock products and validate availability before committing.
+            $this->reserveStock($cart);
+
             $customer = Customer::query()->updateOrCreate(
-                ['email' => $data['email']],
+                ['email' => mb_strtolower(trim($data['email']))],
                 [
                     'name' => $data['name'],
                     'phone' => $data['phone'],
                     'document' => $data['document'],
                 ]
             );
+
+            $total = max(0, $cart->total_cents - $pixDiscountCents);
 
             $order = Order::query()->create([
                 'number' => $this->nextOrderNumber(),
@@ -46,8 +63,8 @@ class CheckoutService
                 'payment_method' => $data['payment_method'],
                 'subtotal_cents' => $cart->subtotal_cents,
                 'discount_cents' => $cart->discount_cents,
-                'pix_discount_cents' => 0,
-                'total_cents' => $cart->total_cents,
+                'pix_discount_cents' => $pixDiscountCents,
+                'total_cents' => $total,
                 'currency' => 'BRL',
             ]);
 
@@ -65,6 +82,10 @@ class CheckoutService
                 ]);
             }
 
+            if ($cart->coupon) {
+                $cart->coupon->increment('used_count');
+            }
+
             $order->paymentTransactions()->create([
                 'provider' => 'pagbank',
                 'method' => $data['payment_method'],
@@ -73,10 +94,53 @@ class CheckoutService
                 'raw_payload' => ['source' => 'local_checkout_pending'],
             ]);
 
+            // Mark the cart converted inside the same transaction so a
+            // double-submit cannot create a second order from it.
+            $this->cartService->markConverted($cart);
+
             return $order->load(['items', 'customer']);
         });
 
         return $this->pagBankCheckout->createForOrder($order);
+    }
+
+    private function pixDiscountFor(Cart $cart, string $paymentMethod): int
+    {
+        if (! in_array($paymentMethod, ['pix', 'pagbank_pix'], true)) {
+            return 0;
+        }
+
+        $percent = (int) config('services.pagbank.pix_discount_percent', 0);
+
+        if ($percent <= 0) {
+            return 0;
+        }
+
+        return (int) floor($cart->total_cents * ($percent / 100));
+    }
+
+    private function reserveStock(Cart $cart): void
+    {
+        foreach ($cart->items as $item) {
+            $product = Product::query()
+                ->whereKey($item->product_id)
+                ->lockForUpdate()
+                ->first();
+
+            if (! $product || ! $product->manage_stock) {
+                continue;
+            }
+
+            $available = (int) ($product->stock_quantity ?? 0);
+
+            if ($item->quantity > $available) {
+                throw ValidationException::withMessages([
+                    'cart' => "{$product->name}: estoque insuficiente (restam {$available}).",
+                ]);
+            }
+
+            $product->decrement('stock_quantity', $item->quantity);
+        }
     }
 
     private function nextOrderNumber(): string
