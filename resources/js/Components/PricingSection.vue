@@ -5,6 +5,9 @@ import { PRICING } from '../data/site.js';
 
 const active = ref(null);
 const track = ref(null);
+const dragStartX = ref(0);
+const dragStartScrollLeft = ref(0);
+const dragging = ref(false);
 let autoScrollTimer = null;
 let resumeTimer = null;
 
@@ -33,6 +36,39 @@ function pauseAutoScroll() {
     resumeTimer = setTimeout(startAutoScroll, 7000);
 }
 
+function pointerX(event) {
+    return event.touches?.[0]?.clientX ?? event.clientX;
+}
+
+function onDragStart(event) {
+    const el = track.value;
+    if (!el) return;
+
+    event.currentTarget?.setPointerCapture?.(event.pointerId);
+    dragging.value = true;
+    dragStartX.value = pointerX(event);
+    dragStartScrollLeft.value = el.scrollLeft;
+    stopAutoScroll();
+    if (resumeTimer) clearTimeout(resumeTimer);
+}
+
+function onDragMove(event) {
+    const el = track.value;
+    if (!el || !dragging.value) return;
+
+    if (event.cancelable) event.preventDefault();
+    const delta = pointerX(event) - dragStartX.value;
+    el.scrollLeft = dragStartScrollLeft.value - delta;
+}
+
+function onDragEnd() {
+    if (!dragging.value) return;
+
+    dragging.value = false;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoScroll, 7000);
+}
+
 onMounted(startAutoScroll);
 
 onBeforeUnmount(() => {
@@ -52,9 +88,12 @@ onBeforeUnmount(() => {
             <div class="relative mt-6 overflow-visible lg:mt-12">
                 <ul
                     ref="track"
-                    class="relative z-20 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-14 py-7 [scrollbar-width:none] lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:py-4"
-                    @pointerdown="pauseAutoScroll"
-                    @touchstart.passive="pauseAutoScroll"
+                    class="relative z-20 -mx-5 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-14 py-7 select-none [scrollbar-width:none] [touch-action:pan-y] active:cursor-grabbing lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:py-4"
+                    @pointerdown="onDragStart"
+                    @pointermove="onDragMove"
+                    @pointerup="onDragEnd"
+                    @pointercancel="onDragEnd"
+                    @pointerleave="onDragEnd"
                     @wheel.passive="pauseAutoScroll"
                 >
                     <li

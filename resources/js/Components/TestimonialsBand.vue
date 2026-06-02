@@ -16,9 +16,48 @@ const srcdoc = computed(() => {
         '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<base target="_blank">',
-        '<style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style>',
+        '<style>',
+        'html,body{margin:0;padding:0;background:transparent;overflow:visible}',
+        '.ti-widget,.ti-widget-container,.ti-reviews-container{overflow:visible!important}',
+        '.ti-reviews-container-wrapper{overflow-x:auto!important;overflow-y:visible!important;margin-left:0!important;margin-right:0!important;padding:12px!important;box-sizing:border-box!important;scrollbar-width:none!important;cursor:grab!important;touch-action:pan-y!important}',
+        '.ti-reviews-container-wrapper::-webkit-scrollbar{display:none}',
+        '</style>',
         '</head><body>',
         `<script defer async src="https://cdn.trustindex.io/loader.js?${TRUSTINDEX_WIDGET_ID}"><\/script>`,
+        '<script>',
+        '(() => {',
+        '  function enhanceTrustCarousel() {',
+        '    const wrapper = document.querySelector(".ti-reviews-container-wrapper");',
+        '    if (!wrapper || wrapper.dataset.renovaDrag === "true") return;',
+        '    wrapper.dataset.renovaDrag = "true";',
+        '    let dragging = false;',
+        '    let startX = 0;',
+        '    let startLeft = 0;',
+        '    wrapper.addEventListener("pointerdown", (event) => {',
+        '      dragging = true;',
+        '      startX = event.clientX;',
+        '      startLeft = wrapper.scrollLeft;',
+        '      wrapper.setPointerCapture?.(event.pointerId);',
+        '      wrapper.style.cursor = "grabbing";',
+        '    });',
+        '    wrapper.addEventListener("pointermove", (event) => {',
+        '      if (!dragging) return;',
+        '      if (event.cancelable) event.preventDefault();',
+        '      wrapper.scrollLeft = startLeft - (event.clientX - startX);',
+        '    });',
+        '    const stopDrag = () => {',
+        '      dragging = false;',
+        '      wrapper.style.cursor = "grab";',
+        '    };',
+        '    wrapper.addEventListener("pointerup", stopDrag);',
+        '    wrapper.addEventListener("pointercancel", stopDrag);',
+        '    wrapper.addEventListener("pointerleave", stopDrag);',
+        '  }',
+        '  const timer = setInterval(enhanceTrustCarousel, 300);',
+        '  window.addEventListener("load", enhanceTrustCarousel);',
+        '  setTimeout(() => clearInterval(timer), 10000);',
+        '})();',
+        '<\/script>',
         '</body></html>',
     ].join('');
 });
@@ -53,7 +92,7 @@ onBeforeUnmount(() => {
         />
 
         <!-- Avaliacoes do Google via TrustIndex (mesmo widget do site original) -->
-        <div class="relative z-10 mx-auto w-full max-w-[1100px]">
+        <div class="relative z-10 -mx-3 w-[calc(100%+24px)] max-w-none lg:mx-auto lg:w-full lg:max-w-[1100px]">
             <img
                 src="/images/aspas.png"
                 alt=""

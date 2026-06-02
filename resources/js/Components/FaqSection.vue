@@ -3,6 +3,9 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { FAQ, WHATSAPP } from '../data/site.js';
 
 const track = ref(null);
+const dragStartX = ref(0);
+const dragStartScrollLeft = ref(0);
+const dragging = ref(false);
 
 let autoScrollTimer = null;
 let resumeTimer = null;
@@ -64,6 +67,40 @@ function pauseAutoScroll() {
     resumeTimer = setTimeout(startAutoScroll, 7000);
 }
 
+function pointerX(event) {
+    return event.touches?.[0]?.clientX ?? event.clientX;
+}
+
+function onDragStart(event) {
+    const el = track.value;
+    if (!el) return;
+
+    event.currentTarget?.setPointerCapture?.(event.pointerId);
+    dragging.value = true;
+    dragStartX.value = pointerX(event);
+    dragStartScrollLeft.value = el.scrollLeft;
+    stopAutoScroll();
+    clearTimeout(resumeTimer);
+}
+
+function onDragMove(event) {
+    const el = track.value;
+    if (!el || !dragging.value) return;
+
+    if (event.cancelable) event.preventDefault();
+    const delta = pointerX(event) - dragStartX.value;
+    el.scrollLeft = dragStartScrollLeft.value - delta;
+}
+
+function onDragEnd() {
+    if (!dragging.value) return;
+
+    dragging.value = false;
+    syncCurrentSlide();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoScroll, 7000);
+}
+
 onMounted(startAutoScroll);
 onBeforeUnmount(() => {
     stopAutoScroll();
@@ -79,10 +116,13 @@ onBeforeUnmount(() => {
             <div class="relative mt-6 overflow-visible lg:mt-10">
                 <ul
                     ref="track"
-                    class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-3 py-5 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
-                    @pointerdown="pauseAutoScroll"
+                    class="-mx-5 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-8 py-5 select-none [scrollbar-width:none] [touch-action:pan-y] active:cursor-grabbing lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
+                    @pointerdown="onDragStart"
+                    @pointermove="onDragMove"
+                    @pointerup="onDragEnd"
+                    @pointercancel="onDragEnd"
+                    @pointerleave="onDragEnd"
                     @scroll.passive="syncCurrentSlide"
-                    @touchstart.passive="pauseAutoScroll"
                     @wheel.passive="pauseAutoScroll"
                 >
                     <li
