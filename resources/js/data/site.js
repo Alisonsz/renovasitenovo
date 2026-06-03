@@ -59,6 +59,10 @@ export const PRICING = [
         cta: 'Ver combos',
         image: '/images/area-pernas.png',
         popup: 'combos',
+        modal: {
+            female: '/depilacao-feminina',
+            male: '/depilacao-masculina',
+        },
     },
     {
         title: 'Pacotes de depilação',
@@ -66,6 +70,10 @@ export const PRICING = [
         cta: 'Ver pacotes',
         image: '/images/area-virilha.png',
         popup: 'pacotes',
+        modal: {
+            female: '/depilacao-feminina#pacotes',
+            male: '/depilacao-masculina#pacotes',
+        },
     },
     {
         title: 'Sessões avulsas',
@@ -73,6 +81,10 @@ export const PRICING = [
         cta: 'Ver ofertas',
         image: '/images/area-axilas.png',
         popup: 'ofertas',
+        modal: {
+            female: '/depilacao-feminina#avulsas',
+            male: '/depilacao-masculina#avulsas',
+        },
     },
 ];
 

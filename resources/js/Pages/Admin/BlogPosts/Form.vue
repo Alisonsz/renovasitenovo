@@ -1,6 +1,7 @@
 <script setup>
 import { Head, router, useForm } from '@inertiajs/vue3';
 import AdminLayout from '../../../Layouts/AdminLayout.vue';
+import RichTextEditor from '../../../Components/Admin/RichTextEditor.vue';
 
 const props = defineProps({
     post: { type: Object, default: null },
@@ -68,10 +69,11 @@ function destroyPost() {
                     <textarea v-model="form.excerpt" rows="4" class="mt-2 w-full rounded border border-[#dde6e6] px-3 py-2 outline-none focus:border-brand"></textarea>
                 </label>
 
-                <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
-                    Conteudo HTML
-                    <textarea v-model="form.content_html" rows="16" class="mt-2 w-full rounded border border-[#dde6e6] px-3 py-2 font-mono text-[13px] outline-none focus:border-brand"></textarea>
-                </label>
+                <div class="block font-montserrat text-[14px] font-semibold text-[#555]">
+                    Conteúdo
+                    <RichTextEditor v-model="form.content_html" class="mt-2" min-height="420px" placeholder="Escreva o conteúdo do post…" />
+                    <span v-if="form.errors.content_html" class="text-[12px] text-red-600">{{ form.errors.content_html }}</span>
+                </div>
             </div>
 
             <aside class="space-y-6">

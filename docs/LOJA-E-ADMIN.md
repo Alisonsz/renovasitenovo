@@ -3,6 +3,36 @@
 Guia operacional do que foi construído (loja + blog + painel administrativo + checkout
 transparente PagBank + recuperação de carrinho abandonado).
 
+## Exportar dados para outra hospedagem (phpMyAdmin)
+
+Comando que gera um `.sql` só com os dados (INSERTs), pronto para a aba **Importar**
+do phpMyAdmin no banco de destino (que já deve ter as **tabelas iguais**, criadas
+via `php artisan migrate`).
+
+```bash
+# Catálogo da loja + Blog/SEO (dados reais), com limpeza antes de inserir:
+php artisan data:export --groups=catalog,blog --truncate
+
+# Outros grupos disponíveis: sales, clinic, users, all
+# Ex.: tudo de uma vez → php artisan data:export --groups=all
+```
+
+- Saída: `storage/app/exports/renova-data-<grupos>.sql`.
+- Grupos: `catalog` (produtos, categorias, imagens, pivot, cupons),
+  `blog` (posts, termos, pivot, redirects), `sales` (clientes, pedidos, carrinhos),
+  `clinic` (profissionais, tratamentos, agendamentos), `users` (admin).
+- `--truncate` adiciona `TRUNCATE` antes de cada tabela (import limpo, sem duplicar).
+- O arquivo usa `utf8mb4` + `FOREIGN_KEY_CHECKS=0`, então importa em qualquer ordem.
+
+**Passo a passo no phpMyAdmin de destino:**
+1. Garanta que o banco já tem as tabelas (rode as migrations lá, ou importe a
+   estrutura primeiro). As tabelas precisam ser **idênticas**.
+2. Selecione o banco → aba **Importar** → escolha o `.sql` → charset **utf8mb4** → Executar.
+3. Confira as contagens (ex.: `products`, `blog_posts`).
+
+> Verificado localmente: importação sem erros, contagens idênticas, acentos
+> (utf8mb4) e relacionamentos (FKs) preservados.
+
 ## Visão geral
 
 - **Stack:** Laravel 13 + Inertia + Vue 3 + Tailwind v4. Banco MySQL (`renovasitenovo`).

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Store;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Support\HtmlSanitizer;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -26,7 +27,7 @@ class ProductController extends Controller
                 'name' => $product->name,
                 'slug' => $product->slug,
                 'short_description' => $description,
-                'description' => strip_tags((string) $product->description),
+                'description' => HtmlSanitizer::clean($product->description),
                 'regular_price_cents' => $product->regular_price_cents,
                 'sale_price_cents' => $product->sale_price_cents,
                 'price_cents' => $product->price_cents,

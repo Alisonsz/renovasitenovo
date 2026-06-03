@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use App\Models\BlogTerm;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -88,7 +89,7 @@ class BlogController extends Controller
     {
         return [
             ...$this->cardPayload($post),
-            'content_html' => $post->content_html,
+            'content_html' => HtmlSanitizer::clean($post->content_html),
             'modified_at' => $post->modified_at?->toDateString(),
             'tags' => $post->terms
                 ->where('taxonomy', 'post_tag')

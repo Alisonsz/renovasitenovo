@@ -46,8 +46,21 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="relative flex min-h-[430px] items-start overflow-visible bg-white px-0 pt-[70px] pb-14 sm:px-5 lg:min-h-[560px] lg:pt-[120px] lg:pb-20">
+    <section class="relative flex min-h-[430px] items-start overflow-x-clip overflow-y-visible bg-white px-0 pt-[167px] pb-14 sm:px-5 sm:pt-[219px] lg:min-h-[560px] lg:pt-[120px] lg:pb-20">
+        <img
+            src="/images/aspas.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none absolute left-[-10px] top-0 w-[300px] rotate-180 select-none opacity-[0.13] sm:w-[380px] lg:left-[4%] lg:w-[520px]"
+        />
+
         <div class="relative z-10 mx-auto w-full max-w-[1120px] overflow-visible">
+            <img
+                src="/images/aspas.png"
+                alt=""
+                aria-hidden="true"
+                class="pointer-events-none absolute bottom-[-12px] right-[8px] z-20 w-[92px] select-none opacity-[0.13] sm:w-[116px] lg:right-[-66px] lg:w-[168px]"
+            />
             <iframe
                 v-if="TRUSTINDEX_WIDGET_ID"
                 ref="frame"

@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfessionalController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth', 'admin'])
@@ -56,8 +58,9 @@ Route::middleware(['web', 'auth', 'admin'])
         Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
         Route::post('/customers/{customer}/treatments', [CustomerController::class, 'attachTreatment'])->name('customers.treatments.store');
 
-        // Appointments (clinic calendar).
+        // Appointments (clinic calendar + flat list).
         Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+        Route::get('/appointments/list', [AppointmentController::class, 'list'])->name('appointments.list');
         Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
         Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
         Route::get('/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
@@ -84,4 +87,15 @@ Route::middleware(['web', 'auth', 'admin'])
         // Store settings.
         Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
         Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+
+        // Minha conta (admin profile + password).
+        Route::get('/minha-conta', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/minha-conta', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('/minha-conta/senha', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+        // Usuários administradores.
+        Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+        Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
+        Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });

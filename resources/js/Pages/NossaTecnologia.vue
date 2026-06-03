@@ -2,6 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import SiteLayout from '../Layouts/SiteLayout.vue';
 import FeaturesStrip from '../Components/FeaturesStrip.vue';
+import YoutubeHeroBackground from '../Components/YoutubeHeroBackground.vue';
 
 const benefits = [
     {
@@ -32,16 +33,7 @@ const benefits = [
 
     <SiteLayout>
         <section class="relative isolate flex min-h-screen flex-col justify-center overflow-hidden lg:min-h-[700px]">
-            <video
-                class="absolute inset-0 -z-20 h-full w-full object-cover"
-                src="/images/hero-renova-laser-depilacao.mp4"
-                autoplay
-                muted
-                loop
-                playsinline
-                poster="/images/hero-bg.jpg"
-                preload="metadata"
-            ></video>
+            <YoutubeHeroBackground video-id="gJULk8nCMfg" title="Video de fundo - Nossa tecnologia" />
 
             <div
                 class="absolute inset-0 -z-10 bg-white opacity-20 lg:opacity-50"
@@ -61,7 +53,7 @@ const benefits = [
         <FeaturesStrip />
 
         <section class="flex min-h-[400px] items-center bg-white px-[18px] pb-[150px] pt-[65px] lg:px-5 lg:pb-[90px] lg:pt-24">
-            <div class="mx-auto max-w-[980px] font-montserrat text-[15px] leading-relaxed text-muted">
+            <div class="mx-auto max-w-[980px] text-center font-montserrat text-[15px] leading-relaxed text-muted">
                 <h2 class="mx-auto max-w-[860px] text-center font-sans text-[20px] font-extrabold leading-tight text-heading-soft lg:text-[39px]">
                     Tecnologia de ponta, conforto real e resultados duradouros
                 </h2>
@@ -96,7 +88,7 @@ const benefits = [
                 </h2>
 
                 <ul class="mt-8 space-y-3">
-                    <li v-for="benefit in benefits" :key="benefit.title" class="flex gap-3">
+                    <li v-for="benefit in benefits" :key="benefit.title" class="flex justify-center gap-3">
                         <i class="fa-solid fa-check mt-1 text-[14px] text-brand"></i>
                         <span>
                             <strong class="font-bold text-muted">{{ benefit.title }}</strong>:

@@ -1,6 +1,7 @@
 <script setup>
 import { Head, router, useForm } from '@inertiajs/vue3';
 import AdminLayout from '../../../Layouts/AdminLayout.vue';
+import RichTextEditor from '../../../Components/Admin/RichTextEditor.vue';
 
 const props = defineProps({
     product: { type: Object, default: null },
@@ -80,10 +81,10 @@ function destroyProduct() {
                 <textarea v-model="form.short_description" rows="3" class="mt-2 w-full rounded border border-[#dde6e6] px-3 py-2 outline-none focus:border-brand"></textarea>
             </label>
 
-            <label class="block font-montserrat text-[14px] font-semibold text-[#555] lg:col-span-2">
+            <div class="block font-montserrat text-[14px] font-semibold text-[#555] lg:col-span-2">
                 Descrição
-                <textarea v-model="form.description" rows="6" class="mt-2 w-full rounded border border-[#dde6e6] px-3 py-2 outline-none focus:border-brand"></textarea>
-            </label>
+                <RichTextEditor v-model="form.description" class="mt-2" min-height="260px" placeholder="Descreva o produto…" />
+            </div>
 
             <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                 Preço atual

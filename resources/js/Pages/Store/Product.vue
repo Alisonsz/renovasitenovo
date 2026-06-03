@@ -132,6 +132,13 @@ function addToCart() {
             </div>
         </section>
 
+        <section v-if="product.description" class="bg-white px-5 pt-10 lg:pt-12">
+            <div
+                class="prose-product mx-auto max-w-[760px] font-montserrat text-[16px] leading-[1.7] text-[#444]"
+                v-html="product.description"
+            ></div>
+        </section>
+
         <section class="bg-[#e8f7f7] px-5 py-8 lg:py-10">
             <div class="mx-auto max-w-[1140px] rounded-[8px] bg-white px-5 pb-8 pt-5 shadow-[0_8px_26px_rgba(0,0,0,0.08)] lg:px-[30px]">
                 <div class="mx-auto grid max-w-[640px] grid-cols-2 overflow-hidden rounded-[6px] bg-[#f0f0f0] font-poppins text-[13px] uppercase text-[#555] sm:text-[15px]">

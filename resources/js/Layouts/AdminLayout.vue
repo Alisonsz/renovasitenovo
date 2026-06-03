@@ -18,6 +18,7 @@ const nav = [
     { section: 'Conteúdo & gestão' },
     { label: 'Blog', href: '/admin/blog-posts', icon: 'fa-newspaper' },
     { label: 'Relatórios', href: '/admin/reports', icon: 'fa-chart-pie' },
+    { label: 'Usuários', href: '/admin/usuarios', icon: 'fa-user-shield' },
     { label: 'Configurações', href: '/admin/settings', icon: 'fa-gear' },
 ];
 
@@ -61,7 +62,9 @@ function logout() {
                     <p class="font-montserrat text-[13px] text-[#777]">Painel administrativo</p>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="hidden font-montserrat text-[14px] text-[#555] sm:inline">{{ user?.name }}</span>
+                    <Link href="/admin/minha-conta" class="hidden items-center gap-2 font-montserrat text-[14px] text-[#555] transition hover:text-brand sm:flex">
+                        <i class="fa-solid fa-circle-user text-[18px]"></i>{{ user?.name }}
+                    </Link>
                     <button
                         type="button"
                         class="h-[38px] rounded-[3px] border border-[#dce6e6] px-4 font-poppins text-[13px] font-semibold text-[#555] transition hover:border-brand hover:text-brand"

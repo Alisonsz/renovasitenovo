@@ -16,7 +16,7 @@ const thirdStyle = thirdMotion.style;
 
 <template>
     <section class="block bg-white lg:hidden">
-        <div class="mx-auto flex h-[430px] max-w-[390px] flex-col justify-center overflow-hidden px-5 text-center text-[18px] leading-[28px] text-brand-dark">
+        <div class="mx-auto flex h-[280px] max-w-[390px] flex-col justify-center overflow-hidden px-5 text-center text-[18px] leading-[28px] text-brand-dark">
             <p
                 ref="firstLine"
                 class="inline-block font-extrabold transition-transform duration-150 ease-out"

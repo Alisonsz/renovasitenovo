@@ -112,7 +112,12 @@ const newAppointmentHref = computed(() => `/admin/appointments/create?date=${pro
                 <h1 class="font-poppins text-[30px] font-extrabold text-[#363636]">Agenda</h1>
                 <p class="mt-1 font-montserrat text-[15px] text-[#777]">Atendimentos · slots de 15 min · {{ String(hours.start).padStart(2,'0') }}h–{{ hours.end }}h</p>
             </div>
-            <Link :href="newAppointmentHref" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">+ Novo agendamento</Link>
+            <div class="flex gap-2">
+                <Link href="/admin/appointments/list" class="rounded-[3px] border border-[#dde6e6] px-4 py-3 font-poppins text-[14px] font-semibold text-[#555] transition hover:border-brand hover:text-brand">
+                    <i class="fa-solid fa-list mr-1"></i> Lista
+                </Link>
+                <Link :href="newAppointmentHref" class="rounded-[3px] bg-brand px-5 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105">+ Novo agendamento</Link>
+            </div>
         </div>
 
         <!-- Toolbar -->

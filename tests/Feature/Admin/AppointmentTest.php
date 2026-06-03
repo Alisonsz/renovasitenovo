@@ -28,6 +28,61 @@ class AppointmentTest extends TestCase
             ->assertInertia(fn ($p) => $p->component('Admin/Appointments/Index')->where('view', 'week'));
     }
 
+    public function test_list_renders_with_appointments(): void
+    {
+        $c = Customer::factory()->create();
+        Appointment::query()->create([
+            'customer_id' => $c->id,
+            'starts_at' => '2026-06-10 09:00:00', 'ends_at' => '2026-06-10 09:30:00', 'status' => 'scheduled',
+        ]);
+
+        $this->actingAs($this->admin())->get('/admin/appointments/list')
+            ->assertOk()
+            ->assertInertia(fn ($p) => $p
+                ->component('Admin/Appointments/List')
+                ->has('appointments.data', 1));
+    }
+
+    public function test_list_filters_by_status(): void
+    {
+        $c = Customer::factory()->create();
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-10 09:00:00', 'ends_at' => '2026-06-10 09:30:00', 'status' => 'completed']);
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-11 09:00:00', 'ends_at' => '2026-06-11 09:30:00', 'status' => 'no_show']);
+
+        $this->actingAs($this->admin())->get('/admin/appointments/list?status=completed')
+            ->assertInertia(fn ($p) => $p->has('appointments.data', 1)
+                ->where('appointments.data.0.status', 'completed'));
+    }
+
+    public function test_list_filters_by_weekday(): void
+    {
+        $c = Customer::factory()->create();
+        // 2026-06-10 is a Wednesday (weekday 3); 2026-06-11 a Thursday (4).
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-10 09:00:00', 'ends_at' => '2026-06-10 09:30:00', 'status' => 'scheduled']);
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-11 09:00:00', 'ends_at' => '2026-06-11 09:30:00', 'status' => 'scheduled']);
+
+        $this->actingAs($this->admin())->get('/admin/appointments/list?weekday=3')
+            ->assertInertia(fn ($p) => $p->has('appointments.data', 1)
+                ->where('appointments.data.0.date', '10/06/2026'));
+    }
+
+    public function test_list_filters_by_date_range(): void
+    {
+        $c = Customer::factory()->create();
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-01 09:00:00', 'ends_at' => '2026-06-01 09:30:00', 'status' => 'scheduled']);
+        Appointment::query()->create(['customer_id' => $c->id, 'starts_at' => '2026-06-20 09:00:00', 'ends_at' => '2026-06-20 09:30:00', 'status' => 'scheduled']);
+
+        $this->actingAs($this->admin())->get('/admin/appointments/list?from=2026-06-15&to=2026-06-30')
+            ->assertInertia(fn ($p) => $p->has('appointments.data', 1)
+                ->where('appointments.data.0.date', '20/06/2026'));
+    }
+
+    public function test_list_blocked_for_non_admin(): void
+    {
+        $this->actingAs(User::factory()->nonAdmin()->create())
+            ->get('/admin/appointments/list')->assertForbidden();
+    }
+
     public function test_can_create_appointment(): void
     {
         $customer = Customer::factory()->create();

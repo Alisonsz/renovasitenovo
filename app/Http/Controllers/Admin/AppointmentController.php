@@ -69,6 +69,87 @@ class AppointmentController extends Controller
         ]);
     }
 
+    /**
+     * Flat, filterable list of all appointments (complements the calendar).
+     * Filters: free text, status, professional, exact date, date range, weekday.
+     */
+    public function list(Request $request): Response
+    {
+        $filters = [
+            'search' => $request->string('search')->toString(),
+            'status' => $request->string('status')->toString(),
+            'professional_id' => $request->integer('professional_id') ?: null,
+            'date' => $request->date('date')?->toDateString(),
+            'from' => $request->date('from')?->toDateString(),
+            'to' => $request->date('to')?->toDateString(),
+            'weekday' => $request->has('weekday') && $request->input('weekday') !== ''
+                ? (int) $request->input('weekday')
+                : null, // 0=Sun … 6=Sat (MySQL DAYOFWEEK is 1=Sun..7=Sat)
+            'sort' => in_array($request->input('sort'), ['asc', 'desc'], true) ? $request->input('sort') : 'desc',
+        ];
+
+        $appointments = Appointment::query()
+            ->with(['customer:id,name,phone', 'professional:id,name,color', 'treatment:id,name'])
+            ->when($filters['search'], fn ($q, $s) => $q->whereHas('customer', fn ($c) => $c
+                ->where('name', 'like', "%{$s}%")
+                ->orWhere('phone', 'like', "%{$s}%")))
+            ->when($filters['status'], fn ($q, $s) => $q->where('status', $s))
+            ->when($filters['professional_id'], fn ($q, $id) => $q->where('professional_id', $id))
+            ->when($filters['date'], fn ($q, $d) => $q->whereDate('starts_at', $d))
+            ->when($filters['from'], fn ($q, $d) => $q->whereDate('starts_at', '>=', $d))
+            ->when($filters['to'], fn ($q, $d) => $q->whereDate('starts_at', '<=', $d))
+            ->when($filters['weekday'] !== null, fn ($q) => $this->whereWeekday($q, $filters['weekday']))
+            ->orderBy('starts_at', $filters['sort'])
+            ->paginate(20)
+            ->withQueryString()
+            ->through(fn (Appointment $a) => [
+                'id' => $a->id,
+                'date' => $a->starts_at->format('d/m/Y'),
+                'weekday' => $this->weekdayLabel((int) $a->starts_at->dayOfWeek),
+                'time' => $a->starts_at->format('H:i'),
+                'end_time' => $a->ends_at->format('H:i'),
+                'status' => $a->status,
+                'session_number' => $a->session_number,
+                'customer' => ['id' => $a->customer?->id, 'name' => $a->customer?->name, 'phone' => $a->customer?->phone],
+                'professional' => $a->professional?->name,
+                'treatment' => $a->treatment?->name,
+            ]);
+
+        return Inertia::render('Admin/Appointments/List', [
+            'appointments' => $appointments,
+            'filters' => $filters,
+            'professionals' => Professional::query()->orderBy('name')->get(['id', 'name']),
+            'statuses' => self::STATUSES,
+            'weekdays' => [
+                ['value' => 0, 'label' => 'Domingo'],
+                ['value' => 1, 'label' => 'Segunda'],
+                ['value' => 2, 'label' => 'Terça'],
+                ['value' => 3, 'label' => 'Quarta'],
+                ['value' => 4, 'label' => 'Quinta'],
+                ['value' => 5, 'label' => 'Sexta'],
+                ['value' => 6, 'label' => 'Sábado'],
+            ],
+        ]);
+    }
+
+    private function weekdayLabel(int $dow): string
+    {
+        return ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'][$dow] ?? '';
+    }
+
+    /**
+     * Filter by weekday (0=Sun … 6=Sat) in a driver-agnostic way.
+     * MySQL: DAYOFWEEK = 1..7 (Sun..Sat). SQLite: strftime('%w') = 0..6 (Sun..Sat).
+     */
+    private function whereWeekday($query, int $weekday)
+    {
+        $driver = $query->getConnection()->getDriverName();
+
+        return $driver === 'sqlite'
+            ? $query->whereRaw("CAST(strftime('%w', starts_at) AS INTEGER) = ?", [$weekday])
+            : $query->whereRaw('DAYOFWEEK(starts_at) = ?', [$weekday + 1]);
+    }
+
     public function create(Request $request): Response
     {
         return Inertia::render('Admin/Appointments/Form', [

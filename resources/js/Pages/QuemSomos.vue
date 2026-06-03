@@ -2,6 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import SiteLayout from '../Layouts/SiteLayout.vue';
 import FeaturesStrip from '../Components/FeaturesStrip.vue';
+import YoutubeHeroBackground from '../Components/YoutubeHeroBackground.vue';
 
 const paragraphs = [
     {
@@ -54,16 +55,7 @@ function parts(paragraph) {
 
     <SiteLayout>
         <section class="relative isolate flex min-h-screen flex-col justify-center overflow-hidden lg:min-h-[700px]">
-            <video
-                class="absolute inset-0 -z-20 h-full w-full object-cover"
-                src="/images/hero-renova-laser-depilacao.mp4"
-                autoplay
-                muted
-                loop
-                playsinline
-                poster="/images/hero-bg.jpg"
-                preload="metadata"
-            ></video>
+            <YoutubeHeroBackground video-id="N_fQl-cJtbg" title="Video de fundo - Quem somos" />
 
             <div
                 class="absolute inset-0 -z-10 bg-white opacity-20 lg:opacity-50"
@@ -83,7 +75,7 @@ function parts(paragraph) {
         <FeaturesStrip />
 
         <section class="flex min-h-[400px] items-center bg-white px-[18px] pb-16 pt-[25px] lg:px-5 lg:py-24">
-            <div class="mx-auto max-w-[980px] font-montserrat text-[15px] leading-relaxed text-muted">
+            <div class="mx-auto max-w-[980px] text-center font-montserrat text-[15px] leading-relaxed text-muted">
                 <p v-for="paragraph in paragraphs" :key="paragraph.text" class="mb-4">
                     <template v-for="segment in parts(paragraph)" :key="segment.value">
                         <strong v-if="segment.strong" class="font-bold text-muted">{{ segment.value }}</strong>
@@ -92,7 +84,7 @@ function parts(paragraph) {
                 </p>
 
                 <ul class="mb-4 space-y-1">
-                    <li v-for="item in checks" :key="item" class="flex gap-2">
+                    <li v-for="item in checks" :key="item" class="flex justify-center gap-2">
                         <i class="fa-solid fa-check mt-1 text-[13px] text-brand"></i>
                         <span>{{ item }}</span>
                     </li>

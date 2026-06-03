@@ -1,139 +1,67 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { FAQ, WHATSAPP } from '../data/site.js';
+import { useDragScroll } from '../Composables/useDragScroll.js';
 
 const track = ref(null);
-const dragStartX = ref(0);
-const dragStartScrollLeft = ref(0);
-const dragging = ref(false);
 
-let autoScrollTimer = null;
-let resumeTimer = null;
-let currentSlide = 0;
+// On desktop (lg) the cards become a static 4-column grid (no scroll) — keep that
+// exact layout (one set). On smaller screens the row scrolls, so we triple the
+// items for a seamless infinite loop. 1024px = Tailwind's lg breakpoint.
+const isDesktop = ref(false);
+let mql = null;
 
-function stopAutoScroll() {
-    clearInterval(autoScrollTimer);
-    autoScrollTimer = null;
+const loopFaq = computed(() =>
+    isDesktop.value ? FAQ : Array.from({ length: 3 }, () => FAQ).flat()
+);
+
+const { recenter } = useDragScroll(track, {
+    autoplayMs: 4200,
+    enabled: () => !isDesktop.value,
+});
+
+function onBreakpoint(e) {
+    isDesktop.value = e.matches;
+    requestAnimationFrame(recenter);
 }
 
-function startAutoScroll() {
-    stopAutoScroll();
-    autoScrollTimer = setInterval(() => {
-        const el = track.value;
-        if (!el || el.scrollWidth <= el.clientWidth) return;
+onMounted(() => {
+    mql = window.matchMedia('(min-width: 1024px)');
+    isDesktop.value = mql.matches;
+    mql.addEventListener('change', onBreakpoint);
+});
 
-        const cards = Array.from(el.children);
-        currentSlide = currentSlide >= cards.length - 1 ? 0 : currentSlide + 1;
-        scrollToSlide(currentSlide);
-    }, 4200);
-}
-
-function getSlideLeft(card) {
-    const el = track.value;
-    if (!el) return 0;
-
-    const paddingLeft = parseFloat(window.getComputedStyle(el).paddingLeft) || 0;
-    return Math.min(card.offsetLeft - el.offsetLeft - paddingLeft, el.scrollWidth - el.clientWidth);
-}
-
-function scrollToSlide(index) {
-    const el = track.value;
-    const cards = el ? Array.from(el.children) : [];
-    if (!el || !cards.length) return;
-
-    currentSlide = index % cards.length;
-    el.scrollTo({
-        left: Math.max(0, getSlideLeft(cards[currentSlide])),
-        behavior: 'smooth',
-    });
-}
-
-function syncCurrentSlide() {
-    const el = track.value;
-    const cards = el ? Array.from(el.children) : [];
-    if (!el || !cards.length) return;
-
-    currentSlide = cards.reduce((closestIndex, card, index) => {
-        const closestDistance = Math.abs(el.scrollLeft - getSlideLeft(cards[closestIndex]));
-        const distance = Math.abs(el.scrollLeft - getSlideLeft(card));
-        return distance < closestDistance ? index : closestIndex;
-    }, 0);
-}
-
-function pauseAutoScroll() {
-    syncCurrentSlide();
-    stopAutoScroll();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(startAutoScroll, 7000);
-}
-
-function pointerX(event) {
-    return event.touches?.[0]?.clientX ?? event.clientX;
-}
-
-function onDragStart(event) {
-    const el = track.value;
-    if (!el) return;
-
-    event.currentTarget?.setPointerCapture?.(event.pointerId);
-    dragging.value = true;
-    dragStartX.value = pointerX(event);
-    dragStartScrollLeft.value = el.scrollLeft;
-    stopAutoScroll();
-    clearTimeout(resumeTimer);
-}
-
-function onDragMove(event) {
-    const el = track.value;
-    if (!el || !dragging.value) return;
-
-    if (event.cancelable) event.preventDefault();
-    const delta = pointerX(event) - dragStartX.value;
-    el.scrollLeft = dragStartScrollLeft.value - delta;
-}
-
-function onDragEnd() {
-    if (!dragging.value) return;
-
-    dragging.value = false;
-    syncCurrentSlide();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(startAutoScroll, 7000);
-}
-
-onMounted(startAutoScroll);
 onBeforeUnmount(() => {
-    stopAutoScroll();
-    clearTimeout(resumeTimer);
+    if (mql) mql.removeEventListener('change', onBreakpoint);
 });
 </script>
 
 <template>
-    <section class="px-5 py-14 lg:py-20">
+    <section class="overflow-x-clip px-5 py-14 lg:py-20">
         <div class="mx-auto max-w-[1100px]">
             <h2 class="text-center text-[28px] font-extrabold text-heading lg:text-[39px]">Dúvidas frequentes</h2>
 
             <div class="relative mt-6 overflow-visible lg:mt-10">
-                <ul
+                <div
                     ref="track"
-                    class="-mx-5 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-8 py-5 select-none [scrollbar-width:none] [touch-action:pan-y] active:cursor-grabbing lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
-                    @pointerdown="onDragStart"
-                    @pointermove="onDragMove"
-                    @pointerup="onDragEnd"
-                    @pointercancel="onDragEnd"
-                    @pointerleave="onDragEnd"
-                    @scroll.passive="syncCurrentSlide"
-                    @wheel.passive="pauseAutoScroll"
+                    class="cursor-grab overflow-x-auto overflow-y-hidden scroll-smooth py-5 [scrollbar-width:none] [touch-action:pan-x_pan-y] active:cursor-grabbing lg:overflow-visible"
                 >
-                    <li
-                        v-for="item in FAQ"
-                        :key="item.q"
-                        class="flex w-[300px] shrink-0 snap-center flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rgba(0,0,0,0.20)] lg:w-full"
-                    >
-                        <h3 class="text-[18px] font-bold leading-tight text-brand-dark">{{ item.q }}</h3>
-                        <p class="mt-[15px] px-3 text-[16px] leading-relaxed text-muted">{{ item.a }}</p>
-                    </li>
-                </ul>
+                    <ul class="flex select-none lg:grid lg:grid-cols-4 lg:gap-5">
+                        <li
+                            v-for="(item, i) in loopFaq"
+                            :key="i + '-' + item.q"
+                            data-carousel-item
+                            class="flex w-full shrink-0 justify-center px-2 lg:w-full lg:px-0"
+                        >
+                            <div
+                                class="flex w-[300px] max-w-[calc(100vw-32px)] flex-col rounded-[8px] bg-white px-[5px] py-[25px] text-center shadow-[0_5px_18px_rgba(0,0,0,0.20)] lg:w-full lg:max-w-none"
+                            >
+                                <h3 class="text-[18px] font-bold leading-tight text-brand-dark">{{ item.q }}</h3>
+                                <p class="mt-[15px] px-3 text-[16px] leading-relaxed text-muted">{{ item.a }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="mt-12 text-center">
@@ -155,7 +83,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-ul::-webkit-scrollbar {
+div::-webkit-scrollbar {
     display: none;
 }
 </style>

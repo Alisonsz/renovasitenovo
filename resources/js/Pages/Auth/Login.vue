@@ -8,7 +8,7 @@ const form = useForm({
 });
 
 function submit() {
-    form.post('/login');
+    form.post('/ovodepapagaio');
 }
 </script>
 

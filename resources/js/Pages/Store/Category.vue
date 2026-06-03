@@ -30,6 +30,14 @@ function visibleProducts(section) {
 function setPage(section, page) {
     pageBySection[section.slug] = Math.min(Math.max(page, 1), pageCount(section));
 }
+
+function sectionAnchor(section) {
+    if (section.slug.includes('pacotes')) return 'pacotes';
+    if (section.slug.includes('avulsas') || section.slug.includes('sessoes-avulsas')) return 'avulsas';
+    if (section.slug.includes('combos')) return 'combos';
+
+    return section.slug;
+}
 </script>
 
 <template>
@@ -39,23 +47,24 @@ function setPage(section, page) {
         <section
             v-for="(section, index) in sections"
             :key="section.id"
+            :id="sectionAnchor(section)"
             class="px-5"
-            :class="index === 0 ? 'bg-[#eef8f8] pb-[54px] pt-[42px]' : 'bg-white py-[62px]'"
+            :class="index === 0 ? 'bg-white pb-[42px] pt-[68px] lg:bg-[#eef8f8] lg:pb-[54px] lg:pt-[42px]' : 'bg-white py-[42px] lg:py-[62px]'"
         >
             <div class="mx-auto max-w-[1140px]">
-                <header class="max-w-[760px]">
-                    <h1 class="font-poppins text-[28px] font-extrabold leading-tight text-[#363636] lg:text-[33px]">
+                <header class="mx-auto max-w-[760px] text-center lg:mx-0 lg:text-left">
+                    <h1 class="font-poppins text-[28px] font-extrabold leading-[1.08] text-[#363636] lg:text-[33px]">
                         {{ section.title }}
                     </h1>
-                    <p v-if="section.subtitle" class="mt-[18px] font-montserrat text-[17px] leading-[1.65] text-[#7b7b7b]">
+                    <p v-if="section.subtitle" class="mt-[14px] font-montserrat text-[15px] leading-[1.55] text-[#7b7b7b] lg:mt-[18px] lg:text-[17px] lg:leading-[1.65]">
                         {{ section.subtitle }}
                     </p>
-                    <div class="mt-[29px] h-[2px] w-[91px] bg-brand"></div>
+                    <div class="mx-auto mt-[22px] h-[2px] w-[91px] bg-brand lg:mx-0 lg:mt-[29px]"></div>
                 </header>
 
                 <div
                     v-if="section.products.length"
-                    class="mt-[22px] grid grid-cols-1 justify-items-center gap-x-5 gap-y-[30px] sm:grid-cols-2 lg:grid-cols-4"
+                    class="mt-[22px] grid grid-cols-2 justify-items-stretch gap-x-2 gap-y-3 sm:gap-x-5 sm:gap-y-[30px] lg:grid-cols-4"
                 >
                     <ProductCard
                         v-for="product in visibleProducts(section)"

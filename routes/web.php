@@ -20,8 +20,10 @@ Route::get('/', fn () => Inertia::render('Home'))->name('home');
 Route::get('/sitemap.xml', [SitemapController::class, 'show'])->name('seo.sitemap');
 Route::get('/robots.txt', [RobotsController::class, 'show'])->name('seo.robots');
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+    // Login page lives at an obscure path to reduce automated scanning.
+    // Route name stays "login" so the auth middleware redirects here automatically.
+    Route::get('/ovodepapagaio', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/ovodepapagaio', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 });
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
@@ -72,5 +74,5 @@ Route::get('/pedido/{order:number}/status', [PaymentReturnController::class, 'st
 Route::get('/merchant/google.xml', [GoogleMerchantFeedController::class, 'show'])
     ->name('merchant.google');
 Route::get('/{legacyPath}', [LegacyUrlController::class, 'show'])
-    ->where('legacyPath', '^(?!(admin|login|logout|blog|produto|loja|carrinho|checkout|minhas-compras|pedido|merchant|webhooks|sitemap\.xml|robots\.txt)(/|$)).+')
+    ->where('legacyPath', '^(?!(admin|ovodepapagaio|logout|blog|produto|loja|carrinho|checkout|minhas-compras|pedido|merchant|webhooks|sitemap\.xml|robots\.txt)(/|$)).+')
     ->name('blog.show');

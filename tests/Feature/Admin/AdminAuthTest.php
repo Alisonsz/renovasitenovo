@@ -13,7 +13,13 @@ class AdminAuthTest extends TestCase
 
     public function test_guest_is_redirected_from_admin_to_login(): void
     {
-        $this->get('/admin')->assertRedirect('/login');
+        // Login lives at an obscure path; the auth middleware redirects there by route name.
+        $this->get('/admin')->assertRedirect('/ovodepapagaio');
+    }
+
+    public function test_old_login_path_is_gone(): void
+    {
+        $this->get('/login')->assertNotFound();
     }
 
     public function test_user_can_login_and_view_admin_dashboard(): void
@@ -24,7 +30,7 @@ class AdminAuthTest extends TestCase
         ]);
         Product::factory()->count(3)->create(['is_active' => true]);
 
-        $this->post('/login', [
+        $this->post('/ovodepapagaio', [
             'email' => $user->email,
             'password' => 'secret123',
         ])->assertRedirect('/admin');
@@ -43,7 +49,7 @@ class AdminAuthTest extends TestCase
             'password' => 'secret123',
         ]);
 
-        $this->post('/login', [
+        $this->post('/ovodepapagaio', [
             'email' => 'admin@renovalaser.local',
             'password' => 'wrong',
         ])->assertSessionHasErrors('email');
