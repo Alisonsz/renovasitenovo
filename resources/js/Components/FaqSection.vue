@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
                     :href="WHATSAPP.especialista"
                     target="_blank"
                     rel="noopener"
-                    class="mt-5 inline-block rounded-[3px] bg-brand px-6 py-2.5 font-poppins text-[14px] font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
+                    class="mt-5 inline-block rounded-[3px] bg-brand px-6 py-3 font-poppins text-[14px] font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
                 >
                     Falar com uma especialista
                 </a>

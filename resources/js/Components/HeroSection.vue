@@ -15,10 +15,7 @@ import { WHATSAPP } from '../data/site.js';
             preload="metadata"
         ></video>
 
-        <div
-            class="absolute inset-0 -z-10 bg-white"
-            style="mix-blend-mode: color; opacity: 0.48;"
-        ></div>
+        <div class="absolute inset-0 -z-10 bg-black/10"></div>
 
         <div class="mx-auto flex w-full max-w-[1200px] translate-y-8 flex-col justify-center px-5 py-32 text-center lg:translate-y-0 lg:py-44 lg:text-left">
             <h1 class="font-display font-semibold leading-[1.02] text-white">
