@@ -35,7 +35,7 @@ function scrollPricing(direction) {
             <div class="relative mt-6 overflow-visible lg:mt-12">
                 <button
                     type="button"
-                    class="absolute left-0 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-brand lg:hidden"
+                    class="absolute -left-2 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-brand lg:hidden"
                     aria-label="Preço anterior"
                     @click="scrollPricing(-1)"
                 >
@@ -75,7 +75,7 @@ function scrollPricing(direction) {
 
                 <button
                     type="button"
-                    class="absolute right-0 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-brand lg:hidden"
+                    class="absolute -right-2 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-brand lg:hidden"
                     aria-label="Próximo preço"
                     @click="scrollPricing(1)"
                 >
