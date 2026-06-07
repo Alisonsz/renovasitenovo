@@ -74,10 +74,14 @@ const credBadge = (set) => set ? 'bg-green-50 text-green-700' : 'bg-amber-50 tex
                 <div class="mt-4 flex flex-wrap gap-2 font-montserrat text-[12px]">
                     <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(true)">Ambiente: {{ pagbank.env }}</span>
                     <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(pagbank.token_set)">Token {{ pagbank.token_set ? 'OK' : 'ausente' }}</span>
-                    <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(pagbank.public_key_set)">Public key {{ pagbank.public_key_set ? 'OK' : 'ausente' }}</span>
-                    <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(pagbank.webhook_token_set)">Webhook token {{ pagbank.webhook_token_set ? 'OK' : 'ausente' }}</span>
+                    <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(pagbank.public_key_mode !== 'missing')">
+                        Public key: {{ pagbank.public_key_mode === 'auto' ? 'automática' : (pagbank.public_key_mode === 'manual' ? 'manual' : 'ausente') }}
+                    </span>
+                    <span class="rounded-full px-3 py-1 font-semibold" :class="credBadge(pagbank.token_set)">Webhook: usa o token</span>
                 </div>
-                <p class="mt-2 font-montserrat text-[12px] text-[#999]">As credenciais são definidas no arquivo .env (PAGBANK_TOKEN, PAGBANK_PUBLIC_KEY, PAGBANK_WEBHOOK_TOKEN).</p>
+                <p class="mt-2 font-montserrat text-[12px] text-[#999]">
+                    Basta definir <strong>PAGBANK_TOKEN</strong> no .env. A chave pública do cartão é gerada automaticamente a partir do token e o webhook é validado com o mesmo token.
+                </p>
                 <div class="mt-4 grid gap-4 sm:grid-cols-2">
                     <label class="block font-montserrat text-[13px] font-semibold text-[#555]">Desconto Pix (%)
                         <input v-model="form.pix_discount_percent" type="number" class="mt-2 h-[42px] w-full rounded border border-[#dde6e6] px-3 outline-none focus:border-brand"></label>

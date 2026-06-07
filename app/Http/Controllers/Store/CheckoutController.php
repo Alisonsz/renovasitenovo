@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\CheckoutRequest;
+use App\Services\Payments\PagBankClient;
 use App\Services\Store\CartService;
 use App\Services\Store\CheckoutService;
 use Illuminate\Http\RedirectResponse;
@@ -13,7 +14,7 @@ use Inertia\Response;
 
 class CheckoutController extends Controller
 {
-    public function show(Request $request, CartService $cartService): Response
+    public function show(Request $request, CartService $cartService, PagBankClient $pagbank): Response
     {
         $cart = $cartService->current($request);
 
@@ -24,7 +25,8 @@ class CheckoutController extends Controller
                 'name' => $cart->customer_name,
             ],
             'pagbank' => [
-                'public_key' => config('services.pagbank.public_key'),
+                // Auto-resolved from the API token (or an explicit override).
+                'public_key' => $pagbank->publicKey(),
                 'env' => config('services.pagbank.env'),
                 'pix_discount_percent' => (int) config('services.pagbank.pix_discount_percent', 0),
                 'max_installments' => (int) config('services.pagbank.max_installments', 12),

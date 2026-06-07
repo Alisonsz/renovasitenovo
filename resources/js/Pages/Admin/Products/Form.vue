@@ -1,7 +1,9 @@
 <script setup>
 import { Head, router, useForm } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import AdminLayout from '../../../Layouts/AdminLayout.vue';
 import RichTextEditor from '../../../Components/Admin/RichTextEditor.vue';
+import GalleryUploader from '../../../Components/Admin/GalleryUploader.vue';
 
 const props = defineProps({
     product: { type: Object, default: null },
@@ -27,7 +29,8 @@ const form = useForm({
     session_duration_min: props.product?.session_duration_min ?? 30,
     primary_category_id: props.product?.primary_category_id || '',
     category_ids: props.product?.category_ids || [],
-    image_url: props.product?.image_url || '',
+    // Gallery items: existing images { id, url, isNew:false } + new uploads { file, url, isNew:true }.
+    gallery: (props.product?.gallery || []).map((g) => ({ uid: `e${g.id}`, id: g.id, url: g.url, isNew: false })),
     merchant_visibility: props.product?.merchant_visibility || 'sync-and-show',
     merchant_brand: props.product?.merchant_brand || 'Renova Laser Depilação',
     merchant_condition: props.product?.merchant_condition || 'new',
@@ -38,13 +41,67 @@ const form = useForm({
     merchant_is_bundle: props.product?.merchant_is_bundle ?? false,
 });
 
-function submit() {
-    if (props.product) {
-        form.put(`/admin/products/${props.product.id}`);
-        return;
-    }
+// Surface any gallery-related validation error (keyed as new_images.* / image_order.*).
+const galleryError = computed(() => {
+    const entry = Object.entries(form.errors).find(([key]) => key.startsWith('new_images') || key.startsWith('image_order'));
 
-    form.post('/admin/products');
+    return entry ? entry[1] : '';
+});
+
+function submit() {
+    const target = props.product ? `/admin/products/${props.product.id}` : '/admin/products';
+
+    form
+        .transform((data) => {
+            const newImages = [];
+            const order = [];
+            (data.gallery || []).forEach((g) => {
+                if (g.isNew && g.file) {
+                    order.push(`n${newImages.length}`);
+                    newImages.push(g.file);
+                } else if (g.id) {
+                    order.push(`e${g.id}`);
+                }
+            });
+
+            const payload = {
+                name: data.name,
+                slug: data.slug || '',
+                short_description: data.short_description || '',
+                description: data.description || '',
+                sku: data.sku || '',
+                price: data.price || '0',
+                stock_status: data.stock_status,
+                manage_stock: data.manage_stock ? 1 : 0,
+                is_active: data.is_active ? 1 : 0,
+                is_custom_quote: data.is_custom_quote ? 1 : 0,
+                is_treatment: data.is_treatment ? 1 : 0,
+                session_duration_min: data.session_duration_min || 30,
+                primary_category_id: data.primary_category_id || '',
+                merchant_visibility: data.merchant_visibility || 'sync-and-show',
+                merchant_brand: data.merchant_brand || '',
+                merchant_condition: data.merchant_condition || '',
+                merchant_age_group: data.merchant_age_group || '',
+                merchant_gender: data.merchant_gender || '',
+                merchant_color: data.merchant_color || '',
+                merchant_size: data.merchant_size || '',
+                merchant_is_bundle: data.merchant_is_bundle ? 1 : 0,
+                gallery_set: 1,
+                image_order: order,
+                new_images: newImages,
+            };
+
+            // Nullable numerics: only send when actually filled (avoids 'numeric' failing on '').
+            if (data.regular_price !== '' && data.regular_price != null) payload.regular_price = data.regular_price;
+            if (data.sale_price !== '' && data.sale_price != null) payload.sale_price = data.sale_price;
+            if (data.is_treatment && data.sessions_count) payload.sessions_count = data.sessions_count;
+            if (data.manage_stock && data.stock_quantity) payload.stock_quantity = data.stock_quantity;
+            payload.category_ids = data.category_ids || [];
+            if (props.product) payload._method = 'put';
+
+            return payload;
+        })
+        .post(target, { forceFormData: true, preserveScroll: true });
 }
 
 function destroyProduct() {
@@ -118,10 +175,13 @@ function destroyProduct() {
                 </select>
             </label>
 
-            <label class="block font-montserrat text-[14px] font-semibold text-[#555] lg:col-span-2">
-                URL da imagem
-                <input v-model="form.image_url" class="mt-2 h-[44px] w-full rounded border border-[#dde6e6] px-3 outline-none focus:border-brand">
-            </label>
+            <div class="lg:col-span-2">
+                <p class="font-montserrat text-[14px] font-semibold text-[#555]">Galeria de imagens</p>
+                <p class="mt-1 font-montserrat text-[12px] font-normal text-[#999]">A primeira imagem é a capa. Arraste para reordenar ou use os botões ao passar o mouse.</p>
+                <div class="mt-3">
+                    <GalleryUploader v-model="form.gallery" :error="galleryError" />
+                </div>
+            </div>
 
             <div class="lg:col-span-2">
                 <p class="font-montserrat text-[14px] font-semibold text-[#555]">Categorias</p>
@@ -224,13 +284,19 @@ function destroyProduct() {
                 </label>
             </fieldset>
 
-            <div class="flex items-center gap-3 lg:col-span-2">
-                <button class="rounded bg-brand px-6 py-3 font-poppins text-[14px] font-semibold text-white" :disabled="form.processing">
-                    Salvar produto
-                </button>
-                <button v-if="product" type="button" class="rounded border border-red-200 px-6 py-3 font-poppins text-[14px] font-semibold text-red-600" @click="destroyProduct">
-                    Excluir
-                </button>
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-3">
+                    <button class="rounded bg-brand px-6 py-3 font-poppins text-[14px] font-semibold text-white transition hover:brightness-105 disabled:opacity-60" :disabled="form.processing">
+                        <i v-if="form.processing" class="fa-solid fa-spinner fa-spin mr-1"></i>
+                        {{ form.processing ? 'Salvando...' : 'Salvar produto' }}
+                    </button>
+                    <button v-if="product" type="button" class="rounded border border-red-200 px-6 py-3 font-poppins text-[14px] font-semibold text-red-600" @click="destroyProduct">
+                        Excluir
+                    </button>
+                </div>
+                <div v-if="form.progress" class="mt-3 h-2 w-full max-w-[320px] overflow-hidden rounded-full bg-[#e6f4f4]">
+                    <div class="h-full rounded-full bg-brand transition-all" :style="{ width: `${form.progress.percentage}%` }"></div>
+                </div>
             </div>
         </form>
     </AdminLayout>

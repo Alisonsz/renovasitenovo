@@ -1,5 +1,5 @@
 <script setup>
-import { Head, router, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import SiteLayout from '../../Layouts/SiteLayout.vue';
 import CartSummary from '../../Components/Store/CartSummary.vue';
@@ -51,6 +51,35 @@ const installments = computed(() =>
 );
 const brl = (cents) => 'R$ ' + ((cents ?? 0) / 100).toFixed(2).replace('.', ',');
 
+// --- Input masks (display only; we send clean digits on submit) ---
+function maskPhone(v) {
+    const d = (v || '').replace(/\D/g, '').slice(0, 11);
+    if (d.length === 0) return '';
+    if (d.length <= 2) return `(${d}`;
+    if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+function maskCpf(v) {
+    const d = (v || '').replace(/\D/g, '').slice(0, 11);
+    if (d.length > 9) return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`;
+    if (d.length > 6) return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6)}`;
+    if (d.length > 3) return `${d.slice(0, 3)}.${d.slice(3)}`;
+    return d;
+}
+const onlyDigits = (v) => (v || '').replace(/\D/g, '');
+
+// --- Validation gates ---
+const detailsReady = computed(() =>
+    !!form.name.trim() && onlyDigits(form.phone).length >= 10 && onlyDigits(form.document).length === 11
+);
+const cardReady = computed(() =>
+    form.payment_method !== 'credit_card' ||
+    (card.value.number && card.value.holder && card.value.expMonth && card.value.expYear && card.value.cvv)
+);
+const canSubmit = computed(() => !!props.cart.items.length && detailsReady.value && cardReady.value);
+const busy = computed(() => processing.value || form.processing);
+
 function submitEmail() {
     emailForm.post('/checkout/identificacao', {
         preserveScroll: true,
@@ -63,12 +92,13 @@ function submitEmail() {
 }
 
 function goToPayment() {
-    if (!form.name || !form.phone || !form.document) return;
+    if (!detailsReady.value) return;
     step.value = 3;
 }
 
 async function submit() {
     cardError.value = '';
+    if (!canSubmit.value || busy.value) return;
 
     if (form.payment_method === 'credit_card') {
         if (!props.pagbank?.public_key) {
@@ -93,11 +123,24 @@ async function submit() {
         form.card.holder = card.value.holder;
     }
 
-    router.post('/checkout', form, {
-        onError: (errs) => {
-            cardError.value = errs.payment || errs.card?.encrypted || '';
-        },
-    });
+    // Use form.post so server-side validation/payment errors populate form.errors
+    // (and are shown). Send clean digits for phone/CPF.
+    form
+        .transform((data) => ({
+            ...data,
+            phone: onlyDigits(data.phone),
+            document: onlyDigits(data.document),
+        }))
+        .post('/checkout', {
+            preserveScroll: true,
+            onError: (errs) => {
+                cardError.value = errs.payment || errs.card?.encrypted || errs.cart || '';
+                // Field errors live on step 2 — bring the user back so they see them.
+                if (errs.name || errs.phone || errs.document || errs.email) {
+                    step.value = 2;
+                }
+            },
+        });
 }
 </script>
 
@@ -163,19 +206,19 @@ async function submit() {
                                 </label>
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     Telefone
-                                    <input v-model="form.phone" type="tel" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    <input :value="form.phone" @input="form.phone = maskPhone($event.target.value)" type="tel" inputmode="numeric" autocomplete="tel" maxlength="16" placeholder="(11) 99999-9999" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
                                     <span v-if="form.errors.phone" class="mt-1 block text-[12px] text-red-600">{{ form.errors.phone }}</span>
                                 </label>
                                 <label class="block font-montserrat text-[14px] font-semibold text-[#555]">
                                     CPF
-                                    <input v-model="form.document" type="text" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
+                                    <input :value="form.document" @input="form.document = maskCpf($event.target.value)" type="text" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" class="mt-2 h-[48px] w-full rounded-[4px] border border-[#dce5e5] bg-[#fbffff] px-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20">
                                     <span v-if="form.errors.document" class="mt-1 block text-[12px] text-red-600">{{ form.errors.document }}</span>
                                 </label>
                             </div>
                             <div class="mt-7 flex gap-3">
                                 <button type="button" @click="step = 1" class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">Voltar</button>
-                                <button type="button" @click="goToPayment" :disabled="!form.name || !form.phone || !form.document"
-                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:opacity-60 sm:flex-none">Ir para pagamento</button>
+                                <button type="button" @click="goToPayment" :disabled="!detailsReady"
+                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60 sm:flex-none">Ir para pagamento</button>
                             </div>
                         </div>
 
@@ -249,16 +292,16 @@ async function submit() {
 
                             <div class="mt-7 flex gap-3">
                                 <button type="button" @click="step = 2" class="h-[52px] rounded-[4px] px-5 font-poppins text-[15px] font-semibold text-[#777] ring-1 ring-[#dce5e5] transition hover:bg-[#f5f5f5]">Voltar</button>
-                                <button type="button" @click="submit" :disabled="form.processing || processing || !cart.items.length"
-                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:opacity-60">
-                                    <span v-if="processing || form.processing">Processando…</span>
+                                <button type="button" @click="submit" :disabled="busy || !canSubmit"
+                                    class="h-[52px] flex-1 rounded-[4px] bg-brand px-7 font-poppins text-[16px] font-semibold text-white transition hover:-translate-y-[2px] hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60">
+                                    <span v-if="busy">Processando…</span>
                                     <span v-else>{{ form.payment_method === 'pix' ? 'Gerar Pix' : 'Pagar agora' }}</span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <CartSummary :cart="cart" />
+                    <CartSummary :cart="cart" :show-checkout="false" />
                 </div>
             </div>
         </section>

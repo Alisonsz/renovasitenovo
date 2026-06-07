@@ -17,6 +17,15 @@ class ProductController extends Controller
 
         $product->load(['images', 'categories.parent', 'primaryCategory.parent']);
 
+        // Full gallery (ordered by position) for the product page carousel.
+        $gallery = $product->images
+            ->map(fn ($img) => [
+                'url' => $img->local_path ?: $img->url,
+                'alt' => $img->alt ?: $product->name,
+            ])
+            ->filter(fn ($img) => ! empty($img['url']))
+            ->values();
+
         $image = $product->images->first();
         $breadcrumbs = $this->breadcrumbs($product);
         $description = strip_tags((string) ($product->short_description ?: $product->description));
@@ -36,12 +45,13 @@ class ProductController extends Controller
                 'is_custom_quote' => $product->is_custom_quote,
                 'image_url' => $image?->local_path ?: $image?->url,
                 'image_alt' => $image?->alt ?: $product->name,
+                'images' => $gallery,
                 'merchant_brand' => $product->merchant_brand ?: 'Renova Laser Depilação',
                 'merchant_condition' => $product->merchant_condition ?: 'new',
             ],
             'breadcrumbs' => $breadcrumbs,
             'technicalSpecs' => $this->technicalSpecs($product),
-            'structuredData' => $this->structuredData($product, $image?->local_path ?: $image?->url),
+            'structuredData' => $this->structuredData($product, $gallery->pluck('url')->all()),
         ]);
     }
 
@@ -93,7 +103,7 @@ class ProductController extends Controller
         ])->filter()->values()->all();
     }
 
-    private function structuredData(Product $product, ?string $imageUrl): array
+    private function structuredData(Product $product, array $imageUrls = []): array
     {
         $price = number_format(($product->sale_price_cents ?: $product->price_cents) / 100, 2, '.', '');
 
@@ -102,7 +112,7 @@ class ProductController extends Controller
             '@type' => 'Product',
             'name' => $product->name,
             'description' => strip_tags((string) ($product->short_description ?: $product->description)),
-            'image' => $imageUrl ? [$imageUrl] : [],
+            'image' => array_values($imageUrls),
             'brand' => [
                 '@type' => 'Brand',
                 'name' => $product->merchant_brand ?: 'Renova Laser Depilação',

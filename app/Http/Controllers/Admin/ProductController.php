@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -83,6 +85,17 @@ class ProductController extends Controller
                 'primary_category_id' => $product->primary_category_id,
                 'category_ids' => $product->categories->pluck('id')->all(),
                 'image_url' => $product->images->first()?->local_path ?: $product->images->first()?->url,
+                'image_urls' => $product->images
+                    ->map(fn ($img) => $img->local_path ?: $img->url)
+                    ->filter()
+                    ->values()
+                    ->all(),
+                // Gallery items for the upload manager: id + display URL, ordered.
+                'gallery' => $product->images
+                    ->sortBy('position')
+                    ->map(fn ($img) => ['id' => $img->id, 'url' => $img->local_path ?: $img->url])
+                    ->values()
+                    ->all(),
                 'merchant_visibility' => $product->merchant_visibility,
                 'merchant_brand' => $product->merchant_brand,
                 'merchant_condition' => $product->merchant_condition,
@@ -107,6 +120,7 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         $product->categories()->detach();
+        $product->images->each(fn (ProductImage $image) => $this->deleteImageFile($image));
         $product->images()->delete();
         $product->delete();
 
@@ -141,6 +155,12 @@ class ProductController extends Controller
             'merchant_color' => ['nullable', 'string', 'max:80'],
             'merchant_size' => ['nullable', 'string', 'max:80'],
             'merchant_is_bundle' => ['boolean'],
+            // Gallery uploads (handled in syncGallery).
+            'gallery_set' => ['nullable'],
+            'image_order' => ['nullable', 'array'],
+            'image_order.*' => ['string', 'max:40'],
+            'new_images' => ['nullable', 'array', 'max:30'],
+            'new_images.*' => ['file', 'image', 'mimes:jpeg,jpg,png,webp,gif', 'max:10240'],
         ]);
 
         return [
@@ -177,11 +197,118 @@ class ProductController extends Controller
     {
         $product->categories()->sync($request->input('category_ids', []));
 
-        if ($request->filled('image_url')) {
-            $product->images()->updateOrCreate(
-                ['position' => 0],
-                ['url' => $request->input('image_url'), 'local_path' => null, 'alt' => $product->name],
-            );
+        // New upload-based gallery manager: authoritative when the form sends
+        // the gallery_set marker (it always does, even when emptied).
+        if ($request->boolean('gallery_set')) {
+            $this->syncGallery($product, $request);
+
+            return;
+        }
+
+        // Legacy path: a list of image URLs (ordered), or the single image_url
+        // field. Kept for the data import/export flow and API callers.
+        $urls = collect($request->input('image_urls', []))
+            ->map(fn ($u) => is_string($u) ? trim($u) : '')
+            ->filter()
+            ->values();
+
+        if ($urls->isEmpty() && $request->filled('image_url')) {
+            $urls = collect([trim((string) $request->input('image_url'))]);
+        }
+
+        if (! $request->has('image_urls') && ! $request->filled('image_url')) {
+            return;
+        }
+
+        $product->images()->delete();
+        $urls->each(function ($url, $i) use ($product) {
+            $product->images()->create([
+                'url' => $url,
+                'local_path' => null,
+                'alt' => $product->name,
+                'position' => $i,
+            ]);
+        });
+    }
+
+    /**
+     * Rebuild the product gallery from uploaded files + an ordering array.
+     *
+     * - new_images[]  : freshly uploaded files (stored on the public disk)
+     * - image_order[] : final order as tokens — "e<id>" (keep existing image)
+     *                   or "n<index>" (a file from new_images by its index)
+     */
+    private function syncGallery(Product $product, Request $request): void
+    {
+        $order = collect($request->input('image_order', []))
+            ->filter(fn ($t) => is_string($t) && $t !== '')
+            ->values();
+
+        // Store uploaded files first, mapping new-index => created image id.
+        $files = $request->file('new_images', []);
+        $files = is_array($files) ? $files : array_filter([$files]);
+
+        $newIds = [];
+        foreach ($files as $index => $file) {
+            if (! $file || ! $file->isValid()) {
+                continue;
+            }
+
+            $path = $file->store('products', 'public');
+            $web = '/storage/'.$path;
+
+            $image = $product->images()->create([
+                'url' => $web,
+                'local_path' => $web,
+                'alt' => $product->name,
+                'position' => 10000 + (int) $index,
+            ]);
+
+            $newIds[(string) $index] = $image->id;
+        }
+
+        // Existing images the user chose to keep.
+        $keptExistingIds = $order
+            ->filter(fn ($t) => str_starts_with($t, 'e'))
+            ->map(fn ($t) => (int) substr($t, 1))
+            ->filter()
+            ->all();
+
+        // Delete images that are no longer present (and clean their files).
+        $product->images()
+            ->whereNotIn('id', array_merge($keptExistingIds, array_values($newIds)))
+            ->get()
+            ->each(function (ProductImage $image) {
+                $this->deleteImageFile($image);
+                $image->delete();
+            });
+
+        // Apply final positions following the requested order.
+        $position = 0;
+        foreach ($order as $token) {
+            $id = null;
+            if (str_starts_with($token, 'e')) {
+                $id = (int) substr($token, 1);
+            } elseif (str_starts_with($token, 'n')) {
+                $id = $newIds[substr($token, 1)] ?? null;
+            }
+
+            if ($id) {
+                $product->images()->whereKey($id)->update(['position' => $position++]);
+            }
+        }
+    }
+
+    /**
+     * Remove an image's file from disk, but only when it lives on our public
+     * storage (never touch externally imported WordPress URLs).
+     */
+    private function deleteImageFile(ProductImage $image): void
+    {
+        $path = $image->local_path;
+
+        if (is_string($path) && str_starts_with($path, '/storage/')) {
+            Storage::disk('public')->delete(substr($path, strlen('/storage/')));
         }
     }
 

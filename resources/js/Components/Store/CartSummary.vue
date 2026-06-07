@@ -3,6 +3,8 @@ import { router, useForm } from '@inertiajs/vue3';
 
 defineProps({
     cart: { type: Object, required: true },
+    // Hidden on the checkout page itself (there it would just reload the page).
+    showCheckout: { type: Boolean, default: true },
 });
 
 const couponForm = useForm({
@@ -74,6 +76,7 @@ function removeCoupon() {
         </div>
 
         <a
+            v-if="showCheckout"
             href="/checkout"
             class="mt-6 flex h-[50px] items-center justify-center rounded-[4px] bg-brand px-5 font-poppins text-[16px] font-semibold text-white transition duration-200 hover:-translate-y-[2px] hover:brightness-105 hover:shadow-[0_10px_22px_rgba(41,216,219,0.25)] active:translate-y-0"
             :class="{ 'pointer-events-none opacity-50': !cart.items.length }"

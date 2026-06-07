@@ -3,9 +3,12 @@
 namespace Tests\Feature\Payments;
 
 use App\Mail\OrderConfirmationMail;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Services\Payments\PagBankClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -192,6 +195,105 @@ class PagBankTransparentTest extends TestCase
         // The QR charge value sent to PagBank matches the discounted total.
         Http::assertSent(fn ($req) => str_contains($req->url(), '/orders')
             && data_get($req->data(), 'qr_codes.0.amount.value') === 90000
+        );
+    }
+
+    public function test_public_key_is_auto_generated_from_token_and_cached(): void
+    {
+        config()->set('services.pagbank.env', 'sandbox');
+        config()->set('services.pagbank.token', 'test-token');
+        config()->set('services.pagbank.public_key', null); // not configured -> derive from token
+        Cache::flush();
+
+        Http::fake([
+            'https://sandbox.api.pagseguro.com/public-keys' => Http::response([
+                'public_key' => '-----BEGIN PUBLIC KEY-----MIIBI-----END PUBLIC KEY-----',
+            ], 201),
+        ]);
+
+        $client = app(PagBankClient::class);
+
+        $this->assertStringContainsString('PUBLIC KEY', (string) $client->publicKey());
+
+        // Second call is served from cache (no extra API hit).
+        $client->publicKey();
+        Http::assertSentCount(1);
+
+        // It POSTs { type: card } with the bearer token.
+        Http::assertSent(fn ($req) => str_contains($req->url(), '/public-keys')
+            && $req->hasHeader('Authorization', 'Bearer test-token')
+            && $req['type'] === 'card'
+        );
+    }
+
+    public function test_checkout_page_exposes_auto_resolved_public_key(): void
+    {
+        config()->set('services.pagbank.env', 'sandbox');
+        config()->set('services.pagbank.token', 'test-token');
+        config()->set('services.pagbank.public_key', null);
+        Cache::flush();
+
+        Http::fake([
+            'https://sandbox.api.pagseguro.com/public-keys' => Http::response(['public_key' => 'PUBKEY_AUTO'], 201),
+        ]);
+
+        $product = Product::factory()->create(['price_cents' => 90000, 'regular_price_cents' => 90000, 'is_active' => true]);
+        $this->post('/carrinho/items', ['product_id' => $product->id, 'quantity' => 1]);
+
+        $this->get('/checkout')->assertInertia(fn ($page) => $page
+            ->component('Store/Checkout')
+            ->where('pagbank.public_key', 'PUBKEY_AUTO')
+        );
+    }
+
+    public function test_failed_payment_surfaces_error_and_keeps_cart(): void
+    {
+        $this->configurePagBank();
+        Http::fake([
+            'https://sandbox.api.pagseguro.com/orders' => Http::response(['error_messages' => [['description' => 'bad']]], 400),
+        ]);
+
+        $this->addToCart(90000);
+
+        $response = $this->post('/checkout', [
+            'name' => 'Maria', 'email' => 'maria@example.com',
+            'phone' => '11999999999', 'document' => '12345678909',
+            'payment_method' => 'pix',
+        ]);
+
+        // The buyer gets a visible error instead of a silent reset...
+        $response->assertSessionHasErrors('payment');
+
+        // ...the dangling order is rolled back...
+        $this->assertSame(0, Order::query()->count());
+
+        // ...and the cart survives (still active, item intact) for a retry.
+        $cart = Cart::query()->latest('id')->first();
+        $this->assertSame('active', $cart->status);
+        $this->assertSame(1, $cart->items()->count());
+    }
+
+    public function test_localhost_notification_url_is_not_sent_to_pagbank(): void
+    {
+        $this->configurePagBank();
+        config()->set('services.pagbank.notification_url', 'http://localhost/webhooks/pagbank');
+        Http::fake([
+            'https://sandbox.api.pagseguro.com/orders' => Http::response([
+                'id' => 'ORDE_PIX',
+                'qr_codes' => [['id' => 'Q', 'text' => 'pix', 'links' => [['rel' => 'QRCODE.PNG', 'href' => 'x']]]],
+            ], 201),
+        ]);
+
+        $this->addToCart(50000);
+        $this->post('/checkout', [
+            'name' => 'Maria', 'email' => 'maria@example.com',
+            'phone' => '11999999999', 'document' => '12345678909',
+            'payment_method' => 'pix',
+        ]);
+
+        // A non-public URL must be omitted so PagBank doesn't reject the order.
+        Http::assertSent(fn ($req) => str_contains($req->url(), '/orders')
+            && (data_get($req->data(), 'notification_urls') === [] || data_get($req->data(), 'notification_urls') === null)
         );
     }
 

@@ -34,12 +34,15 @@ class SettingController extends Controller
 
         return Inertia::render('Admin/Settings/Edit', [
             'settings' => $settings,
-            // Read-only view of which payment credentials are configured (never expose secrets).
+            // Read-only view of payment credentials (never expose secrets).
+            // Only the API token is required: the card public key is generated
+            // from it automatically and the webhook is verified with it too.
             'pagbank' => [
                 'env' => config('services.pagbank.env'),
                 'token_set' => filled(config('services.pagbank.token')),
-                'public_key_set' => filled(config('services.pagbank.public_key')),
-                'webhook_token_set' => filled(config('services.pagbank.webhook_token')),
+                'public_key_mode' => filled(config('services.pagbank.public_key'))
+                    ? 'manual'
+                    : (filled(config('services.pagbank.token')) ? 'auto' : 'missing'),
             ],
         ]);
     }

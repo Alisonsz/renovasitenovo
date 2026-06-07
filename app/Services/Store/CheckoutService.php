@@ -84,10 +84,6 @@ class CheckoutService
                 ]);
             }
 
-            if ($cart->coupon) {
-                $cart->coupon->increment('used_count');
-            }
-
             $order->paymentTransactions()->create([
                 'provider' => 'pagbank',
                 'method' => $data['payment_method'],
@@ -96,14 +92,54 @@ class CheckoutService
                 'raw_payload' => ['source' => 'local_checkout_pending'],
             ]);
 
-            // Mark the cart converted inside the same transaction so a
-            // double-submit cannot create a second order from it.
-            $this->cartService->markConverted($cart);
-
             return $order->load(['items', 'customer']);
         });
 
-        return $this->processPayment($order, $data);
+        // Attempt payment OUTSIDE the creation transaction. The cart is only
+        // converted (and the coupon burned) once payment has been initiated, so
+        // a failed payment leaves the cart intact for a retry instead of
+        // stranding the buyer with an empty cart.
+        try {
+            $order = $this->processPayment($order, $data);
+        } catch (\Throwable $e) {
+            $this->rollbackOrder($order, $cart);
+
+            throw $e;
+        }
+
+        DB::transaction(function () use ($cart) {
+            if ($cart->coupon) {
+                $cart->coupon->increment('used_count');
+            }
+
+            // Mark the cart converted so a double-submit can't reuse it.
+            $this->cartService->markConverted($cart);
+        });
+
+        return $order;
+    }
+
+    /**
+     * Undo a created-but-unpaid order so the buyer can retry: restore reserved
+     * stock and remove the dangling order. The cart stays active.
+     */
+    private function rollbackOrder(Order $order, Cart $cart): void
+    {
+        DB::transaction(function () use ($order, $cart) {
+            foreach ($cart->items as $item) {
+                if ($item->product && $item->product->manage_stock) {
+                    Product::query()
+                        ->whereKey($item->product_id)
+                        ->lockForUpdate()
+                        ->first()
+                        ?->increment('stock_quantity', $item->quantity);
+                }
+            }
+
+            $order->items()->delete();
+            $order->paymentTransactions()->delete();
+            $order->delete();
+        });
     }
 
     /**

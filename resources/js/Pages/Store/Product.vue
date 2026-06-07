@@ -26,6 +26,21 @@ const installmentPrice = computed(() => Math.ceil(currentPrice.value / installme
 const jsonLd = computed(() => JSON.stringify(props.structuredData));
 const quantity = ref(1);
 
+// Product image gallery (carousel). Falls back to the single image_url, or to a
+// placeholder when there is none.
+const gallery = computed(() => {
+    const imgs = Array.isArray(props.product.images) ? props.product.images.filter((i) => i && i.url) : [];
+    if (imgs.length) return imgs;
+    if (props.product.image_url) return [{ url: props.product.image_url, alt: props.product.image_alt }];
+    return [];
+});
+const activeImage = ref(0);
+function goImage(i) {
+    const n = gallery.value.length;
+    if (!n) return;
+    activeImage.value = (i + n) % n;
+}
+
 function formatCents(cents, useGrouping = true) {
     const value = Number(cents || 0) / 100;
 
@@ -62,23 +77,67 @@ function addToCart() {
                 </nav>
 
                 <div class="grid overflow-hidden rounded-[8px] bg-white p-3 shadow-[0_10px_30px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.03] transition duration-300 hover:shadow-[0_16px_34px_rgba(0,0,0,0.12)] lg:grid-cols-[360px_1fr] lg:gap-[34px] lg:p-4">
-                    <div class="group relative overflow-hidden rounded-[6px] bg-[#d9fbf7]">
-                        <img
-                            v-if="product.image_url"
-                            :src="product.image_url"
-                            :alt="product.image_alt"
-                            class="h-[310px] w-full object-cover transition duration-500 ease-out group-hover:scale-[1.025] lg:h-[360px]"
-                            loading="eager"
-                            decoding="async"
-                        >
-                        <div v-else class="grid h-[310px] place-items-center lg:h-[360px]">
-                            <i class="fa-solid fa-spa text-[68px] text-brand"></i>
+                    <div class="lg:self-start">
+                        <div class="group relative overflow-hidden rounded-[6px] bg-[#d9fbf7]">
+                            <template v-if="gallery.length">
+                                <img
+                                    :src="gallery[activeImage].url"
+                                    :alt="gallery[activeImage].alt"
+                                    class="h-[310px] w-full object-cover transition duration-300 ease-out lg:h-[360px]"
+                                    loading="eager"
+                                    decoding="async"
+                                >
+
+                                <!-- Prev / next (only with more than one image) -->
+                                <template v-if="gallery.length > 1">
+                                    <button
+                                        type="button"
+                                        class="absolute left-2 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-brand shadow-md transition hover:bg-white"
+                                        aria-label="Imagem anterior"
+                                        @click="goImage(activeImage - 1)"
+                                    >
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="absolute right-2 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-brand shadow-md transition hover:bg-white"
+                                        aria-label="Próxima imagem"
+                                        @click="goImage(activeImage + 1)"
+                                    >
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </button>
+                                </template>
+
+                                <!-- Dots -->
+                                <div v-if="gallery.length > 1" class="absolute bottom-[7px] left-1/2 flex -translate-x-1/2 gap-[10px]">
+                                    <button
+                                        v-for="(img, i) in gallery"
+                                        :key="i"
+                                        type="button"
+                                        class="h-[7px] w-[7px] rounded-full transition"
+                                        :class="i === activeImage ? 'bg-brand' : 'bg-[#b9d9d5]'"
+                                        :aria-label="`Ver imagem ${i + 1}`"
+                                        @click="goImage(i)"
+                                    ></button>
+                                </div>
+                            </template>
+                            <div v-else class="grid h-[310px] place-items-center lg:h-[360px]">
+                                <i class="fa-solid fa-spa text-[68px] text-brand"></i>
+                            </div>
                         </div>
-                        <div class="absolute bottom-[7px] left-1/2 flex -translate-x-1/2 gap-[10px]">
-                            <span class="h-[6px] w-[6px] rounded-full bg-brand"></span>
-                            <span class="h-[6px] w-[6px] rounded-full bg-[#b9d9d5]"></span>
-                            <span class="h-[6px] w-[6px] rounded-full bg-[#b9d9d5]"></span>
-                            <span class="h-[6px] w-[6px] rounded-full bg-[#b9d9d5]"></span>
+
+                        <!-- Thumbnails -->
+                        <div v-if="gallery.length > 1" class="mt-3 flex gap-2 overflow-x-auto [scrollbar-width:none]">
+                            <button
+                                v-for="(img, i) in gallery"
+                                :key="i"
+                                type="button"
+                                class="h-[58px] w-[58px] shrink-0 overflow-hidden rounded-[5px] ring-2 transition"
+                                :class="i === activeImage ? 'ring-brand' : 'ring-transparent hover:ring-[#b9d9d5]'"
+                                @click="goImage(i)"
+                            >
+                                <img :src="img.url" :alt="img.alt" class="h-full w-full object-cover" loading="lazy">
+                            </button>
                         </div>
                     </div>
 

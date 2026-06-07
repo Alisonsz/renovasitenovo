@@ -40,11 +40,18 @@ const mobileNav = [
             </button>
 
             <a href="/" class="shrink-0" :class="{ 'absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0': isStore }">
+                <!-- Loja no mobile: header branco => logo turquesa. Demais casos: logo branca. -->
                 <img
-                    src="/images/logo.png"
+                    v-if="isStore"
+                    src="/images/logo-mobile.png"
+                    alt="Renova Laser"
+                    class="mt-1 h-auto w-[174px] object-contain lg:hidden"
+                />
+                <img
+                    :src="'/images/logo.png'"
                     alt="Renova Laser"
                     class="mt-1 h-auto object-contain lg:mt-0 lg:w-auto"
-                    :class="isStore ? 'w-[174px] lg:h-[43px]' : 'w-[174px] lg:h-[58px]'"
+                    :class="isStore ? 'hidden w-[174px] lg:block lg:h-[43px]' : 'w-[174px] lg:h-[58px]'"
                 />
             </a>
 

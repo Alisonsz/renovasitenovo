@@ -2,14 +2,16 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Product;
-use App\Models\ProductCategory;
 use App\Models\BlogPost;
 use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class AdminCatalogTest extends TestCase
@@ -115,6 +117,165 @@ class AdminCatalogTest extends TestCase
             'slug' => 'post-admin',
             'status' => 'publish',
         ]);
+    }
+
+    public function test_admin_can_save_product_image_gallery(): void
+    {
+        $user = User::factory()->create();
+        $category = ProductCategory::factory()->create(['name' => 'Pacotes', 'slug' => 'pacotes']);
+
+        $this->actingAs($user)->post('/admin/products', [
+            'name' => 'Produto Galeria',
+            'slug' => 'produto-galeria',
+            'price' => '100.00',
+            'stock_status' => 'instock',
+            'is_active' => true,
+            'category_ids' => [$category->id],
+            'image_urls' => [
+                'https://cdn.example.com/a.png',
+                '   ', // blank rows are ignored
+                'https://cdn.example.com/b.png',
+                'https://cdn.example.com/c.png',
+            ],
+        ])->assertRedirect('/admin/products');
+
+        $product = Product::query()->where('slug', 'produto-galeria')->firstOrFail();
+        $images = $product->images()->orderBy('position')->get();
+
+        $this->assertCount(3, $images);
+        $this->assertSame('https://cdn.example.com/a.png', $images[0]->url);
+        $this->assertSame(0, $images[0]->position);
+        $this->assertSame('https://cdn.example.com/b.png', $images[1]->url);
+        $this->assertSame(1, $images[1]->position);
+        $this->assertSame('https://cdn.example.com/c.png', $images[2]->url);
+        $this->assertSame(2, $images[2]->position);
+    }
+
+    public function test_admin_update_replaces_gallery_and_edit_exposes_image_urls(): void
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create(['name' => 'Combo X', 'slug' => 'combo-x', 'is_active' => true]);
+        $product->images()->createMany([
+            ['url' => 'https://cdn.example.com/old1.png', 'position' => 0, 'alt' => 'Combo X'],
+            ['url' => 'https://cdn.example.com/old2.png', 'position' => 1, 'alt' => 'Combo X'],
+        ]);
+
+        // Edit page exposes the existing gallery as image_urls.
+        $this->actingAs($user)
+            ->get("/admin/products/{$product->id}/edit")
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->component('Admin/Products/Form')
+                ->where('product.image_urls', [
+                    'https://cdn.example.com/old1.png',
+                    'https://cdn.example.com/old2.png',
+                ])
+            );
+
+        // Updating with a new gallery replaces the old images entirely.
+        $this->actingAs($user)->put("/admin/products/{$product->id}", [
+            'name' => 'Combo X',
+            'slug' => 'combo-x',
+            'price' => '100.00',
+            'stock_status' => 'instock',
+            'is_active' => true,
+            'image_urls' => ['https://cdn.example.com/new1.png'],
+        ])->assertRedirect('/admin/products');
+
+        $images = $product->fresh()->images()->orderBy('position')->get();
+        $this->assertCount(1, $images);
+        $this->assertSame('https://cdn.example.com/new1.png', $images[0]->url);
+    }
+
+    public function test_admin_can_upload_product_gallery_images(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $category = ProductCategory::factory()->create(['name' => 'Pacotes', 'slug' => 'pacotes']);
+
+        $this->actingAs($user)->post('/admin/products', [
+            'name' => 'Produto Upload',
+            'slug' => 'produto-upload',
+            'price' => '100.00',
+            'stock_status' => 'instock',
+            'is_active' => 1,
+            'gallery_set' => 1,
+            'image_order' => ['n0', 'n1'],
+            'new_images' => [
+                UploadedFile::fake()->image('a.jpg', 800, 600),
+                UploadedFile::fake()->image('b.jpg', 800, 600),
+            ],
+            'category_ids' => [$category->id],
+        ])->assertRedirect('/admin/products');
+
+        $product = Product::query()->where('slug', 'produto-upload')->firstOrFail();
+        $images = $product->images()->orderBy('position')->get();
+
+        $this->assertCount(2, $images);
+        foreach ($images as $position => $image) {
+            $this->assertSame($position, $image->position);
+            $this->assertStringStartsWith('/storage/products/', (string) $image->local_path);
+            Storage::disk('public')->assertExists(substr($image->local_path, strlen('/storage/')));
+        }
+    }
+
+    public function test_admin_update_gallery_reorders_keeps_and_deletes_files(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $product = Product::factory()->create(['name' => 'Combo Y', 'slug' => 'combo-y', 'is_active' => true]);
+
+        Storage::disk('public')->put('products/old1.webp', 'x');
+        Storage::disk('public')->put('products/old2.webp', 'y');
+        $img1 = $product->images()->create(['url' => '/storage/products/old1.webp', 'local_path' => '/storage/products/old1.webp', 'position' => 0, 'alt' => 'a']);
+        $img2 = $product->images()->create(['url' => '/storage/products/old2.webp', 'local_path' => '/storage/products/old2.webp', 'position' => 1, 'alt' => 'b']);
+
+        // Keep img2, drop img1, add a new upload — final order: new first, then img2.
+        $this->actingAs($user)->post("/admin/products/{$product->id}", [
+            '_method' => 'put',
+            'name' => 'Combo Y',
+            'slug' => 'combo-y',
+            'price' => '100.00',
+            'stock_status' => 'instock',
+            'is_active' => 1,
+            'gallery_set' => 1,
+            'image_order' => ['n0', "e{$img2->id}"],
+            'new_images' => [UploadedFile::fake()->image('new.jpg')],
+        ])->assertRedirect('/admin/products');
+
+        $images = $product->fresh()->images()->orderBy('position')->get();
+        $this->assertCount(2, $images);
+        $this->assertStringStartsWith('/storage/products/', (string) $images[0]->local_path);
+        $this->assertNotSame($img1->id, $images[0]->id);
+        $this->assertSame($img2->id, $images[1]->id);
+
+        // Removed image's file deleted; kept image's file preserved.
+        Storage::disk('public')->assertMissing('products/old1.webp');
+        Storage::disk('public')->assertExists('products/old2.webp');
+        $this->assertDatabaseMissing('product_images', ['id' => $img1->id]);
+    }
+
+    public function test_admin_can_clear_gallery_when_empty(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $product = Product::factory()->create(['slug' => 'combo-z', 'is_active' => true]);
+        Storage::disk('public')->put('products/x.webp', 'x');
+        $product->images()->create(['url' => '/storage/products/x.webp', 'local_path' => '/storage/products/x.webp', 'position' => 0, 'alt' => 'a']);
+
+        $this->actingAs($user)->post("/admin/products/{$product->id}", [
+            '_method' => 'put',
+            'name' => $product->name,
+            'slug' => 'combo-z',
+            'price' => '100.00',
+            'stock_status' => 'instock',
+            'is_active' => 1,
+            'gallery_set' => 1,
+            // no image_order, no new_images => gallery cleared
+        ])->assertRedirect('/admin/products');
+
+        $this->assertSame(0, $product->fresh()->images()->count());
+        Storage::disk('public')->assertMissing('products/x.webp');
     }
 
     public function test_admin_can_view_orders_and_create_coupon(): void

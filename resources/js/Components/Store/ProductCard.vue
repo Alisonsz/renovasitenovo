@@ -39,8 +39,8 @@ function priceParts(cents) {
 </script>
 
 <template>
-    <article class="group flex min-h-[390px] w-full flex-col overflow-hidden rounded-[8px] bg-white text-left shadow-[0_0_10px_rgba(0,0,0,0.24)] transition duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_12px_28px_rgba(0,0,0,0.18)] lg:min-h-[502px] lg:max-w-[270px] lg:text-center">
-        <a :href="`/produto/${product.slug}`" class="mx-[10px] mt-[12px] block h-[152px] overflow-hidden rounded-[4px] bg-[#f3fbfb] lg:mx-[15px] lg:mt-[15px] lg:h-[240px]">
+    <article class="group flex min-h-[360px] w-full flex-col overflow-hidden rounded-[8px] bg-white text-left shadow-[0_0_10px_rgba(0,0,0,0.24)] transition duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_12px_28px_rgba(0,0,0,0.18)] lg:min-h-[502px] lg:max-w-[270px] lg:text-center">
+        <a :href="`/produto/${product.slug}`" class="mx-auto mt-[16px] block aspect-square w-[calc(100%_-_16px)] overflow-hidden rounded-full bg-[#f3fbfb] lg:mx-[15px] lg:mt-[15px] lg:aspect-auto lg:h-[240px] lg:w-auto lg:rounded-[4px]">
             <img
                 v-if="product.image_url"
                 :src="product.image_url"
@@ -55,11 +55,11 @@ function priceParts(cents) {
         </a>
 
         <div class="flex flex-1 flex-col px-[10px] pt-[17px] lg:px-[18px] lg:pt-[24px]">
-            <h2 class="min-h-[58px] font-poppins text-[16px] font-semibold leading-[1.13] text-[#202020] lg:min-h-[46px] lg:text-[18px] lg:leading-[1.3] lg:text-[#333]">
+            <h2 class="line-clamp-3 min-h-[54px] font-poppins text-[14px] font-semibold leading-[1.18] text-[#202020] sm:text-[15px] lg:line-clamp-none lg:min-h-[46px] lg:text-[18px] lg:leading-[1.3] lg:text-[#333]">
                 {{ product.name }}
             </h2>
 
-            <div class="mt-[13px] min-h-[84px] font-poppins text-[#111] lg:mt-[18px] lg:min-h-[98px] lg:text-[#333]">
+            <div class="mt-[13px] flex min-h-[78px] flex-col justify-end pb-[18px] font-poppins text-[#111] lg:mt-[18px] lg:block lg:min-h-[98px] lg:pb-0 lg:text-[#333]">
                 <p v-if="hasDiscount" class="text-[12px] leading-none text-[#9a9a9a] line-through lg:text-[16px]">
                     {{ formatCents(regularPrice) }}
                 </p>
@@ -71,8 +71,8 @@ function priceParts(cents) {
                         {{ discountPercent }}% OFF
                     </span>
                 </div>
-                <p v-if="currentPrice > 0" class="mt-[7px] text-[12px] font-medium leading-tight text-[#009b2f] lg:mt-[11px] lg:text-[13px] lg:text-[#3da83c]">
-                    em 12x de {{ formatCents(installmentPrice) }} sem juros
+                <p v-if="currentPrice > 0" class="mt-[7px] whitespace-nowrap text-[10.5px] font-normal leading-tight text-[#009b2f] lg:mt-[11px] lg:whitespace-normal lg:text-[13px] lg:font-medium lg:text-[#3da83c]">
+                    <span class="text-[#111] lg:text-[#3da83c]">em</span> 12x de {{ formatCents(installmentPrice) }} sem juros
                 </p>
                 <p v-else class="mt-[18px] text-[13px] font-semibold text-[#3da83c] lg:text-[15px]">
                     Monte seu combo com uma especialista

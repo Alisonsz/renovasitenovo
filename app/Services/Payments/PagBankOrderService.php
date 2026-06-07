@@ -110,10 +110,32 @@ class PagBankOrderService
                 'quantity' => (int) $item->quantity,
                 'unit_amount' => (int) $item->unit_price_cents,
             ])->values()->all(),
-            'notification_urls' => array_values(array_filter([
-                config('services.pagbank.notification_url'),
-            ])),
+            'notification_urls' => $this->notificationUrls(),
         ];
+    }
+
+    /**
+     * PagBank requires a public HTTPS notification URL. Sending a localhost or
+     * http URL (e.g. when APP_URL wasn't set for production) can make the order
+     * be rejected — so we only include the URL when it's actually reachable.
+     * Without it the order still works; we reconcile status by polling.
+     */
+    private function notificationUrls(): array
+    {
+        $url = trim((string) config('services.pagbank.notification_url'));
+
+        if (! str_starts_with($url, 'https://')) {
+            return [];
+        }
+
+        $host = (string) (parse_url($url, PHP_URL_HOST) ?: '');
+
+        // Reject localhost / IPs / hostnames without a public domain.
+        if ($host === '' || ! str_contains($host, '.') || in_array($host, ['localhost', '127.0.0.1'], true)) {
+            return [];
+        }
+
+        return [$url];
     }
 
     private function applyCardResponse(Order $order, array $response, int $installments): Order

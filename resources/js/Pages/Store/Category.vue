@@ -1,6 +1,6 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-import { reactive } from 'vue';
+import { nextTick, reactive } from 'vue';
 import SiteLayout from '../../Layouts/SiteLayout.vue';
 import ProductCard from '../../Components/Store/ProductCard.vue';
 
@@ -11,7 +11,12 @@ defineProps({
 });
 
 const pageBySection = reactive({});
+const sectionRefs = {};
 const perPage = 4;
+
+function setSectionRef(slug, el) {
+    if (el) sectionRefs[slug] = el;
+}
 
 function currentPage(section) {
     return pageBySection[section.slug] || 1;
@@ -27,8 +32,16 @@ function visibleProducts(section) {
     return section.products.slice(start, start + perPage);
 }
 
-function setPage(section, page) {
+async function setPage(section, page) {
     pageBySection[section.slug] = Math.min(Math.max(page, 1), pageCount(section));
+
+    // Keep the user anchored to this section's heading after the grid changes,
+    // instead of letting the page jump when the content height shifts.
+    await nextTick();
+    const el = sectionRefs[section.slug];
+    if (el && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function sectionAnchor(section) {
@@ -48,12 +61,13 @@ function sectionAnchor(section) {
             v-for="(section, index) in sections"
             :key="section.id"
             :id="sectionAnchor(section)"
-            class="px-5"
+            :ref="(el) => setSectionRef(section.slug, el)"
+            class="scroll-mt-[80px] px-3 lg:px-5"
             :class="index === 0 ? 'bg-white pb-[42px] pt-[68px] lg:bg-[#eef8f8] lg:pb-[54px] lg:pt-[42px]' : 'bg-white py-[42px] lg:py-[62px]'"
         >
             <div class="mx-auto max-w-[1140px]">
                 <header class="mx-auto max-w-[760px] text-center lg:mx-0 lg:text-left">
-                    <h1 class="font-poppins text-[28px] font-extrabold leading-[1.08] text-[#363636] lg:text-[33px]">
+                    <h1 class="font-poppins text-[22px] font-extrabold leading-[1.12] text-[#363636] sm:text-[26px] lg:text-[33px]">
                         {{ section.title }}
                     </h1>
                     <p v-if="section.subtitle" class="mt-[14px] font-montserrat text-[15px] leading-[1.55] text-[#7b7b7b] lg:mt-[18px] lg:text-[17px] lg:leading-[1.65]">
