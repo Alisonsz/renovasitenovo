@@ -10,6 +10,7 @@ use App\Services\Payments\PagBankCheckoutService;
 use App\Services\Payments\PagBankOrderService;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class CheckoutService
@@ -168,11 +169,23 @@ class CheckoutService
                 default => $this->pagBankCheckout->createForOrder($order),
             };
         } catch (RequestException $e) {
-            // Surface a friendly error; the order stays pending and can be retried.
-            report($e);
+            // Log the full PagBank response so the real reason is recoverable.
+            $body = $e->response?->json() ?: ['raw' => $e->response?->body()];
+            Log::error('PagBank order rejected', [
+                'order' => $order->number,
+                'method' => $method,
+                'http_status' => $e->response?->status(),
+                'response' => $body,
+            ]);
+
+            // Surface the actual PagBank reason to the buyer when available.
+            $reason = data_get($body, 'error_messages.0.description')
+                ?: data_get($body, 'error_messages.0.code');
 
             throw ValidationException::withMessages([
-                'payment' => 'Não foi possível processar o pagamento. Verifique os dados e tente novamente.',
+                'payment' => $reason
+                    ? 'O PagBank recusou o pagamento: '.$reason
+                    : 'Não foi possível processar o pagamento. Verifique os dados e tente novamente.',
             ]);
         }
     }

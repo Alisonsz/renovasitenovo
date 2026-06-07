@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "Renova Laser - Integracao PagBank",
+    "description": "Requests e responses da integracao PagBank usada por renovalaserdepilacao.com.br (Orders API: PIX e Cartao; Checkout PagBank; chave publica; consulta; webhook). Variaveis: base_url e token. NAO contem dados reais.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://sandbox.api.pagseguro.com" },
+    { "key": "token", "value": "SEU_TOKEN" }
+  ],
+  "item": [
+    {
+      "name": "1. Gerar chave publica (cartao)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/public-keys", "host": ["{{base_url}}"], "path": ["public-keys"] },
+        "body": { "mode": "raw", "raw": "{\n  \"type\": \"card\"\n}" }
+      }
+    },
+    {
+      "name": "2. Criar e pagar pedido - CARTAO",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/orders", "host": ["{{base_url}}"], "path": ["orders"] },
+        "body": { "mode": "raw", "raw": "{\n  \"reference_id\": \"RL-20260607-000001\",\n  \"customer\": {\n    \"name\": \"Cliente Teste\",\n    \"email\": \"cliente.teste@example.com\",\n    \"tax_id\": \"11144477735\",\n    \"phones\": [\n      { \"country\": \"55\", \"area\": \"11\", \"number\": \"999999999\", \"type\": \"MOBILE\" }\n    ]\n  },\n  \"items\": [\n    { \"reference_id\": \"1\", \"name\": \"Combo Virilha, Axila, Perianal e Buco\", \"quantity\": 1, \"unit_amount\": 90000 }\n  ],\n  \"notification_urls\": [ \"https://renovalaserdepilacao.com.br/webhooks/pagbank\" ],\n  \"charges\": [\n    {\n      \"reference_id\": \"RL-20260607-000001\",\n      \"description\": \"Pedido RL-20260607-000001\",\n      \"amount\": { \"value\": 90000, \"currency\": \"BRL\" },\n      \"payment_method\": {\n        \"type\": \"CREDIT_CARD\",\n        \"installments\": 1,\n        \"capture\": true,\n        \"soft_descriptor\": \"RenovaLaserDepil\",\n        \"card\": { \"encrypted\": \"CARD_ENCRYPTED_TESTE\" },\n        \"holder\": { \"name\": \"CLIENTE TESTE\", \"tax_id\": \"11144477735\" }\n      }\n    }\n  ]\n}" }
+      }
+    },
+    {
+      "name": "3. Criar pedido - PIX (QR Code)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/orders", "host": ["{{base_url}}"], "path": ["orders"] },
+        "body": { "mode": "raw", "raw": "{\n  \"reference_id\": \"RL-20260607-000002\",\n  \"customer\": {\n    \"name\": \"Cliente Teste\",\n    \"email\": \"cliente.teste@example.com\",\n    \"tax_id\": \"11144477735\",\n    \"phones\": [\n      { \"country\": \"55\", \"area\": \"11\", \"number\": \"999999999\", \"type\": \"MOBILE\" }\n    ]\n  },\n  \"items\": [\n    { \"reference_id\": \"1\", \"name\": \"Pacote 10 sessoes - Axila\", \"quantity\": 1, \"unit_amount\": 50000 }\n  ],\n  \"notification_urls\": [ \"https://renovalaserdepilacao.com.br/webhooks/pagbank\" ],\n  \"qr_codes\": [\n    { \"amount\": { \"value\": 50000 }, \"expiration_date\": \"2026-06-07T10:35:00-03:00\" }\n  ]\n}" }
+      }
+    },
+    {
+      "name": "4. Consultar pedido (status)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/orders/ORDE_ID_DO_PEDIDO", "host": ["{{base_url}}"], "path": ["orders", "ORDE_ID_DO_PEDIDO"] }
+      }
+    },
+    {
+      "name": "5. Checkout PagBank (pagina hospedada)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/checkouts", "host": ["{{base_url}}"], "path": ["checkouts"] },
+        "body": { "mode": "raw", "raw": "{\n  \"reference_id\": \"RL-20260607-000003\",\n  \"expiration_date\": \"2026-06-08T10:00:00-03:00\",\n  \"customer\": {\n    \"name\": \"Cliente Teste\",\n    \"email\": \"cliente.teste@example.com\",\n    \"tax_id\": \"11144477735\",\n    \"phones\": [\n      { \"country\": \"55\", \"area\": \"11\", \"number\": \"999999999\", \"type\": \"MOBILE\" }\n    ]\n  },\n  \"items\": [\n    { \"reference_id\": \"1\", \"name\": \"Combo Virilha, Axila, Perianal e Buco\", \"quantity\": 1, \"unit_amount\": 90000 }\n  ],\n  \"payment_methods\": [ { \"type\": \"PIX\" }, { \"type\": \"CREDIT_CARD\" } ],\n  \"payment_method_configs\": [\n    { \"type\": \"CREDIT_CARD\", \"config_options\": [ { \"option\": \"INSTALLMENTS_LIMIT\", \"value\": \"12\" } ] }\n  ],\n  \"soft_descriptor\": \"RenovaLaserDepil\",\n  \"redirect_url\": \"https://renovalaserdepilacao.com.br/pedido/RL-20260607-000003/retorno\",\n  \"notification_urls\": [ \"https://renovalaserdepilacao.com.br/webhooks/pagbank\" ]\n}" }
+      }
+    },
+    {
+      "name": "6. Estornar/cancelar cobranca",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/charges/CHAR_ID_DA_COBRANCA/cancel", "host": ["{{base_url}}"], "path": ["charges", "CHAR_ID_DA_COBRANCA", "cancel"] },
+        "body": { "mode": "raw", "raw": "{\n  \"amount\": { \"value\": 90000 }\n}" }
+      }
+    }
+  ]
+}

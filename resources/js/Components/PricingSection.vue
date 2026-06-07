@@ -1,8 +1,7 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import PricingModal from './PricingModal.vue';
 import { PRICING } from '../data/site.js';
-import { useDragScroll } from '../Composables/useDragScroll.js';
 
 const active = ref(null);
 // Loja desativada por padrão: enquanto não houver flag explícito, tudo aponta
@@ -10,42 +9,13 @@ const active = ref(null);
 // para reativar a loja.
 const storeFlag = String(import.meta.env.VITE_ATIVAR_LOJA ?? import.meta.env.VITE_STORE_ENABLED ?? 'false').toLowerCase();
 const storeEnabled = ['true', '1', 'on', 'yes', 'sim'].includes(storeFlag);
-const track = ref(null);
 
-// On desktop (lg) the cards are centered and don't scroll — keep the exact
-// layout (one set). On smaller screens the row scrolls, so we triple the items
-// for a seamless infinite loop. 1024px = lg breakpoint.
-const isDesktop = ref(false);
-let mql = null;
-
-const loopPricing = computed(() =>
-    isDesktop.value ? PRICING : Array.from({ length: 3 }, () => PRICING).flat()
-);
-
-const { recenter } = useDragScroll(track, {
-    autoplayMs: 4200,
-    enabled: () => !isDesktop.value,
-});
-
-function onBreakpoint(e) {
-    isDesktop.value = e.matches;
-    // Item count changes between layouts → re-center the loop afterwards.
-    requestAnimationFrame(recenter);
-}
-
-onMounted(() => {
-    mql = window.matchMedia('(min-width: 1024px)');
-    isDesktop.value = mql.matches;
-    mql.addEventListener('change', onBreakpoint);
-});
-
-onBeforeUnmount(() => {
-    if (mql) mql.removeEventListener('change', onBreakpoint);
-});
+// Finite carousel (NOT infinite, unlike the other rows): just the 3 options,
+// one card per view on mobile via native scroll-snap; three centered on desktop.
 </script>
 
 <template>
-    <section class="relative mb-[-140px] overflow-x-clip overflow-y-visible bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 pt-14 pb-[92px] lg:mb-[-166px] lg:pt-[120px] lg:pb-[130px]">
+    <section id="precos" class="relative mb-[-140px] scroll-mt-[70px] overflow-x-clip overflow-y-visible bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 pt-14 pb-[92px] lg:mb-[-166px] lg:pt-[120px] lg:pb-[130px]">
         <div class="mx-auto max-w-[1140px]">
             <div class="text-center">
                 <h2 class="text-[28px] font-extrabold text-heading lg:text-[39px]">Conheça nossos preços</h2>
@@ -54,16 +24,14 @@ onBeforeUnmount(() => {
 
             <div class="relative mt-6 overflow-visible lg:mt-12">
                 <div
-                    ref="track"
-                    class="relative z-20 -mx-5 cursor-grab overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-14 py-7 [scrollbar-width:none] [touch-action:pan-x_pan-y] active:cursor-grabbing lg:mx-0 lg:overflow-visible lg:px-0 lg:py-4"
+                    class="relative z-20 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth py-7 [scrollbar-width:none] [touch-action:pan-x_pan-y] lg:snap-none lg:justify-center lg:gap-5 lg:overflow-visible lg:py-4"
                 >
-                    <ul class="flex gap-5 select-none lg:justify-center">
-                        <li
-                            v-for="(card, i) in loopPricing"
-                            :key="i + '-' + card.popup"
-                            data-carousel-item
-                            class="group flex w-[270px] shrink-0 flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_6px_18px_rgba(0,0,0,0.22)] transition duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_14px_28px_rgba(0,0,0,0.18)] sm:w-[calc(50%-10px)] lg:w-[325px] lg:rounded-[8px]"
-                        >
+                    <div
+                        v-for="card in PRICING"
+                        :key="card.popup"
+                        class="flex w-full shrink-0 snap-center justify-center px-2 lg:w-[325px] lg:px-0"
+                    >
+                        <div class="group flex w-[275px] max-w-[calc(100vw-48px)] flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_6px_18px_rgba(0,0,0,0.22)] transition duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_14px_28px_rgba(0,0,0,0.18)] lg:w-full lg:max-w-none lg:rounded-[8px]">
                             <div class="flex flex-col items-center px-0 pt-[35px]">
                                 <img
                                     :src="card.image"
@@ -81,8 +49,8 @@ onBeforeUnmount(() => {
                             >
                                 {{ card.cta }}
                             </button>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

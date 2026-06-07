@@ -246,6 +246,30 @@ class PagBankTransparentTest extends TestCase
         );
     }
 
+    public function test_pix_checkout_succeeds_when_card_fields_are_null(): void
+    {
+        // Reproduces the production bug: the frontend sent card.encrypted = null on
+        // PIX, and the `string` rule rejected the whole order before PagBank.
+        $this->configurePagBank();
+        Http::fake([
+            'https://sandbox.api.pagseguro.com/orders' => Http::response([
+                'id' => 'ORDE_PIX',
+                'qr_codes' => [['id' => 'Q', 'text' => 'pix', 'links' => [['rel' => 'QRCODE.PNG', 'href' => 'x']]]],
+            ], 201),
+        ]);
+
+        $this->addToCart(50000);
+
+        $this->post('/checkout', [
+            'name' => 'Maria', 'email' => 'maria@example.com',
+            'phone' => '11999999999', 'document' => '12345678909',
+            'payment_method' => 'pix',
+            'card' => ['encrypted' => null, 'holder' => null, 'installments' => 1],
+        ])->assertRedirect()->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('orders', ['payment_method' => 'pix', 'pagbank_order_id' => 'ORDE_PIX']);
+    }
+
     public function test_failed_payment_surfaces_error_and_keeps_cart(): void
     {
         $this->configurePagBank();

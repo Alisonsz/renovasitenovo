@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Requests e Responses — Integração PagBank — Renova Laser Depilação</title>
+<style>
+    :root { --brand:#0d9488; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f8fafc; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--ink); margin: 0; padding: 32px 40px; font-size: 13px; line-height: 1.5; }
+    h1 { font-size: 22px; margin: 0 0 4px; color: var(--brand); }
+    h2 { font-size: 17px; margin: 28px 0 6px; padding-top: 10px; border-top: 2px solid var(--line); color: #0f766e; }
+    h3 { font-size: 13px; margin: 14px 0 4px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    p { margin: 6px 0; }
+    .sub { color: var(--muted); margin: 0 0 14px; }
+    .meta { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 14px 0 8px; }
+    .meta code { font-weight: 600; }
+    .endpoint { font-family: Consolas, "Courier New", monospace; font-size: 13px; background: #0f766e; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 6px; margin: 4px 0; }
+    pre { background: #0b1021; color: #e6edf3; border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-family: Consolas, "Courier New", monospace; font-size: 12px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
+    .tag { display:inline-block; font-size: 11px; font-weight:700; padding:2px 8px; border-radius: 999px; background:#ecfeff; color:#0e7490; border:1px solid #a5f3fc; margin-left:6px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 12px; }
+    th, td { border: 1px solid var(--line); padding: 6px 9px; text-align: left; vertical-align: top; }
+    th { background: var(--bg); }
+    .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:10px 14px; margin:10px 0; font-size:12px; }
+    .toc a { color: var(--brand); text-decoration: none; }
+    @media print {
+        body { padding: 0; }
+        h2 { break-before: auto; page-break-inside: avoid; }
+        pre, table, .meta { page-break-inside: avoid; }
+        a { color: var(--ink); }
+    }
+</style>
+</head>
+<body>
+
+<h1>Requests e Responses — Integração PagBank</h1>
+<p class="sub"><strong>Renova Laser Depilação</strong> · Loja Laravel + Inertia/Vue · Integração via <strong>API de Pedidos (Orders)</strong> + <strong>Checkout PagBank</strong></p>
+
+<div class="meta">
+    <p><strong>Base URL (produção):</strong> <code>https://api.pagseguro.com</code></p>
+    <p><strong>Base URL (sandbox, usada nos testes):</strong> <code>https://sandbox.api.pagseguro.com</code></p>
+    <p><strong>Autenticação:</strong> todas as chamadas usam o header <code>Authorization: Bearer SEU_TOKEN</code> e <code>Content-Type: application/json</code>.</p>
+    <p><strong>Métodos de pagamento:</strong> PIX e Cartão de crédito (fluxo transparente via Orders API) e, opcionalmente, página de Checkout PagBank (que disponibiliza PIX, Cartão, Google Pay e Pagar com PagBank).</p>
+</div>
+
+<div class="note">
+    <strong>Observação de segurança:</strong> os exemplos abaixo usam dados fictícios — <code>SEU_TOKEN</code>, CPF de teste <code>111.444.777-35</code>, cartão criptografado <code>CARD_ENCRYPTED_TESTE</code>, IDs <code>ORDE_…/CHAR_…/CHEC_…</code>. Nenhum dado real de cliente, token ou cartão está incluído.
+</div>
+
+<h3>Sumário</h3>
+<ol class="toc">
+    <li><a href="#s1">Gerar chave pública (criptografia do cartão) — POST /public-keys</a></li>
+    <li><a href="#s2">Criar e pagar pedido com Cartão — POST /orders</a></li>
+    <li><a href="#s3">Criar pedido com PIX (QR Code) — POST /orders</a></li>
+    <li><a href="#s4">Consultar pedido (reconciliação de status) — GET /orders/{id}</a></li>
+    <li><a href="#s5">Checkout PagBank (página hospedada) — POST /checkouts</a></li>
+    <li><a href="#s6">Estorno/cancelamento de cobrança — POST /charges/{id}/cancel</a></li>
+    <li><a href="#s7">Webhook / Notificação de status (recebido)</a></li>
+</ol>
+
+<!-- 1 -->
+<h2 id="s1">1. Gerar chave pública (criptografia do cartão) <span class="tag">Cartão</span></h2>
+<p>Antes de tokenizar o cartão no navegador (SDK PagBank), a aplicação gera a chave pública a partir do token.</p>
+<h3>Request</h3>
+<div class="endpoint">POST https://api.pagseguro.com/public-keys</div>
+<pre>Authorization: Bearer SEU_TOKEN
+Content-Type: application/json
+
+{
+  "type": "card"
+}</pre>
+<h3>Response <span class="tag">201 Created</span></h3>
+<pre>{
+  "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw3cTH889kEbrpoZA8pqLPOx3x+ZtZzP3XmWjPJfl274AZyLyRkjyJysR6CuP8zC+VokWiPNmVnJcTFphidIjd...IDAQAB",
+  "created_at": "2026-06-07T10:00:00.000-03:00"
+}</pre>
+<p class="sub">A chave pública é usada no navegador pelo SDK <code>pagseguro.min.js</code> (<code>PagSeguro.encryptCard</code>) para gerar o cartão criptografado — o número do cartão nunca chega ao nosso servidor.</p>
+
+<!-- 2 -->
+<h2 id="s2">2. Criar e pagar pedido com Cartão de crédito <span class="tag">Cartão</span></h2>
+<p>Fluxo transparente: o cartão já vem criptografado do navegador. Criamos e pagamos o pedido em uma única chamada.</p>
+<h3>Request</h3>
+<div class="endpoint">POST https://api.pagseguro.com/orders</div>
+<pre>Authorization: Bearer SEU_TOKEN
+Content-Type: application/json
+
+{
+  "reference_id": "RL-20260607-000001",
+  "customer": {
+    "name": "Cliente Teste",
+    "email": "cliente.teste@example.com",
+    "tax_id": "11144477735",
+    "phones": [
+      { "country": "55", "area": "11", "number": "999999999", "type": "MOBILE" }
+    ]
+  },
+  "items": [
+    {
+      "reference_id": "1",
+      "name": "Combo Virilha, Axila, Perianal e Buco",
+      "quantity": 1,
+      "unit_amount": 90000
+    }
+  ],
+  "notification_urls": [
+    "https://renovalaserdepilacao.com.br/webhooks/pagbank"
+  ],
+  "charges": [
+    {
+      "reference_id": "RL-20260607-000001",
+      "description": "Pedido RL-20260607-000001",
+      "amount": { "value": 90000, "currency": "BRL" },
+      "payment_method": {
+        "type": "CREDIT_CARD",
+        "installments": 1,
+        "capture": true,
+        "soft_descriptor": "RenovaLaserDepil",
+        "card": { "encrypted": "CARD_ENCRYPTED_TESTE" },
+        "holder": { "name": "CLIENTE TESTE", "tax_id": "11144477735" }
+      }
+    }
+  ]
+}</pre>
+<h3>Response <span class="tag">201 Created</span></h3>
+<pre>{
+  "id": "ORDE_1A2B3C4D-0000-0000-0000-000000000001",
+  "reference_id": "RL-20260607-000001",
+  "created_at": "2026-06-07T10:05:00.000-03:00",
+  "customer": {
+    "name": "Cliente Teste",
+    "email": "cliente.teste@example.com",
+    "tax_id": "11144477735"
+  },
+  "items": [
+    { "reference_id": "1", "name": "Combo Virilha, Axila, Perianal e Buco", "quantity": 1, "unit_amount": 90000 }
+  ],
+  "charges": [
+    {
+      "id": "CHAR_1A2B3C4D-0000-0000-0000-000000000001",
+      "reference_id": "RL-20260607-000001",
+      "status": "PAID",
+      "created_at": "2026-06-07T10:05:01.000-03:00",
+      "paid_at": "2026-06-07T10:05:02.000-03:00",
+      "description": "Pedido RL-20260607-000001",
+      "amount": {
+        "value": 90000, "currency": "BRL",
+        "summary": { "total": 90000, "paid": 90000, "refunded": 0 }
+      },
+      "payment_response": { "code": "20000", "message": "SUCESSO" },
+      "payment_method": {
+        "type": "CREDIT_CARD",
+        "installments": 1,
+        "capture": true,
+        "card": {
+          "brand": "visa",
+          "first_digits": "411111",
+          "last_digits": "1111",
+          "exp_month": "12",
+          "exp_year": "2030",
+          "holder": { "name": "CLIENTE TESTE" }
+        }
+      },
+      "links": [
+        { "rel": "SELF", "href": "https://api.pagseguro.com/charges/CHAR_1A2B3C4D-0000-0000-0000-000000000001", "media": "application/json", "type": "GET" }
+      ]
+    }
+  ],
+  "links": [
+    { "rel": "SELF", "href": "https://api.pagseguro.com/orders/ORDE_1A2B3C4D-0000-0000-0000-000000000001", "media": "application/json", "type": "GET" }
+  ]
+}</pre>
+<table>
+    <tr><th>Status da cobrança</th><th>Significado</th></tr>
+    <tr><td><code>PAID</code></td><td>Pago/capturado com sucesso</td></tr>
+    <tr><td><code>AUTHORIZED</code></td><td>Autorizado, ainda não capturado</td></tr>
+    <tr><td><code>IN_ANALYSIS</code></td><td>Em análise antifraude</td></tr>
+    <tr><td><code>DECLINED</code></td><td>Recusado pelo emissor</td></tr>
+</table>
+
+<!-- 3 -->
+<h2 id="s3">3. Criar pedido com PIX (QR Code) <span class="tag">PIX</span></h2>
+<p>Geramos um QR Code Pix com expiração. A confirmação chega por webhook e/ou consulta de status.</p>
+<h3>Request</h3>
+<div class="endpoint">POST https://api.pagseguro.com/orders</div>
+<pre>Authorization: Bearer SEU_TOKEN
+Content-Type: application/json
+
+{
+  "reference_id": "RL-20260607-000002",
+  "customer": {
+    "name": "Cliente Teste",
+    "email": "cliente.teste@example.com",
+    "tax_id": "11144477735",
+    "phones": [
+      { "country": "55", "area": "11", "number": "999999999", "type": "MOBILE" }
+    ]
+  },
+  "items": [
+    { "reference_id": "1", "name": "Pacote 10 sessoes - Axila", "quantity": 1, "unit_amount": 50000 }
+  ],
+  "notification_urls": [
+    "https://renovalaserdepilacao.com.br/webhooks/pagbank"
+  ],
+  "qr_codes": [
+    {
+      "amount": { "value": 50000 },
+      "expiration_date": "2026-06-07T10:35:00-03:00"
+    }
+  ]
+}</pre>
+<h3>Response <span class="tag">201 Created</span></h3>
+<pre>{
+  "id": "ORDE_2B3C4D5E-0000-0000-0000-000000000002",
+  "reference_id": "RL-20260607-000002",
+  "created_at": "2026-06-07T10:05:00.000-03:00",
+  "customer": { "name": "Cliente Teste", "email": "cliente.teste@example.com", "tax_id": "11144477735" },
+  "items": [ { "reference_id": "1", "name": "Pacote 10 sessoes - Axila", "quantity": 1, "unit_amount": 50000 } ],
+  "qr_codes": [
+    {
+      "id": "QRCO_2B3C4D5E-0000-0000-0000-000000000002",
+      "expiration_date": "2026-06-07T10:35:00-03:00",
+      "amount": { "value": 50000 },
+      "text": "00020101021226850014br.gov.bcb.pix2563api.pagseguro.com/...5204000053039865802BR5913RENOVA LASER6009SAO PAULO62070503***6304ABCD",
+      "arrangements": [ "PAGBANK" ],
+      "links": [
+        { "rel": "QRCODE.PNG", "href": "https://api.pagseguro.com/qrcode/QRCO_2B3C4D5E-0000-0000-0000-000000000002/png", "media": "image/png", "type": "GET" },
+        { "rel": "QRCODE.BASE64", "href": "https://api.pagseguro.com/qrcode/QRCO_2B3C4D5E-0000-0000-0000-000000000002/base64", "media": "text/plain", "type": "GET" }
+      ]
+    }
+  ],
+  "links": [
+    { "rel": "SELF", "href": "https://api.pagseguro.com/orders/ORDE_2B3C4D5E-0000-0000-0000-000000000002", "media": "application/json", "type": "GET" }
+  ]
+}</pre>
+
+<!-- 4 -->
+<h2 id="s4">4. Consultar pedido (reconciliação de status) <span class="tag">PIX</span> <span class="tag">Cartão</span></h2>
+<p>Usado para confirmar o pagamento (especialmente PIX) sem depender só do webhook.</p>
+<h3>Request</h3>
+<div class="endpoint">GET https://api.pagseguro.com/orders/ORDE_2B3C4D5E-0000-0000-0000-000000000002</div>
+<pre>Authorization: Bearer SEU_TOKEN</pre>
+<h3>Response <span class="tag">200 OK</span></h3>
+<pre>{
+  "id": "ORDE_2B3C4D5E-0000-0000-0000-000000000002",
+  "reference_id": "RL-20260607-000002",
+  "charges": [
+    {
+      "id": "CHAR_2B3C4D5E-0000-0000-0000-000000000002",
+      "status": "PAID",
+      "paid_at": "2026-06-07T10:12:30.000-03:00",
+      "amount": { "value": 50000, "currency": "BRL", "summary": { "total": 50000, "paid": 50000, "refunded": 0 } },
+      "payment_method": { "type": "PIX" }
+    }
+  ],
+  "qr_codes": [ { "id": "QRCO_2B3C4D5E-0000-0000-0000-000000000002", "amount": { "value": 50000 } } ]
+}</pre>
+
+<!-- 5 -->
+<h2 id="s5">5. Checkout PagBank (página hospedada) <span class="tag">Checkout</span> <span class="tag">Google Pay</span> <span class="tag">Pagar com PagBank</span></h2>
+<p>Como alternativa, criamos uma sessão de Checkout PagBank e redirecionamos o cliente para a página de pagamento (que oferece PIX, Cartão, Google Pay e Pagar com PagBank).</p>
+<h3>Request</h3>
+<div class="endpoint">POST https://api.pagseguro.com/checkouts</div>
+<pre>Authorization: Bearer SEU_TOKEN
+Content-Type: application/json
+
+{
+  "reference_id": "RL-20260607-000003",
+  "expiration_date": "2026-06-08T10:00:00-03:00",
+  "customer": {
+    "name": "Cliente Teste",
+    "email": "cliente.teste@example.com",
+    "tax_id": "11144477735",
+    "phones": [
+      { "country": "55", "area": "11", "number": "999999999", "type": "MOBILE" }
+    ]
+  },
+  "items": [
+    { "reference_id": "1", "name": "Combo Virilha, Axila, Perianal e Buco", "quantity": 1, "unit_amount": 90000 }
+  ],
+  "payment_methods": [
+    { "type": "PIX" },
+    { "type": "CREDIT_CARD" }
+  ],
+  "payment_method_configs": [
+    {
+      "type": "CREDIT_CARD",
+      "config_options": [
+        { "option": "INSTALLMENTS_LIMIT", "value": "12" }
+      ]
+    }
+  ],
+  "soft_descriptor": "RenovaLaserDepil",
+  "redirect_url": "https://renovalaserdepilacao.com.br/pedido/RL-20260607-000003/retorno",
+  "notification_urls": [
+    "https://renovalaserdepilacao.com.br/webhooks/pagbank"
+  ]
+}</pre>
+<h3>Response <span class="tag">201 Created</span></h3>
+<pre>{
+  "id": "CHEC_3C4D5E6F-0000-0000-0000-000000000003",
+  "reference_id": "RL-20260607-000003",
+  "status": "ACTIVE",
+  "created_at": "2026-06-07T10:05:00.000-03:00",
+  "expiration_date": "2026-06-08T10:00:00-03:00",
+  "links": [
+    { "rel": "PAY", "href": "https://pagamento.pagbank.com.br/pagamento?code=CHEC_3C4D5E6F-0000-0000-0000-000000000003", "media": "text/html", "type": "GET" },
+    { "rel": "SELF", "href": "https://api.pagseguro.com/checkouts/CHEC_3C4D5E6F-0000-0000-0000-000000000003", "media": "application/json", "type": "GET" }
+  ]
+}</pre>
+<p class="sub">O cliente é redirecionado para o link <code>rel: "PAY"</code>. Ao final, o PagBank redireciona de volta para <code>redirect_url</code> e notifica em <code>notification_urls</code>.</p>
+
+<!-- 6 -->
+<h2 id="s6">6. Estorno / cancelamento de cobrança <span class="tag">Cartão</span></h2>
+<p>Para reembolso total ou parcial de uma cobrança paga.</p>
+<h3>Request</h3>
+<div class="endpoint">POST https://api.pagseguro.com/charges/CHAR_1A2B3C4D-0000-0000-0000-000000000001/cancel</div>
+<pre>Authorization: Bearer SEU_TOKEN
+Content-Type: application/json
+
+{
+  "amount": { "value": 90000 }
+}</pre>
+<h3>Response <span class="tag">200 OK</span></h3>
+<pre>{
+  "id": "CHAR_1A2B3C4D-0000-0000-0000-000000000001",
+  "status": "CANCELED",
+  "amount": {
+    "value": 90000, "currency": "BRL",
+    "summary": { "total": 90000, "paid": 90000, "refunded": 90000 }
+  }
+}</pre>
+
+<!-- 7 -->
+<h2 id="s7">7. Webhook / Notificação de status (recebido) <span class="tag">PIX</span> <span class="tag">Cartão</span> <span class="tag">Checkout</span></h2>
+<p>O PagBank envia um <code>POST</code> para a <code>notification_url</code> sempre que o status muda. Validamos a autenticidade pelo header <code>x-authenticity-token</code>.</p>
+<h3>Request recebido (PagBank → nosso servidor)</h3>
+<div class="endpoint">POST https://renovalaserdepilacao.com.br/webhooks/pagbank</div>
+<pre>x-authenticity-token: 8d09afba2eed749f2173cfd6faf16dc7f0228846ecf5ba1d7a11f33270d1513f
+Content-Type: application/json
+
+{
+  "id": "ORDE_2B3C4D5E-0000-0000-0000-000000000002",
+  "reference_id": "RL-20260607-000002",
+  "created_at": "2026-06-07T10:05:00.000-03:00",
+  "charges": [
+    {
+      "id": "CHAR_2B3C4D5E-0000-0000-0000-000000000002",
+      "reference_id": "RL-20260607-000002",
+      "status": "PAID",
+      "paid_at": "2026-06-07T10:12:30.000-03:00",
+      "amount": { "value": 50000, "currency": "BRL", "summary": { "total": 50000, "paid": 50000, "refunded": 0 } },
+      "payment_method": { "type": "PIX" }
+    }
+  ]
+}</pre>
+<h3>Validação da autenticidade</h3>
+<pre>hash_esperado = SHA-256( SEU_TOKEN + "-" + corpo_bruto_recebido )   // hex
+valido = (hash_esperado === header "x-authenticity-token")</pre>
+<h3>Response (nosso servidor → PagBank)</h3>
+<pre>HTTP/1.1 200 OK        (ou 204 No Content)</pre>
+
+<p class="sub" style="margin-top:28px; border-top:1px solid var(--line); padding-top:10px;">
+Documento gerado para aprovação da integração — Renova Laser Depilação · renovalaserdepilacao.com.br
+</p>
+
+</body>
+</html>

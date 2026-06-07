@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
+            <div id="contato" class="mt-12 scroll-mt-[80px] text-center">
                 <h3 class="text-[22px] font-semibold leading-tight text-heading-soft lg:text-[29px]">
                     Não encontrou resposta para<br />sua dúvida aqui?
                 </h3>

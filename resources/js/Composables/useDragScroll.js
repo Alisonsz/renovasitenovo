@@ -149,6 +149,30 @@ export function useDragScroll(trackRef, options = {}) {
         setBehavior(el, '');
     }
 
+    /**
+     * Keep manual (touch) scrolling truly infinite: the moment the viewport gets
+     * close to either physical edge, jump a whole set back toward the middle.
+     * The sets are identical pixels, so the jump is invisible — and because it
+     * happens *during* the scroll (not only after it settles), a fast swipe can
+     * never reach a dead end. This is what makes it loop like the other rows.
+     */
+    function edgeGuard() {
+        const el = trackRef.value;
+        if (!el || !loopable(el) || oneSet <= 0) return;
+        const max = el.scrollWidth - el.clientWidth;
+        if (max <= 0) return;
+        const margin = oneSet * 0.5;
+        if (el.scrollLeft <= margin) {
+            setBehavior(el, 'auto');
+            el.scrollLeft += oneSet;
+            setBehavior(el, '');
+        } else if (el.scrollLeft >= max - margin) {
+            setBehavior(el, 'auto');
+            el.scrollLeft -= oneSet;
+            setBehavior(el, '');
+        }
+    }
+
     /** Width of one card including the gap. */
     function step() {
         const el = trackRef.value;
@@ -267,6 +291,8 @@ export function useDragScroll(trackRef, options = {}) {
      */
     function onScroll() {
         if (mouseDown) return;
+        // Reposition immediately near the edges so a fast swipe never dead-ends.
+        edgeGuard();
         if (settleTimer) clearTimeout(settleTimer);
         settleTimer = setTimeout(() => {
             wrap();

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Store;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -50,6 +51,16 @@ class CheckoutTest extends TestCase
         ]);
     }
 
+    public function test_validation_messages_are_in_portuguese(): void
+    {
+        $this->post('/checkout', [
+            'email' => 'maria@example.com',
+            'phone' => '11999999999',
+            'document' => '12345678909',
+            'payment_method' => 'pix',
+        ])->assertSessionHasErrors(['name' => 'O campo nome é obrigatório.']);
+    }
+
     public function test_checkout_requires_items_in_cart(): void
     {
         $response = $this->post('/checkout', [
@@ -78,7 +89,7 @@ class CheckoutTest extends TestCase
             'document' => '12345678909',
             'payment_method' => 'pagbank_checkout',
         ]);
-        $number = \App\Models\Order::query()->firstOrFail()->number;
+        $number = Order::query()->firstOrFail()->number;
 
         $response = $this->get("/pedido/{$number}/retorno");
 
@@ -132,7 +143,7 @@ class CheckoutTest extends TestCase
         ]);
 
         Http::assertSent(fn ($request) => $request->hasHeader('Authorization', 'Bearer test-token')
-            && $request['reference_id'] === \App\Models\Order::query()->firstOrFail()->number
+            && $request['reference_id'] === Order::query()->firstOrFail()->number
             && $request['items'][0]['unit_amount'] === 90000
         );
     }

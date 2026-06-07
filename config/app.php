@@ -78,9 +78,11 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    // PT-BR only site: pin the locale so messages are always in Portuguese,
+    // regardless of what an existing/cached .env carries.
+    'locale' => 'pt_BR',
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => 'pt_BR',
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 

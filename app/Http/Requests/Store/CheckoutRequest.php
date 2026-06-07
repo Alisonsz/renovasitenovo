@@ -17,8 +17,11 @@ class CheckoutRequest extends FormRequest
             'payment_method' => ['required', Rule::in(['pagbank_checkout', 'pix', 'credit_card'])],
 
             // Card fields (transparent checkout, Phase 3). Encrypted client-side.
-            'card.encrypted' => ['required_if:payment_method,credit_card', 'string'],
-            'card.holder' => ['required_if:payment_method,credit_card', 'nullable', 'string', 'max:255'],
+            // Only required for credit_card; PIX sends it as null, so it must be
+            // nullable — otherwise the `string` rule rejects the whole order.
+            'card' => ['nullable', 'array'],
+            'card.encrypted' => ['nullable', 'required_if:payment_method,credit_card', 'string'],
+            'card.holder' => ['nullable', 'required_if:payment_method,credit_card', 'string', 'max:255'],
             'card.installments' => ['nullable', 'integer', 'min:1', 'max:24'],
             'card.store' => ['nullable', 'boolean'],
         ];
