@@ -2,6 +2,7 @@
 import { Head, router } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import SiteLayout from '../../Layouts/SiteLayout.vue';
+import { whatsappGateway, whatsappProductLink } from '../../Composables/useWhatsappGateway.js';
 
 const props = defineProps({
     product: { type: Object, required: true },
@@ -170,7 +171,16 @@ function addToCart() {
                             </p>
                         </div>
 
-                        <form class="mt-5 flex flex-wrap items-center gap-[12px]" @submit.prevent="addToCart">
+                        <a
+                            v-if="whatsappGateway"
+                            :href="whatsappProductLink(product.name)"
+                            target="_blank"
+                            rel="noopener"
+                            class="mt-5 flex h-[52px] items-center justify-center gap-2 rounded-[4px] bg-brand px-[24px] font-poppins text-[17px] font-semibold text-white transition duration-200 hover:-translate-y-[2px] hover:brightness-105 hover:shadow-[0_10px_22px_rgba(41,216,219,0.25)] active:translate-y-0"
+                        >
+                            <i class="fa-brands fa-whatsapp text-[20px]"></i> Tenho interesse
+                        </a>
+                        <form v-else class="mt-5 flex flex-wrap items-center gap-[12px]" @submit.prevent="addToCart">
                             <input
                                 v-model.number="quantity"
                                 type="number"

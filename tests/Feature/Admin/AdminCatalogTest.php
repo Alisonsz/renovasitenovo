@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class AdminCatalogTest extends TestCase
@@ -189,7 +190,7 @@ class AdminCatalogTest extends TestCase
 
     public function test_admin_can_upload_product_gallery_images(): void
     {
-        Storage::fake('public');
+        Storage::fake('uploads', ['url' => '/uploads']);
         $user = User::factory()->create();
         $category = ProductCategory::factory()->create(['name' => 'Pacotes', 'slug' => 'pacotes']);
 
@@ -214,21 +215,22 @@ class AdminCatalogTest extends TestCase
         $this->assertCount(2, $images);
         foreach ($images as $position => $image) {
             $this->assertSame($position, $image->position);
-            $this->assertStringStartsWith('/storage/products/', (string) $image->local_path);
-            Storage::disk('public')->assertExists(substr($image->local_path, strlen('/storage/')));
+            // Served directly from public/uploads (no symlink needed).
+            $this->assertStringStartsWith('/uploads/products/', (string) $image->local_path);
+            Storage::disk('uploads')->assertExists(Str::after($image->local_path, '/uploads/'));
         }
     }
 
     public function test_admin_update_gallery_reorders_keeps_and_deletes_files(): void
     {
-        Storage::fake('public');
+        Storage::fake('uploads', ['url' => '/uploads']);
         $user = User::factory()->create();
         $product = Product::factory()->create(['name' => 'Combo Y', 'slug' => 'combo-y', 'is_active' => true]);
 
-        Storage::disk('public')->put('products/old1.webp', 'x');
-        Storage::disk('public')->put('products/old2.webp', 'y');
-        $img1 = $product->images()->create(['url' => '/storage/products/old1.webp', 'local_path' => '/storage/products/old1.webp', 'position' => 0, 'alt' => 'a']);
-        $img2 = $product->images()->create(['url' => '/storage/products/old2.webp', 'local_path' => '/storage/products/old2.webp', 'position' => 1, 'alt' => 'b']);
+        Storage::disk('uploads')->put('products/old1.webp', 'x');
+        Storage::disk('uploads')->put('products/old2.webp', 'y');
+        $img1 = $product->images()->create(['url' => '/uploads/products/old1.webp', 'local_path' => '/uploads/products/old1.webp', 'position' => 0, 'alt' => 'a']);
+        $img2 = $product->images()->create(['url' => '/uploads/products/old2.webp', 'local_path' => '/uploads/products/old2.webp', 'position' => 1, 'alt' => 'b']);
 
         // Keep img2, drop img1, add a new upload — final order: new first, then img2.
         $this->actingAs($user)->post("/admin/products/{$product->id}", [
@@ -245,23 +247,23 @@ class AdminCatalogTest extends TestCase
 
         $images = $product->fresh()->images()->orderBy('position')->get();
         $this->assertCount(2, $images);
-        $this->assertStringStartsWith('/storage/products/', (string) $images[0]->local_path);
+        $this->assertStringStartsWith('/uploads/products/', (string) $images[0]->local_path);
         $this->assertNotSame($img1->id, $images[0]->id);
         $this->assertSame($img2->id, $images[1]->id);
 
         // Removed image's file deleted; kept image's file preserved.
-        Storage::disk('public')->assertMissing('products/old1.webp');
-        Storage::disk('public')->assertExists('products/old2.webp');
+        Storage::disk('uploads')->assertMissing('products/old1.webp');
+        Storage::disk('uploads')->assertExists('products/old2.webp');
         $this->assertDatabaseMissing('product_images', ['id' => $img1->id]);
     }
 
     public function test_admin_can_clear_gallery_when_empty(): void
     {
-        Storage::fake('public');
+        Storage::fake('uploads', ['url' => '/uploads']);
         $user = User::factory()->create();
         $product = Product::factory()->create(['slug' => 'combo-z', 'is_active' => true]);
-        Storage::disk('public')->put('products/x.webp', 'x');
-        $product->images()->create(['url' => '/storage/products/x.webp', 'local_path' => '/storage/products/x.webp', 'position' => 0, 'alt' => 'a']);
+        Storage::disk('uploads')->put('products/x.webp', 'x');
+        $product->images()->create(['url' => '/uploads/products/x.webp', 'local_path' => '/uploads/products/x.webp', 'position' => 0, 'alt' => 'a']);
 
         $this->actingAs($user)->post("/admin/products/{$product->id}", [
             '_method' => 'put',
@@ -275,7 +277,7 @@ class AdminCatalogTest extends TestCase
         ])->assertRedirect('/admin/products');
 
         $this->assertSame(0, $product->fresh()->images()->count());
-        Storage::disk('public')->assertMissing('products/x.webp');
+        Storage::disk('uploads')->assertMissing('products/x.webp');
     }
 
     public function test_admin_can_view_orders_and_create_coupon(): void

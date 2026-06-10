@@ -47,6 +47,25 @@ return [
             'report' => false,
         ],
 
+        /*
+        |----------------------------------------------------------------------
+        | Uploads (admin) — gravados DENTRO de public/, servidos diretamente
+        |----------------------------------------------------------------------
+        | Mídias enviadas pelo painel (galeria de produtos etc.) vão para
+        | public/uploads e são acessadas por /uploads/... SEM symlink. Isso
+        | resolve o problema de "storage:link" em hospedagem compartilhada/FTP,
+        | onde o symlink não funciona. Use UPLOADS_ROOT/UPLOADS_URL no .env só
+        | se a sua hospedagem tiver um layout de pastas diferente do padrão.
+        */
+        'uploads' => [
+            'driver' => 'local',
+            'root' => env('UPLOADS_ROOT', public_path('uploads')),
+            'url' => env('UPLOADS_URL', '/uploads'),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

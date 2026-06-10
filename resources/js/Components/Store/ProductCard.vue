@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { whatsappGateway, whatsappProductLink } from '../../Composables/useWhatsappGateway.js';
 
 const props = defineProps({
     product: { type: Object, required: true },
@@ -81,6 +82,16 @@ function priceParts(cents) {
         </div>
 
         <a
+            v-if="whatsappGateway"
+            :href="whatsappProductLink(product.name)"
+            target="_blank"
+            rel="noopener"
+            class="mt-auto flex h-[56px] items-center justify-center gap-2 bg-brand px-3 text-center font-poppins text-[15px] font-semibold text-white transition duration-200 hover:brightness-105 active:translate-y-px lg:h-[47px] lg:px-4"
+        >
+            <i class="fa-brands fa-whatsapp text-[18px]"></i> Tenho interesse
+        </a>
+        <a
+            v-else
             :href="`/produto/${product.slug}`"
             class="mt-auto flex h-[56px] items-center justify-center bg-brand px-3 text-center font-poppins text-[15px] font-semibold text-white transition duration-200 hover:brightness-105 active:translate-y-px lg:h-[47px] lg:px-4"
         >

@@ -254,8 +254,10 @@ class ProductController extends Controller
                 continue;
             }
 
-            $path = $file->store('products', 'public');
-            $web = '/storage/'.$path;
+            // Stored inside public/uploads and served directly (no symlink) —
+            // works on shared hosting where storage:link isn't available.
+            $path = $file->store('products', 'uploads');
+            $web = Storage::disk('uploads')->url($path);
 
             $image = $product->images()->create([
                 'url' => $web,
@@ -300,14 +302,17 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove an image's file from disk, but only when it lives on our public
-     * storage (never touch externally imported WordPress URLs).
+     * Remove an image's file from disk, but only when it's one of ours
+     * (never touch externally imported WordPress URLs).
      */
     private function deleteImageFile(ProductImage $image): void
     {
-        $path = $image->local_path;
+        $path = (string) $image->local_path;
 
-        if (is_string($path) && str_starts_with($path, '/storage/')) {
+        if (str_contains($path, '/uploads/')) {
+            Storage::disk('uploads')->delete(Str::after($path, '/uploads/'));
+        } elseif (str_starts_with($path, '/storage/')) {
+            // Legacy: uploads feitos antes (na storage/app/public via symlink).
             Storage::disk('public')->delete(substr($path, strlen('/storage/')));
         }
     }
