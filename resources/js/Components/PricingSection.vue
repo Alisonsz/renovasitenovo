@@ -25,7 +25,11 @@ function scrollPricing(direction) {
 </script>
 
 <template>
-    <section id="precos" class="relative mb-[-140px] scroll-mt-[70px] overflow-x-clip overflow-y-visible bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 pt-14 pb-[92px] lg:mb-[-166px] lg:pt-[120px] lg:pb-[130px]">
+    <!-- overflow-clip (e NÃO overflow-x-clip + overflow-y-visible): o mix recorte+visível
+         faz o WebKit/Safari 16+ tratar a seção como scroll container vertical aninhado,
+         que captura o toque e trava a rolagem em alguns iPhones. clip nos dois eixos
+         recorta igual mas não vira container de scroll. -->
+    <section id="precos" class="relative mb-[-140px] scroll-mt-[70px] overflow-clip bg-[linear-gradient(180deg,#FFFFFF_0%,#DBE8E9_100%)] px-5 pt-14 pb-[92px] lg:mb-[-166px] lg:pt-[120px] lg:pb-[130px]">
         <div class="mx-auto max-w-[1140px]">
             <div class="text-center">
                 <h2 class="text-[28px] font-extrabold text-heading lg:text-[39px]">Conheça nossos preços</h2>

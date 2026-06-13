@@ -16,7 +16,10 @@ const thirdStyle = thirdMotion.style;
 
 <template>
     <section class="block bg-white lg:hidden">
-        <div class="mx-auto flex h-[280px] max-w-[390px] flex-col justify-center overflow-hidden px-5 text-center text-[18px] leading-[28px] text-brand-dark">
+        <!-- overflow-clip (não overflow-hidden): hidden cria scroll container e, com os
+             textos em translate3d/will-change, pode capturar o toque em alguns iPhones.
+             clip recorta o texto que se move na horizontal sem virar container de scroll. -->
+        <div class="mx-auto flex h-[280px] max-w-[390px] flex-col justify-center overflow-clip px-5 text-center text-[18px] leading-[28px] text-brand-dark">
             <p
                 ref="firstLine"
                 class="inline-block font-extrabold transition-transform duration-150 ease-out"

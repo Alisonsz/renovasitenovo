@@ -37,7 +37,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="overflow-x-clip px-5 py-14 lg:py-20">
+    <!-- overflow-clip (não overflow-x-clip sozinho): com overflow-y visível padrão, o
+         Safari 16+ faz a seção virar scroll container e trava a rolagem em alguns iPhones. -->
+    <section class="overflow-clip px-5 py-14 lg:py-20">
         <div class="mx-auto max-w-[1100px]">
             <h2 class="text-center text-[28px] font-extrabold text-heading lg:text-[39px]">Dúvidas frequentes</h2>
 

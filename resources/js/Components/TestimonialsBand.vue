@@ -46,7 +46,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="relative flex min-h-[430px] items-start overflow-x-clip overflow-y-visible bg-white px-0 pt-[167px] pb-14 sm:px-5 sm:pt-[219px] lg:min-h-[560px] lg:pt-[120px] lg:pb-20">
+    <!-- overflow-clip nos dois eixos: evita o bug do mix clip+visible no iOS (trava o
+         scroll). Recorta as aspas decorativas que vazam na horizontal, igual antes. -->
+    <section class="relative flex min-h-[430px] items-start overflow-clip bg-white px-0 pt-[167px] pb-14 sm:px-5 sm:pt-[219px] lg:min-h-[560px] lg:pt-[120px] lg:pb-20">
         <img
             src="/images/aspas.png"
             alt=""
